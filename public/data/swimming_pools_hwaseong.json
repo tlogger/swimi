@@ -1,0 +1,731 @@
+[
+  {
+    "id": "hwaseong-sports-complex-50m",
+    "name": "화성종합경기타운 실내수영장",
+    "shortName": "화성종합경기타운(50m)",
+    "address": "경기도 화성시 향남읍 향남로 470",
+    "addressDetail": "화성종합경기타운 실내체육관 지하 1층",
+    "city": "화성시",
+    "district": "향남읍",
+    "phone": "031-371-2950",
+    "homepage": "https://www.hsuco.or.kr/stadium/sub3_1.do",
+    "lat": 37.135431,
+    "lng": 126.918902,
+    "laneLength": 50,
+    "laneCount": 8,
+    "depth": "1.4m ~ 1.8m",
+    "breakRule": "50_10",
+    "weeklySchedule": {
+      "0": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "1부", "start": "09:00", "end": "11:50" },
+          { "partName": "2부", "start": "13:00", "end": "14:50" },
+          { "partName": "3부", "start": "15:30", "end": "17:20" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,false,false,false,true,true,true,false,true,true,false,true,true,false,false,false,false,false,false]
+      },
+      "1": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "새벽부", "start": "06:00", "end": "07:50" },
+          { "partName": "오전부", "start": "09:00", "end": "11:50" },
+          { "partName": "오후부", "start": "14:00", "end": "16:50" },
+          { "partName": "저녁부", "start": "18:30", "end": "20:50" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,false,true,true,true,false,false,true,true,true,false,true,true,true,false,false,false]
+      },
+      "2": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "새벽부", "start": "06:00", "end": "07:50" },
+          { "partName": "오전부", "start": "09:00", "end": "11:50" },
+          { "partName": "오후부", "start": "14:00", "end": "16:50" },
+          { "partName": "저녁부", "start": "18:30", "end": "20:50" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,false,true,true,true,false,false,true,true,true,false,true,true,true,false,false,false]
+      },
+      "3": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "새벽부", "start": "06:00", "end": "07:50" },
+          { "partName": "오전부", "start": "09:00", "end": "11:50" },
+          { "partName": "오후부", "start": "14:00", "end": "16:50" },
+          { "partName": "저녁부", "start": "18:30", "end": "20:50" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,false,true,true,true,false,false,true,true,true,false,true,true,true,false,false,false]
+      },
+      "4": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "새벽부", "start": "06:00", "end": "07:50" },
+          { "partName": "오전부", "start": "09:00", "end": "11:50" },
+          { "partName": "오후부", "start": "14:00", "end": "16:50" },
+          { "partName": "저녁부", "start": "18:30", "end": "20:50" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,false,true,true,true,false,false,true,true,true,false,true,true,true,false,false,false]
+      },
+      "5": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "새벽부", "start": "06:00", "end": "07:50" },
+          { "partName": "오전부", "start": "09:00", "end": "11:50" },
+          { "partName": "오후부", "start": "14:00", "end": "16:50" },
+          { "partName": "저녁부", "start": "18:30", "end": "20:50" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,false,true,true,true,false,false,true,true,true,false,true,true,true,false,false,false]
+      },
+      "6": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "1부", "start": "09:00", "end": "11:50" },
+          { "partName": "2부", "start": "13:00", "end": "14:50" },
+          { "partName": "3부", "start": "15:30", "end": "17:20" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,false,false,false,true,true,true,false,true,true,false,true,true,false,false,false,false,false,false]
+      }
+    },
+    "holidaySchedule": {
+      "isOpen": true,
+      "sessions": [
+        { "partName": "1부", "start": "09:00", "end": "11:50" },
+        { "partName": "2부", "start": "13:00", "end": "16:50" }
+      ],
+      "hourlySlots": [false,false,false,false,false,false,false,false,false,true,true,true,false,true,true,true,true,false,false,false,false,false,false,false]
+    },
+    "closedDaysDescription": "매월 첫째·셋째 일요일 정기 휴관, 법정공휴일(신정/설/추석 연휴)",
+    "closedRules": [
+      { "type": "nth_weekday", "weeks": [1, 3], "weekday": 0 }
+    ],
+    "fee": {
+      "standard": { "adult": 3000, "teen": 2500, "child": 2000 },
+      "outOfDistrict": { "adult": 4500, "teen": 3750, "child": 3000 },
+      "discountNote": "화성시민 신분증 지참 시 관내요금 적용 (50% 감면: 유공자, 장애인, 다자녀)"
+    },
+    "features": {
+      "hasKidPool": true,
+      "hasWarmRoom": true,
+      "hasWalkingLane": true,
+      "kickboardAllowed": false,
+      "flippersAllowed": true,
+      "parking": {
+        "available": true,
+        "info": "경기타운 내 대형 야외 및 지하주차장 무료 (주차 매우 편리)"
+      },
+      "showerLevel": "상",
+      "waterQualityLevel": "상",
+      "notes": "50m 국제공인 규격 풀로 장거리 수영에 최적. 1.8m 구간 수심 깊어 초심자 주의 필요. 개인 숏핀 주말 3부 전용레인 운영."
+    },
+    "review": {
+      "summary": "50m 풀이라 턴 횟수 적고 장거리 영법 연습하기 최상입니다. 수질 매우 맑고 샤워실 락커도 넓습니다. 매시 50분 체조/휴식시간 철저히 운영됩니다.",
+      "rating": 4.8,
+      "lastUpdated": "2026-10-15",
+      "cafePostUrl": "https://cafe.naver.com/freeswimming/128904",
+      "tags": ["50m레인", "수심1.8m", "주차매우편리", "수질극상", "오리발타임"]
+    },
+    "links": [
+      { "title": "화성도시공사 종합경기타운", "url": "https://www.hsuco.or.kr/stadium/sub3_1.do" }
+    ]
+  },
+  {
+    "id": "hwaseong-uni-center-50m",
+    "name": "유앤아이센터 수영장 (화성시 여성가족청소년재단)",
+    "shortName": "유앤아이센터(50m)",
+    "address": "경기도 화성시 태안로 145",
+    "addressDetail": "유앤아이센터 지하 2층 수영장",
+    "city": "화성시",
+    "district": "진안동",
+    "phone": "031-267-8800",
+    "homepage": "https://unicenter.hswf.or.kr/",
+    "lat": 37.214815,
+    "lng": 127.032641,
+    "laneLength": 50,
+    "laneCount": 8,
+    "depth": "1.3m ~ 1.6m",
+    "breakRule": "50_10",
+    "weeklySchedule": {
+      "0": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "1부", "start": "09:00", "end": "11:50" },
+          { "partName": "2부", "start": "13:00", "end": "14:50" },
+          { "partName": "3부", "start": "15:30", "end": "17:20" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,false,false,false,true,true,true,false,true,true,false,true,true,false,false,false,false,false,false]
+      },
+      "1": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "새벽부", "start": "06:00", "end": "08:50" },
+          { "partName": "오후부", "start": "12:00", "end": "13:50" },
+          { "partName": "저녁부", "start": "19:00", "end": "21:50" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,true,false,false,false,true,true,false,false,false,false,false,true,true,true,false,false]
+      },
+      "2": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "새벽부", "start": "06:00", "end": "08:50" },
+          { "partName": "오후부", "start": "12:00", "end": "13:50" },
+          { "partName": "저녁부", "start": "19:00", "end": "21:50" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,true,false,false,false,true,true,false,false,false,false,false,true,true,true,false,false]
+      },
+      "3": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "새벽부", "start": "06:00", "end": "08:50" },
+          { "partName": "오후부", "start": "12:00", "end": "13:50" },
+          { "partName": "저녁부", "start": "19:00", "end": "21:50" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,true,false,false,false,true,true,false,false,false,false,false,true,true,true,false,false]
+      },
+      "4": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "새벽부", "start": "06:00", "end": "08:50" },
+          { "partName": "오후부", "start": "12:00", "end": "13:50" },
+          { "partName": "저녁부", "start": "19:00", "end": "21:50" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,true,false,false,false,true,true,false,false,false,false,false,true,true,true,false,false]
+      },
+      "5": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "새벽부", "start": "06:00", "end": "08:50" },
+          { "partName": "오후부", "start": "12:00", "end": "13:50" },
+          { "partName": "저녁부", "start": "19:00", "end": "21:50" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,true,false,false,false,true,true,false,false,false,false,false,true,true,true,false,false]
+      },
+      "6": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "1부", "start": "09:00", "end": "11:50" },
+          { "partName": "2부", "start": "13:00", "end": "14:50" },
+          { "partName": "3부", "start": "15:30", "end": "17:20" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,false,false,false,true,true,true,false,true,true,false,true,true,false,false,false,false,false,false]
+      }
+    },
+    "holidaySchedule": {
+      "isOpen": true,
+      "sessions": [
+        { "partName": "공휴일 1부", "start": "09:00", "end": "11:50" },
+        { "partName": "공휴일 2부", "start": "13:00", "end": "16:50" }
+      ],
+      "hourlySlots": [false,false,false,false,false,false,false,false,false,true,true,true,false,true,true,true,true,false,false,false,false,false,false,false]
+    },
+    "closedDaysDescription": "매월 둘째·넷째 일요일 정기 휴관, 신정/구정/추석 연휴",
+    "closedRules": [
+      { "type": "nth_weekday", "weeks": [2, 4], "weekday": 0 }
+    ],
+    "fee": {
+      "standard": { "adult": 3000, "teen": 2500, "child": 2000 },
+      "outOfDistrict": { "adult": 4500, "teen": 3750, "child": 3000 },
+      "discountNote": "병점역 도보 5분, 화성시민 신분증 필수 지참"
+    },
+    "features": {
+      "hasKidPool": true,
+      "hasWarmRoom": true,
+      "hasWalkingLane": true,
+      "kickboardAllowed": false,
+      "flippersAllowed": false,
+      "parking": {
+        "available": true,
+        "info": "지하 1~3층 주차장 3시간 무료 지원 (안내데스크 등록)"
+      },
+      "showerLevel": "상",
+      "waterQualityLevel": "상",
+      "notes": "50m 메인풀 8레인 + 유아풀 별도. 병점역 인근이라 대중교통 접근성이 뛰어납니다. 주말 자유수영 인기가 많아 30분 전 발권 추천."
+    },
+    "review": {
+      "summary": "병점 근처 50m 레인이라 주말마다 방문합니다. 천장이 높아서 답답하지 않고 수온도 적당합니다. 샤워부스가 많아서 줄 서는 시간이 짧습니다.",
+      "rating": 4.7,
+      "lastUpdated": "2026-10-20",
+      "cafePostUrl": "https://cafe.naver.com/freeswimming/131002",
+      "tags": ["50m레인", "역세권(병점역)", "높은천장", "주차3시간", "샤워실쾌적"]
+    },
+    "links": [
+      { "title": "유앤아이센터 공식 웹사이트", "url": "https://unicenter.hswf.or.kr/" }
+    ]
+  },
+  {
+    "id": "hwaseong-dongtan-central-25m",
+    "name": "동탄중앙어울림센터 수영장",
+    "shortName": "동탄중앙어울림센터",
+    "address": "경기도 화성시 동탄대로시범길 133",
+    "addressDetail": "동탄중앙어울림센터 B1 실내수영장",
+    "city": "화성시",
+    "district": "청계동",
+    "phone": "031-8059-4721",
+    "homepage": "https://www.hsuco.or.kr/eoullim/sub3_1.do",
+    "lat": 37.202352,
+    "lng": 127.108425,
+    "laneLength": 25,
+    "laneCount": 8,
+    "depth": "1.2m ~ 1.4m",
+    "breakRule": "50_10",
+    "weeklySchedule": {
+      "0": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "1부", "start": "09:00", "end": "11:50" },
+          { "partName": "2부", "start": "13:00", "end": "14:50" },
+          { "partName": "3부", "start": "15:30", "end": "17:20" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,false,false,false,true,true,true,false,true,true,false,true,true,false,false,false,false,false,false]
+      },
+      "1": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "새벽부", "start": "06:00", "end": "07:50" },
+          { "partName": "낮타임", "start": "12:00", "end": "13:50" },
+          { "partName": "저녁부", "start": "18:00", "end": "20:50" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,false,false,false,false,true,true,false,false,false,false,true,true,true,false,false,false]
+      },
+      "2": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "새벽부", "start": "06:00", "end": "07:50" },
+          { "partName": "낮타임", "start": "12:00", "end": "13:50" },
+          { "partName": "저녁부", "start": "18:00", "end": "20:50" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,false,false,false,false,true,true,false,false,false,false,true,true,true,false,false,false]
+      },
+      "3": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "새벽부", "start": "06:00", "end": "07:50" },
+          { "partName": "낮타임", "start": "12:00", "end": "13:50" },
+          { "partName": "저녁부", "start": "18:00", "end": "20:50" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,false,false,false,false,true,true,false,false,false,false,true,true,true,false,false,false]
+      },
+      "4": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "새벽부", "start": "06:00", "end": "07:50" },
+          { "partName": "낮타임", "start": "12:00", "end": "13:50" },
+          { "partName": "저녁부", "start": "18:00", "end": "20:50" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,false,false,false,false,true,true,false,false,false,false,true,true,true,false,false,false]
+      },
+      "5": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "새벽부", "start": "06:00", "end": "07:50" },
+          { "partName": "낮타임", "start": "12:00", "end": "13:50" },
+          { "partName": "저녁부", "start": "18:00", "end": "20:50" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,false,false,false,false,true,true,false,false,false,false,true,true,true,false,false,false]
+      },
+      "6": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "1부", "start": "09:00", "end": "11:50" },
+          { "partName": "2부", "start": "13:00", "end": "14:50" },
+          { "partName": "3부", "start": "15:30", "end": "17:20" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,false,false,false,true,true,true,false,true,true,false,true,true,false,false,false,false,false,false]
+      }
+    },
+    "holidaySchedule": {
+      "isOpen": false,
+      "sessions": [],
+      "hourlySlots": [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
+    },
+    "closedDaysDescription": "매월 첫째·셋째 일요일 정기 휴관 및 법정 공휴일 휴무",
+    "closedRules": [
+      { "type": "nth_weekday", "weeks": [1, 3], "weekday": 0 },
+      { "type": "holidays" }
+    ],
+    "fee": {
+      "standard": { "adult": 3000, "teen": 2500, "child": 2000 },
+      "outOfDistrict": { "adult": 4500, "teen": 3750, "child": 3000 },
+      "discountNote": "동탄 1·2신도시 주민 선호도 1위 수영장"
+    },
+    "features": {
+      "hasKidPool": true,
+      "hasWarmRoom": false,
+      "hasWalkingLane": true,
+      "kickboardAllowed": true,
+      "flippersAllowed": false,
+      "parking": {
+        "available": true,
+        "info": "지하주차장 2시간 30분 무료 (무인정산기 등록)"
+      },
+      "showerLevel": "상",
+      "waterQualityLevel": "상",
+      "notes": "동탄역 인근 신축급 시설로 매우 깨끗함. 걷기 레인 1개 상시 운영. 공용 킥판 사용 가능(초급자 추천)."
+    },
+    "review": {
+      "summary": "동탄에서 가장 시설 깔끔하고 물이 맑습니다. 해수풀이라 락스 냄새가 덜 나고 눈이 안 따가워요. 탈의실 헤어드라이어 넉넉합니다.",
+      "rating": 4.9,
+      "lastUpdated": "2026-10-18",
+      "cafePostUrl": "https://cafe.naver.com/freeswimming/132140",
+      "tags": ["해수풀", "시설최신", "공용킥판가능", "걷기레인", "동탄중심"]
+    },
+    "links": [
+      { "title": "화성도시공사 동탄중앙어울림센터", "url": "https://www.hsuco.or.kr/eoullim/sub3_1.do" }
+    ]
+  },
+  {
+    "id": "hwaseong-bongdam-sports-center-25m",
+    "name": "화성국민체육센터 수영장 (봉담)",
+    "shortName": "화성국민체육센터",
+    "address": "경기도 화성시 봉담읍 매봉로 40",
+    "addressDetail": "국민체육센터 1층 실내수영장",
+    "city": "화성시",
+    "district": "봉담읍",
+    "phone": "031-278-7520",
+    "homepage": "https://www.hsuco.or.kr/bongdam/sub3_1.do",
+    "lat": 37.218524,
+    "lng": 126.948212,
+    "laneLength": 25,
+    "laneCount": 8,
+    "depth": "1.2m ~ 1.4m",
+    "breakRule": "50_10",
+    "weeklySchedule": {
+      "0": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "1부", "start": "09:00", "end": "11:50" },
+          { "partName": "2부", "start": "13:00", "end": "14:50" },
+          { "partName": "3부", "start": "15:30", "end": "17:20" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,false,false,false,true,true,true,false,true,true,false,true,true,false,false,false,false,false,false]
+      },
+      "1": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "새벽부", "start": "06:00", "end": "08:50" },
+          { "partName": "오후부", "start": "14:00", "end": "16:50" },
+          { "partName": "저녁부", "start": "18:30", "end": "20:50" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,true,false,false,false,false,false,true,true,true,false,true,true,true,false,false,false]
+      },
+      "2": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "새벽부", "start": "06:00", "end": "08:50" },
+          { "partName": "오후부", "start": "14:00", "end": "16:50" },
+          { "partName": "저녁부", "start": "18:30", "end": "20:50" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,true,false,false,false,false,false,true,true,true,false,true,true,true,false,false,false]
+      },
+      "3": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "새벽부", "start": "06:00", "end": "08:50" },
+          { "partName": "오후부", "start": "14:00", "end": "16:50" },
+          { "partName": "저녁부", "start": "18:30", "end": "20:50" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,true,false,false,false,false,false,true,true,true,false,true,true,true,false,false,false]
+      },
+      "4": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "새벽부", "start": "06:00", "end": "08:50" },
+          { "partName": "오후부", "start": "14:00", "end": "16:50" },
+          { "partName": "저녁부", "start": "18:30", "end": "20:50" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,true,false,false,false,false,false,true,true,true,false,true,true,true,false,false,false]
+      },
+      "5": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "새벽부", "start": "06:00", "end": "08:50" },
+          { "partName": "오후부", "start": "14:00", "end": "16:50" },
+          { "partName": "저녁부", "start": "18:30", "end": "20:50" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,true,false,false,false,false,false,true,true,true,false,true,true,true,false,false,false]
+      },
+      "6": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "1부", "start": "09:00", "end": "11:50" },
+          { "partName": "2부", "start": "13:00", "end": "14:50" },
+          { "partName": "3부", "start": "15:30", "end": "17:20" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,false,false,false,true,true,true,false,true,true,false,true,true,false,false,false,false,false,false]
+      }
+    },
+    "holidaySchedule": {
+      "isOpen": true,
+      "sessions": [
+        { "partName": "1부", "start": "09:00", "end": "11:50" },
+        { "partName": "2부", "start": "13:00", "end": "16:50" }
+      ],
+      "hourlySlots": [false,false,false,false,false,false,false,false,false,true,true,true,false,true,true,true,true,false,false,false,false,false,false,false]
+    },
+    "closedDaysDescription": "매월 둘째·넷째 일요일 휴관, 법정공휴일(신정, 설/추석)",
+    "closedRules": [
+      { "type": "nth_weekday", "weeks": [2, 4], "weekday": 0 }
+    ],
+    "fee": {
+      "standard": { "adult": 3000, "teen": 2500, "child": 2000 },
+      "outOfDistrict": { "adult": 4500, "teen": 3750, "child": 3000 },
+      "discountNote": "봉담읍 주민 및 화성시민 할인"
+    },
+    "features": {
+      "hasKidPool": true,
+      "hasWarmRoom": true,
+      "hasWalkingLane": true,
+      "kickboardAllowed": false,
+      "flippersAllowed": false,
+      "parking": {
+        "available": true,
+        "info": "지상 및 지하 무료 주차 (공간 여유로움)"
+      },
+      "showerLevel": "중",
+      "waterQualityLevel": "상",
+      "notes": "봉담IC 인근으로 접근 용이. 채광이 좋은 통유리 구조. 수온이 따뜻한 편이라 동계 수영하기 좋습니다."
+    },
+    "review": {
+      "summary": "자연 채광이 들어와서 오전 수영할 때 기분이 상쾌합니다. 물이 따뜻해서 추위 많이 타는 분들에게 딱이에요. 주차도 무료라 부담 없습니다.",
+      "rating": 4.6,
+      "lastUpdated": "2026-10-12",
+      "cafePostUrl": "https://cafe.naver.com/freeswimming/127810",
+      "tags": ["따뜻한수온", "자연채광", "무료주차", "봉담중심", "체온조절실"]
+    },
+    "links": [
+      { "title": "화성국민체육센터 안내", "url": "https://www.hsuco.or.kr/bongdam/sub3_1.do" }
+    ]
+  },
+  {
+    "id": "hwaseong-modunurim-center-25m",
+    "name": "모두누림센터 수영장 (남양)",
+    "shortName": "모두누림센터",
+    "address": "경기도 화성시 남양읍 시청로 155",
+    "addressDetail": "모두누림센터 B2 실내수영장",
+    "city": "화성시",
+    "district": "남양읍",
+    "phone": "031-350-4351",
+    "homepage": "https://modunurim.hswf.or.kr/",
+    "lat": 37.208102,
+    "lng": 126.818451,
+    "laneLength": 25,
+    "laneCount": 8,
+    "depth": "1.2m ~ 1.4m",
+    "breakRule": "50_10",
+    "weeklySchedule": {
+      "0": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "1부", "start": "09:00", "end": "11:50" },
+          { "partName": "2부", "start": "13:00", "end": "14:50" },
+          { "partName": "3부", "start": "15:30", "end": "17:20" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,false,false,false,true,true,true,false,true,true,false,true,true,false,false,false,false,false,false]
+      },
+      "1": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "새벽부", "start": "06:00", "end": "08:50" },
+          { "partName": "낮타임", "start": "12:00", "end": "13:50" },
+          { "partName": "저녁부", "start": "18:30", "end": "20:50" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,true,false,false,false,true,true,false,false,false,false,true,true,true,false,false,false]
+      },
+      "2": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "새벽부", "start": "06:00", "end": "08:50" },
+          { "partName": "낮타임", "start": "12:00", "end": "13:50" },
+          { "partName": "저녁부", "start": "18:30", "end": "20:50" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,true,false,false,false,true,true,false,false,false,false,true,true,true,false,false,false]
+      },
+      "3": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "새벽부", "start": "06:00", "end": "08:50" },
+          { "partName": "낮타임", "start": "12:00", "end": "13:50" },
+          { "partName": "저녁부", "start": "18:30", "end": "20:50" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,true,false,false,false,true,true,false,false,false,false,true,true,true,false,false,false]
+      },
+      "4": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "새벽부", "start": "06:00", "end": "08:50" },
+          { "partName": "낮타임", "start": "12:00", "end": "13:50" },
+          { "partName": "저녁부", "start": "18:30", "end": "20:50" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,true,false,false,false,true,true,false,false,false,false,true,true,true,false,false,false]
+      },
+      "5": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "새벽부", "start": "06:00", "end": "08:50" },
+          { "partName": "낮타임", "start": "12:00", "end": "13:50" },
+          { "partName": "저녁부", "start": "18:30", "end": "20:50" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,true,false,false,false,true,true,false,false,false,false,true,true,true,false,false,false]
+      },
+      "6": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "1부", "start": "09:00", "end": "11:50" },
+          { "partName": "2부", "start": "13:00", "end": "14:50" },
+          { "partName": "3부", "start": "15:30", "end": "17:20" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,false,false,false,true,true,true,false,true,true,false,true,true,false,false,false,false,false,false]
+      }
+    },
+    "holidaySchedule": {
+      "isOpen": false,
+      "sessions": [],
+      "hourlySlots": [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
+    },
+    "closedDaysDescription": "매월 첫째·셋째 일요일 휴관, 법정공휴일 휴무",
+    "closedRules": [
+      { "type": "nth_weekday", "weeks": [1, 3], "weekday": 0 },
+      { "type": "holidays" }
+    ],
+    "fee": {
+      "standard": { "adult": 3000, "teen": 2500, "child": 2000 },
+      "outOfDistrict": { "adult": 4500, "teen": 3750, "child": 3000 },
+      "discountNote": "화성시청 인근 남양뉴타운 공공체육시설"
+    },
+    "features": {
+      "hasKidPool": true,
+      "hasWarmRoom": true,
+      "hasWalkingLane": true,
+      "kickboardAllowed": false,
+      "flippersAllowed": false,
+      "parking": {
+        "available": true,
+        "info": "센터 부설주차장 3시간 무료 (차량번호 등록)"
+      },
+      "showerLevel": "상",
+      "waterQualityLevel": "상",
+      "notes": "화성시 서부권 남양뉴타운 중심 수영장. 샤워기 수압 좋고 탈의실 락커가 쾌적함."
+    },
+    "review": {
+      "summary": "화성시청 바로 앞이라 찾기 쉽고 주차도 3시간 넉넉합니다. 수영장 층고가 높고 락커룸이 매우 깔끔하게 관리됩니다.",
+      "rating": 4.7,
+      "lastUpdated": "2026-10-21",
+      "cafePostUrl": "https://cafe.naver.com/freeswimming/133501",
+      "tags": ["남양뉴타운", "화성시청근처", "수압좋음", "깨끗한시설", "3시간무료주차"]
+    },
+    "links": [
+      { "title": "모두누림센터 공식 안내", "url": "https://modunurim.hswf.or.kr/" }
+    ]
+  },
+  {
+    "id": "hwaseong-green-center-25m",
+    "name": "화성그린환경센터 수영장",
+    "shortName": "그린환경센터",
+    "address": "경기도 화성시 봉담읍 하가등1길 100",
+    "addressDetail": "그린환경센터 주민편익시설 지하 1층",
+    "city": "화성시",
+    "district": "봉담읍",
+    "phone": "031-227-9950",
+    "homepage": "https://www.hsuco.or.kr/green/sub3_1.do",
+    "lat": 37.195204,
+    "lng": 126.915012,
+    "laneLength": 25,
+    "laneCount": 6,
+    "depth": "1.1m ~ 1.3m",
+    "breakRule": "continuous",
+    "weeklySchedule": {
+      "0": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "오전타임", "start": "09:00", "end": "12:00" },
+          { "partName": "오후타임", "start": "13:00", "end": "17:00" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,false,false,false,true,true,true,false,true,true,true,true,false,false,false,false,false,false,false]
+      },
+      "1": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "오전부", "start": "06:00", "end": "12:00" },
+          { "partName": "오후부", "start": "13:00", "end": "21:00" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,true,true,true,true,false,true,true,true,true,true,true,true,true,false,false,false]
+      },
+      "2": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "오전부", "start": "06:00", "end": "12:00" },
+          { "partName": "오후부", "start": "13:00", "end": "21:00" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,true,true,true,true,false,true,true,true,true,true,true,true,true,false,false,false]
+      },
+      "3": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "오전부", "start": "06:00", "end": "12:00" },
+          { "partName": "오후부", "start": "13:00", "end": "21:00" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,true,true,true,true,false,true,true,true,true,true,true,true,true,false,false,false]
+      },
+      "4": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "오전부", "start": "06:00", "end": "12:00" },
+          { "partName": "오후부", "start": "13:00", "end": "21:00" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,true,true,true,true,false,true,true,true,true,true,true,true,true,false,false,false]
+      },
+      "5": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "오전부", "start": "06:00", "end": "12:00" },
+          { "partName": "오후부", "start": "13:00", "end": "21:00" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,true,true,true,true,true,true,false,true,true,true,true,true,true,true,true,false,false,false]
+      },
+      "6": {
+        "isOpen": true,
+        "sessions": [
+          { "partName": "오전타임", "start": "09:00", "end": "12:00" },
+          { "partName": "오후타임", "start": "13:00", "end": "17:00" }
+        ],
+        "hourlySlots": [false,false,false,false,false,false,false,false,false,true,true,true,false,true,true,true,true,false,false,false,false,false,false,false]
+      }
+    },
+    "holidaySchedule": {
+      "isOpen": false,
+      "sessions": [],
+      "hourlySlots": [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
+    },
+    "closedDaysDescription": "매주 월요일 휴관 (또는 일요일 격주), 공휴일 휴무",
+    "closedRules": [
+      { "type": "nth_weekday", "weeks": [2, 4], "weekday": 0 }
+    ],
+    "fee": {
+      "standard": { "adult": 2500, "teen": 2000, "child": 1500 },
+      "outOfDistrict": { "adult": 3750, "teen": 3000, "child": 2250 },
+      "discountNote": "주민편익시설로 입장료가 타 수영장보다 저렴"
+    },
+    "features": {
+      "hasKidPool": true,
+      "hasWarmRoom": true,
+      "hasWalkingLane": true,
+      "kickboardAllowed": true,
+      "flippersAllowed": false,
+      "parking": {
+        "available": true,
+        "info": "지상 무료 주차장 매우 넓음"
+      },
+      "showerLevel": "중",
+      "waterQualityLevel": "상",
+      "notes": "연속 운영형 수영장으로 시간당 50분 강제 퇴수 없음(자유 수영). 킥판 사용 가능."
+    },
+    "review": {
+      "summary": "입장료가 저렴하고 연속으로 여유롭게 수영할 수 있어 좋습니다. 주차장이 널찍하고 붐비지 않는 숨은 명소입니다.",
+      "rating": 4.5,
+      "lastUpdated": "2026-10-08",
+      "cafePostUrl": "https://cafe.naver.com/freeswimming/125430",
+      "tags": ["연속운영", "저렴한입장료", "주차한산", "개인킥판가능"]
+    },
+    "links": [
+      { "title": "그린환경센터 이용안내", "url": "https://www.hsuco.or.kr/green/sub3_1.do" }
+    ]
+  }
+]
