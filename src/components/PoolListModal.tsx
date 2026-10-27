@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, ArrowDownAZ, Navigation, Clock, CheckCircle2, Waves, Phone } from 'lucide-react';
+import { X, ArrowDownAZ, Navigation, Clock, CheckCircle2, Waves } from 'lucide-react';
 import { SwimmingPool, PoolCurrentStatus } from '../types/pool';
 
 export type SortMode = 'name' | 'distance';
@@ -55,18 +55,13 @@ export const PoolListModal: React.FC<PoolListModalProps> = ({
     <div className="fixed inset-0 z-40 flex flex-col justify-end sm:justify-center items-center p-0 sm:p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
       <div className="w-full sm:max-w-xl bg-slate-900 border border-slate-700/80 rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col h-[85vh] sm:h-[80vh] overflow-hidden">
         {/* 헤더 및 컨트롤 바 */}
-        <div className="p-4 border-b border-slate-800 bg-slate-900/90 flex flex-col gap-3">
+        <div className="p-4 border-b border-slate-800 bg-slate-900/90 flex flex-col gap-3 shrink-0">
           <div className="flex items-center justify-between">
-            <div>
-              <h2 className="text-base font-bold text-white flex items-center gap-2">
-                <span>수영장 리스트</span>
-                <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-800/80">
-                  {displayedPools.length}곳
-                </span>
-              </h2>
-              <p className="text-xs text-slate-400">
-                원하는 수영장을 선택하면 지도가 해당 위치로 이동합니다.
-              </p>
+            <div className="flex items-center gap-2">
+              <h2 className="text-base font-bold text-white">수영장 리스트</h2>
+              <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-800/80">
+                {displayedPools.length}곳
+              </span>
             </div>
             <button
               onClick={onClose}
@@ -78,7 +73,7 @@ export const PoolListModal: React.FC<PoolListModalProps> = ({
           </div>
 
           {/* 정렬 버튼 & 운영중 토글 */}
-          <div className="flex items-center justify-between gap-2 pt-1">
+          <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-1.5 bg-slate-800/80 p-1 rounded-xl border border-slate-700">
               <button
                 onClick={() => onSelectSortMode('name')}
@@ -114,14 +109,14 @@ export const PoolListModal: React.FC<PoolListModalProps> = ({
               }`}
             >
               <Clock className="w-3.5 h-3.5" />
-              <span>운영중만</span>
+              <span>운영 중</span>
               {onlyOpenNow && <CheckCircle2 className="w-3 h-3 text-emerald-200" />}
             </button>
           </div>
         </div>
 
-        {/* 리스트 본문 */}
-        <div className="flex-1 overflow-y-auto p-3 space-y-2.5 no-scrollbar">
+        {/* 간결한 리스트뷰 (전화번호, 요금, 주소 삭제) */}
+        <div className="flex-1 overflow-y-auto divide-y divide-slate-800/80 no-scrollbar">
           {displayedPools.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center text-slate-500 py-16 gap-2">
               <Waves className="w-10 h-10 text-slate-600 animate-bounce" />
@@ -138,7 +133,6 @@ export const PoolListModal: React.FC<PoolListModalProps> = ({
               const status = poolStatuses[pool.id];
               const dist = poolDistances[pool.id];
               const isSelected = selectedPoolId === pool.id;
-
               const is50m = pool.laneLength === 50;
 
               return (
@@ -148,76 +142,56 @@ export const PoolListModal: React.FC<PoolListModalProps> = ({
                     onSelectPool(pool);
                     onClose();
                   }}
-                  className={`p-3.5 rounded-2xl border transition-all cursor-pointer flex flex-col gap-2.5 ${
+                  className={`px-4 py-3 flex items-center justify-between gap-3 cursor-pointer transition-all ${
                     isSelected
-                      ? 'bg-cyan-950/40 border-cyan-400 shadow-lg shadow-cyan-950/30'
-                      : 'bg-slate-850 bg-slate-800/50 border-slate-700/60 hover:border-slate-600 hover:bg-slate-800/90'
+                      ? 'bg-cyan-950/50 text-cyan-200'
+                      : 'hover:bg-slate-800/70 text-slate-200'
                   }`}
                 >
-                  <div className="flex items-start justify-between gap-2">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-1.5 flex-wrap">
-                        {/* 레인 배지 */}
-                        <span
-                          className={`text-[11px] font-extrabold px-2 py-0.5 rounded-full border ${
-                            is50m
-                              ? 'bg-amber-500/20 text-amber-300 border-amber-500/50'
-                              : 'bg-blue-500/20 text-blue-300 border-blue-500/50'
-                          }`}
-                        >
-                          {pool.laneLength}m · {pool.laneCount}레인
-                        </span>
+                  {/* 왼쪽: 수영장 이름 & 레인/상태 배지 */}
+                  <div className="flex items-center gap-2.5 min-w-0 flex-1">
+                    {/* 레인 배지 */}
+                    <span
+                      className={`text-[11px] font-black px-2 py-0.5 rounded-full shrink-0 border ${
+                        is50m
+                          ? 'bg-amber-500/20 text-amber-300 border-amber-500/50'
+                          : 'bg-blue-500/20 text-blue-300 border-blue-500/50'
+                      }`}
+                    >
+                      {pool.laneLength}m
+                    </span>
 
-                        {/* 운영 상태 배지 */}
-                        {status && (
-                          <span
-                            className={`text-[11px] font-bold px-2 py-0.5 rounded-full border ${
-                              status.status === 'OPEN'
-                                ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
-                                : status.status === 'BREAK'
-                                ? 'bg-amber-500/20 text-amber-300 border-amber-500/40'
-                                : 'bg-slate-700/40 text-slate-400 border-slate-600/40'
-                            }`}
-                          >
-                            {status.statusText}
-                          </span>
-                        )}
-                      </div>
+                    {/* 수영장 이름 (길이 표시 없는 순수 명칭) */}
+                    <span className="text-sm font-bold truncate text-white">
+                      {pool.name}
+                    </span>
 
-                      <h3 className="text-sm font-bold text-white mt-1.5 flex items-center gap-1.5">
-                        {pool.name}
-                      </h3>
-                      <p className="text-xs text-slate-400 line-clamp-1 mt-0.5">
-                        {pool.address}
-                      </p>
-                    </div>
-
-                    {/* 거리 표시 */}
-                    {dist !== undefined && (
-                      <span className="text-xs font-extrabold text-cyan-400 bg-cyan-950/60 border border-cyan-800/60 px-2 py-1 rounded-xl shrink-0">
-                        {dist} km
+                    {/* 운영 상태 배지 */}
+                    {status && (
+                      <span
+                        className={`text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0 border ${
+                          status.status === 'OPEN'
+                            ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
+                            : status.status === 'BREAK'
+                            ? 'bg-amber-500/20 text-amber-300 border-amber-500/40'
+                            : 'bg-slate-800 text-slate-500 border-slate-700'
+                        }`}
+                      >
+                        {status.status === 'OPEN'
+                          ? '운영중'
+                          : status.status === 'BREAK'
+                          ? '휴식시간'
+                          : '마감'}
                       </span>
                     )}
                   </div>
 
-                  {/* 세부 메타 (입장료 / 전화) */}
-                  <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1 border-t border-slate-700/40">
-                    <span>
-                      일일 성인:{' '}
-                      <strong className="text-slate-200">
-                        {pool.fee.standard.adult.toLocaleString()}원
-                      </strong>
-                      {pool.fee.outOfDistrict && (
-                        <span className="text-slate-500 ml-1">
-                          (관외 {pool.fee.outOfDistrict.adult.toLocaleString()}원)
-                        </span>
-                      )}
+                  {/* 오른쪽: 거리 표시 */}
+                  {dist !== undefined && dist < 99999 && (
+                    <span className="text-xs font-mono font-bold text-cyan-400 shrink-0">
+                      {dist} km
                     </span>
-                    <span className="flex items-center gap-1 text-slate-400">
-                      <Phone className="w-3 h-3 text-slate-500" />
-                      {pool.phone}
-                    </span>
-                  </div>
+                  )}
                 </div>
               );
             })

@@ -5,22 +5,26 @@ import {
   calculateDistanceKm,
 } from './utils/scheduleCalculator';
 import { HeaderSearch } from './components/HeaderSearch';
-import { FilterModal, DayTypeFilter } from './components/FilterModal';
+import { FilterModal, DayTypeOption } from './components/FilterModal';
 import { PoolListModal, SortMode } from './components/PoolListModal';
 import { PoolDetailDrawer } from './components/PoolDetailDrawer';
 import { KakaoMapWrapper } from './components/KakaoMapWrapper';
 
-// 시범 지역 화성시 중심 좌표 (화성시청 부근)
 const DEFAULT_CENTER = { lat: 37.1995, lng: 126.8315 };
+const ALL_DAYS: DayTypeOption[] = ['weekday', 'saturday', 'sunday', 'holiday'];
+const ALL_LANES: (25 | 50)[] = [25, 50];
 
 export const App: React.FC = () => {
   const [pools, setPools] = useState<SwimmingPool[]>([]);
   const [selectedPool, setSelectedPool] = useState<SwimmingPool | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [targetDate, setTargetDate] = useState<Date>(new Date());
-  const [dayType, setDayType] = useState<DayTypeFilter>('all');
-  const [laneFilter, setLaneFilter] = useState<'all' | 25 | 50>('all');
+
+  // 요구사항 3: 초기화 상태는 모두 선택된 상태
+  const [selectedDays, setSelectedDays] = useState<DayTypeOption[]>(ALL_DAYS);
+  const [selectedLanes, setSelectedLanes] = useState<(25 | 50)[]>(ALL_LANES);
   const [onlyOpenNow, setOnlyOpenNow] = useState<boolean>(false);
+
   const [sortMode, setSortMode] = useState<SortMode>('distance');
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
   const [isListOpen, setIsListOpen] = useState<boolean>(false);
@@ -29,7 +33,7 @@ export const App: React.FC = () => {
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [mapCenter, setMapCenter] = useState<{ lat: number; lng: number }>(DEFAULT_CENTER);
 
-  // 1. 초기 수영장 데이터셋 로드
+  // 1. 수영장 데이터 로드 (전국 906개 통합 데이터)
   useEffect(() => {
     fetch('./data/swimming_pools.json')
       .then((res) => res.json())
@@ -41,7 +45,7 @@ export const App: React.FC = () => {
       });
   }, []);
 
-  // 2. 브라우저 현재 위치 획득
+  // 2. 현재 위치 조회
   const requestCurrentLocation = () => {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
@@ -66,19 +70,42 @@ export const App: React.FC = () => {
     requestCurrentLocation();
   }, []);
 
-  // 3. 수영장별 실시간 운영 상태 맵 계산
+  // 3. 요일 토글 핸들러
+  const handleToggleDay = (day: DayTypeOption) => {
+    setSelectedDays((prev) => {
+      if (prev.includes(day)) {
+        // 이미 선택되어 있으면 제거 (단, 모두 해제 시 빈 배열)
+        return prev.filter((d) => d !== day);
+      } else {
+        return [...prev, day];
+      }
+    });
+  };
+
+  // 4. 레인 토글 핸들러
+  const handleToggleLane = (lane: 25 | 50) => {
+    setSelectedLanes((prev) => {
+      if (prev.includes(lane)) {
+        return prev.filter((l) => l !== lane);
+      } else {
+        return [...prev, lane];
+      }
+    });
+  };
+
+  // 5. 수영장별 실시간 운영 상태 계산
   const poolStatuses = useMemo(() => {
     const statusMap: Record<string, PoolCurrentStatus> = {};
-    const isHoliday = dayType === 'holiday';
+    const isHoliday = selectedDays.length === 1 && selectedDays[0] === 'holiday';
 
     pools.forEach((pool) => {
       statusMap[pool.id] = calculatePoolStatus(pool, targetDate, isHoliday);
     });
 
     return statusMap;
-  }, [pools, targetDate, dayType]);
+  }, [pools, targetDate, selectedDays]);
 
-  // 4. 수영장별 거리 계산 맵 (km)
+  // 6. 거리 계산
   const poolDistances = useMemo(() => {
     const distMap: Record<string, number> = {};
     const refPoint = userLocation || mapCenter;
@@ -95,10 +122,10 @@ export const App: React.FC = () => {
     return distMap;
   }, [pools, userLocation, mapCenter]);
 
-  // 5. 검색 및 필터링 적용된 수영장 목록
+  // 7. 검색 및 필터링 적용된 수영장 목록
   const filteredPools = useMemo(() => {
     return pools.filter((pool) => {
-      // 검색어 필터 (지역, 명칭, 주소)
+      // 1) 검색어 필터 (지역, 명칭, 주소)
       if (searchQuery.trim()) {
         const query = searchQuery.trim().toLowerCase();
         const matchesName = pool.name.toLowerCase().includes(query);
@@ -118,26 +145,42 @@ export const App: React.FC = () => {
         }
       }
 
-      // 레인 규격 필터
-      if (laneFilter !== 'all' && pool.laneLength !== laneFilter) {
+      // 2) 레인 규격 필터 (25m / 50m)
+      if (!selectedLanes.includes(pool.laneLength)) {
         return false;
       }
 
-      // 요일 필터 (평일 / 토요일 / 일요일 / 공휴일)
-      if (dayType !== 'all') {
-        const dayOfWeek = targetDate.getDay();
-        if (dayType === 'weekday' && (dayOfWeek === 0 || dayOfWeek === 6)) {
-          return false;
+      // 3) 요일 및 공휴일 필터
+      // selectedDays에 포함된 요일 중 수영장이 하나라도 여는지 확인
+      if (selectedDays.length < 4) {
+        if (selectedDays.length === 0) return false;
+
+        let matchesAnyDay = false;
+        if (selectedDays.includes('weekday')) {
+          // 월~금 중 하루라도 운영하면
+          for (let d = 1; d <= 5; d++) {
+            if (pool.weeklySchedule[d]?.isOpen) {
+              matchesAnyDay = true;
+              break;
+            }
+          }
         }
-        if (dayType === 'saturday' && dayOfWeek !== 6) {
-          return false;
+        if (!matchesAnyDay && selectedDays.includes('saturday')) {
+          if (pool.weeklySchedule[6]?.isOpen) matchesAnyDay = true;
         }
-        if (dayType === 'sunday' && dayOfWeek !== 0) {
+        if (!matchesAnyDay && selectedDays.includes('sunday')) {
+          if (pool.weeklySchedule[0]?.isOpen) matchesAnyDay = true;
+        }
+        if (!matchesAnyDay && selectedDays.includes('holiday')) {
+          if (pool.holidaySchedule?.isOpen) matchesAnyDay = true;
+        }
+
+        if (!matchesAnyDay) {
           return false;
         }
       }
 
-      // 현재 운영중만 보기 필터
+      // 4) 운영 중 토글 필터
       if (onlyOpenNow) {
         const st = poolStatuses[pool.id];
         if (!st || (st.status !== 'OPEN' && st.status !== 'BREAK')) {
@@ -147,9 +190,9 @@ export const App: React.FC = () => {
 
       return true;
     });
-  }, [pools, searchQuery, laneFilter, dayType, targetDate, onlyOpenNow, poolStatuses]);
+  }, [pools, searchQuery, selectedLanes, selectedDays, onlyOpenNow, poolStatuses]);
 
-  // 6. 검색어 입력 시 첫 번째 일치하는 수영장으로 지도 중심 이동
+  // 8. 검색어 입력 시 첫 번째 수영장 위치로 지도 이동
   useEffect(() => {
     if (searchQuery.trim() && filteredPools.length > 0) {
       setMapCenter({
@@ -159,20 +202,20 @@ export const App: React.FC = () => {
     }
   }, [searchQuery]);
 
-  // 필터 초기화
+  // 필터 초기화 (모든 옵션이 선택된 상태로 복구)
   const handleResetAllFilters = () => {
     setSearchQuery('');
     setTargetDate(new Date());
-    setDayType('all');
-    setLaneFilter('all');
+    setSelectedDays(ALL_DAYS);
+    setSelectedLanes(ALL_LANES);
     setOnlyOpenNow(false);
     setSelectedPool(null);
   };
 
   const hasActiveFilters =
     searchQuery.trim().length > 0 ||
-    dayType !== 'all' ||
-    laneFilter !== 'all' ||
+    selectedDays.length !== 4 ||
+    selectedLanes.length !== 2 ||
     onlyOpenNow;
 
   return (
@@ -210,13 +253,13 @@ export const App: React.FC = () => {
       <FilterModal
         isOpen={isFilterOpen}
         onClose={() => setIsFilterOpen(false)}
-        dayType={dayType}
-        onSelectDayType={setDayType}
+        selectedDays={selectedDays}
+        onToggleDay={handleToggleDay}
         targetDate={targetDate}
         onDateChange={setTargetDate}
         onResetToToday={() => setTargetDate(new Date())}
-        laneFilter={laneFilter}
-        onSelectLaneFilter={setLaneFilter}
+        selectedLanes={selectedLanes}
+        onToggleLane={handleToggleLane}
         onlyOpenNow={onlyOpenNow}
         onToggleOnlyOpenNow={() => setOnlyOpenNow(!onlyOpenNow)}
         onResetAllFilters={handleResetAllFilters}

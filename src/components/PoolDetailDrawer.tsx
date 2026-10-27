@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  X,
   Navigation,
   Phone,
   Globe,
@@ -38,16 +37,18 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
 
   const { webNaviUrl } = getKakaoNaviLinks(pool.name, pool.lat, pool.lng);
 
-  // 내비 버튼 클릭 시 카카오맵 길찾기로 이동
   const handleNaviClick = () => {
     window.open(webNaviUrl, '_blank');
   };
 
   const is50m = pool.laneLength === 50;
 
+  // 요구사항 2: 길이 표시 없는 순수 명칭
+  const cleanName = pool.name.replace(/\s*\((?:25m|50m)\)/gi, '').trim();
+
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 flex justify-center pointer-events-auto">
-      <div className="w-full max-w-2xl bg-slate-900/98 backdrop-blur-xl border-t sm:border-x border-slate-700/80 rounded-t-3xl shadow-2xl flex flex-col max-h-[82vh] overflow-hidden animate-in slide-in-from-bottom-6 duration-300">
+      <div className="w-full max-w-2xl bg-slate-900/98 backdrop-blur-xl border-t sm:border-x border-slate-700/80 rounded-t-3xl shadow-2xl flex flex-col max-h-[80vh] overflow-hidden animate-in slide-in-from-bottom-6 duration-300">
         {/* 상단 드래그 핸들 & 닫기 바 */}
         <div className="relative pt-2.5 pb-2 px-5 border-b border-slate-800 flex items-center justify-between shrink-0">
           <div className="absolute left-1/2 -translate-x-1/2 top-2 w-10 h-1 bg-slate-700 rounded-full" />
@@ -85,11 +86,11 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
         </div>
 
         {/* 스크롤 가능한 본문 영역 */}
-        <div className="flex-1 overflow-y-auto p-5 space-y-5 no-scrollbar">
-          {/* 1. 수영장 기본 타이틀 및 주소 */}
+        <div className="flex-1 overflow-y-auto p-5 space-y-4 no-scrollbar">
+          {/* 1. 수영장 명칭 및 주소 */}
           <div>
-            <h1 className="text-xl font-black text-white tracking-tight flex items-center gap-2">
-              {pool.name}
+            <h1 className="text-xl font-black text-white tracking-tight">
+              {cleanName}
             </h1>
             <p className="text-xs text-slate-300 mt-1">
               {pool.address}{' '}
@@ -99,16 +100,13 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
             </p>
             <p className="text-xs text-slate-400 mt-0.5">
               수심: <strong className="text-slate-200">{pool.depth}</strong> ·{' '}
-              운영 방식:{' '}
-              <strong className="text-cyan-400">
-                {pool.breakRule === '50_10'
-                  ? '50분 수영 / 10분 휴식제'
-                  : '연속 자유수영'}
-              </strong>
+              {pool.breakRule === '50_10'
+                ? '50분 수영 / 10분 휴식'
+                : '연속 자유수영'}
             </p>
           </div>
 
-          {/* 2. 빠른 액션 버튼: 내비 & 전화 & 홈페이지 */}
+          {/* 2. 빠른 액션 버튼: 카카오내비 / 전화걸기 / 홈페이지 */}
           <div className="grid grid-cols-3 gap-2">
             <button
               onClick={handleNaviClick}
@@ -141,21 +139,21 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
             )}
           </div>
 
-          {/* 3. 운영시간 & 24시간 타임라인 (핵심 정보) */}
-          <div className="bg-slate-850 bg-slate-800/50 border border-slate-700/60 rounded-2xl p-4 flex flex-col gap-3">
+          {/* 3. 요구사항 5-1: 시간 그래프에 시간만 표기 (새벽부/오후부/저녁부 박스 삭제) */}
+          <div className="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-4 flex flex-col gap-2.5">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-white flex items-center gap-1.5">
                 <Clock className="w-4 h-4 text-cyan-400" />
-                {targetDate.getMonth() + 1}월 {targetDate.getDate()}일 ({dayName}요일) 자유수영 시간표
+                {targetDate.getMonth() + 1}월 {targetDate.getDate()}일 ({dayName}) 수영 가능 시간
               </span>
               <span className="text-[11px] text-slate-400">
-                {daySchedule?.isOpen ? '정상 운영' : '휴관'}
+                {daySchedule?.isOpen ? '운영일' : '휴관'}
               </span>
             </div>
 
-            {/* 24시간 시각화 바 */}
-            <div className="flex flex-col gap-1">
-              <div className="flex items-center justify-between text-[10px] text-slate-500 font-mono">
+            {/* 24시간 타임라인 바 */}
+            <div className="flex flex-col gap-1 pt-1">
+              <div className="flex items-center justify-between text-[10px] text-slate-500 font-mono px-0.5">
                 <span>06시</span>
                 <span>09시</span>
                 <span>12시</span>
@@ -163,7 +161,7 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
                 <span>18시</span>
                 <span>21시</span>
               </div>
-              <div className="grid grid-cols-24 gap-0.5 h-3.5 bg-slate-900 rounded-md p-0.5 border border-slate-800">
+              <div className="grid grid-cols-24 gap-0.5 h-4 bg-slate-900 rounded-md p-0.5 border border-slate-800">
                 {Array.from({ length: 24 }).map((_, hour) => {
                   const isAvailable = daySchedule?.hourlySlots?.[hour] ?? false;
                   return (
@@ -181,206 +179,121 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
               </div>
             </div>
 
-            {/* 세부 세션 시간 리스트 */}
-            {daySchedule?.sessions && daySchedule.sessions.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
-                {daySchedule.sessions.map((sess, idx) => (
-                  <div
-                    key={idx}
-                    className="flex items-center justify-between bg-slate-900/70 border border-slate-700/40 rounded-xl px-3 py-2 text-xs"
-                  >
-                    <span className="font-semibold text-cyan-300">
-                      {sess.partName || `${idx + 1}부`}
-                    </span>
-                    <span className="font-mono font-bold text-slate-200">
-                      {sess.start} ~ {sess.end}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="p-3 text-center text-xs text-rose-300 bg-rose-950/20 rounded-xl border border-rose-900/40">
-                해당 요일은 정기 휴관 또는 자유수영 미운영일입니다.
+            {pool.closedDaysDescription && (
+              <div className="text-[11px] text-slate-400 pt-1.5 flex items-start gap-1">
+                <ShieldAlert className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
+                <span>휴관 안내: {pool.closedDaysDescription}</span>
               </div>
             )}
+          </div>
 
-            {/* 정기 휴무 정보 */}
-            <div className="text-[11px] text-slate-400 pt-2 border-t border-slate-700/40 flex items-start gap-1.5">
-              <ShieldAlert className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
-              <span>휴관 안내: {pool.closedDaysDescription}</span>
+          {/* 4. 요구사항 5-2: 입장료 단순하게 표기 */}
+          <div className="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-3.5 flex items-center justify-between">
+            <span className="text-xs font-bold text-slate-300">일일 입장료</span>
+            <div className="text-xs font-mono font-bold text-white flex items-center gap-2">
+              <span>
+                성인 <strong className="text-cyan-400 font-sans">{pool.fee.standard.adult.toLocaleString()}</strong>원
+              </span>
+              <span className="text-slate-600">·</span>
+              <span>
+                청소년 <strong className="text-slate-300 font-sans">{pool.fee.standard.teen.toLocaleString()}</strong>원
+              </span>
+              <span className="text-slate-600">·</span>
+              <span>
+                어린이 <strong className="text-slate-300 font-sans">{pool.fee.standard.child.toLocaleString()}</strong>원
+              </span>
             </div>
           </div>
 
-          {/* 4. 일일 입장료 (관내 / 관외) */}
-          <div className="bg-slate-850 bg-slate-800/50 border border-slate-700/60 rounded-2xl p-4 flex flex-col gap-2.5">
-            <span className="text-xs font-bold text-white flex items-center justify-between">
-              <span>일일 자유수영 입장료</span>
-              {pool.fee.discountNote && (
-                <span className="text-[11px] text-cyan-400 font-normal">
-                  {pool.fee.discountNote}
-                </span>
-              )}
-            </span>
-
-            <div className="grid grid-cols-3 gap-2">
-              <div className="bg-slate-900/70 border border-slate-700/40 rounded-xl p-2.5 text-center">
-                <span className="text-[11px] text-slate-400 block">성인</span>
-                <span className="text-sm font-extrabold text-white">
-                  {pool.fee.standard.adult.toLocaleString()}원
-                </span>
-                {pool.fee.outOfDistrict && (
-                  <span className="text-[10px] text-slate-500 block">
-                    (관외 {pool.fee.outOfDistrict.adult.toLocaleString()}원)
-                  </span>
-                )}
-              </div>
-              <div className="bg-slate-900/70 border border-slate-700/40 rounded-xl p-2.5 text-center">
-                <span className="text-[11px] text-slate-400 block">청소년</span>
-                <span className="text-sm font-extrabold text-white">
-                  {pool.fee.standard.teen.toLocaleString()}원
-                </span>
-                {pool.fee.outOfDistrict && (
-                  <span className="text-[10px] text-slate-500 block">
-                    (관외 {pool.fee.outOfDistrict.teen.toLocaleString()}원)
-                  </span>
-                )}
-              </div>
-              <div className="bg-slate-900/70 border border-slate-700/40 rounded-xl p-2.5 text-center">
-                <span className="text-[11px] text-slate-400 block">어린이</span>
-                <span className="text-sm font-extrabold text-white">
-                  {pool.fee.standard.child.toLocaleString()}원
-                </span>
-                {pool.fee.outOfDistrict && (
-                  <span className="text-[10px] text-slate-500 block">
-                    (관외 {pool.fee.outOfDistrict.child.toLocaleString()}원)
-                  </span>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* 5. 부대시설 및 이용 수칙 태그 */}
-          <div className="bg-slate-850 bg-slate-800/50 border border-slate-700/60 rounded-2xl p-4 flex flex-col gap-3">
+          {/* 5. 부대시설 태그 & 주차 정보 */}
+          <div className="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-4 flex flex-col gap-2.5">
             <span className="text-xs font-bold text-white flex items-center gap-1.5">
               <Droplets className="w-4 h-4 text-cyan-400" />
-              부대시설 및 수영장 환경
+              부대시설 및 편의정보
             </span>
 
             <div className="flex flex-wrap gap-1.5">
               <span
-                className={`text-[11px] font-bold px-2.5 py-1 rounded-xl border flex items-center gap-1 ${
+                className={`text-[11px] font-bold px-2 py-0.5 rounded-lg border flex items-center gap-1 ${
                   pool.features.hasWalkingLane
                     ? 'bg-cyan-950/60 text-cyan-300 border-cyan-800'
                     : 'bg-slate-800/60 text-slate-500 border-slate-700'
                 }`}
               >
                 <Check className="w-3 h-3" />
-                걷기 전용 레인 {pool.features.hasWalkingLane ? '운영' : '없음'}
+                걷기레인
               </span>
 
               <span
-                className={`text-[11px] font-bold px-2.5 py-1 rounded-xl border flex items-center gap-1 ${
+                className={`text-[11px] font-bold px-2 py-0.5 rounded-lg border flex items-center gap-1 ${
                   pool.features.kickboardAllowed
                     ? 'bg-emerald-950/60 text-emerald-300 border-emerald-800'
                     : 'bg-slate-800/60 text-slate-400 border-slate-700'
                 }`}
               >
-                킥판:{' '}
-                {pool.features.kickboardAllowed
-                  ? '공영/개인 사용가능'
-                  : '사용 불가(자유영법)'}
+                킥판 {pool.features.kickboardAllowed ? '가능' : '불가'}
               </span>
 
               <span
-                className={`text-[11px] font-bold px-2.5 py-1 rounded-xl border flex items-center gap-1 ${
+                className={`text-[11px] font-bold px-2 py-0.5 rounded-lg border flex items-center gap-1 ${
                   pool.features.flippersAllowed
                     ? 'bg-amber-950/60 text-amber-300 border-amber-800'
                     : 'bg-slate-800/60 text-slate-500 border-slate-700'
                 }`}
               >
-                오리발:{' '}
-                {pool.features.flippersAllowed ? '지정시간 허용' : '이용불가'}
-              </span>
-
-              <span className="text-[11px] font-bold px-2.5 py-1 rounded-xl border bg-slate-800 text-slate-300 border-slate-700">
-                수질 등급: {pool.features.waterQualityLevel}
-              </span>
-
-              <span className="text-[11px] font-bold px-2.5 py-1 rounded-xl border bg-slate-800 text-slate-300 border-slate-700">
-                샤워실 시설: {pool.features.showerLevel}
+                오리발 {pool.features.flippersAllowed ? '가능' : '불가'}
               </span>
 
               {pool.features.hasWarmRoom && (
-                <span className="text-[11px] font-bold px-2.5 py-1 rounded-xl border bg-purple-950/60 text-purple-300 border-purple-800">
-                  발한실/체온조절실 보유
+                <span className="text-[11px] font-bold px-2 py-0.5 rounded-lg border bg-purple-950/60 text-purple-300 border-purple-800">
+                  발한실/체온조절실
                 </span>
               )}
 
               {pool.features.hasKidPool && (
-                <span className="text-[11px] font-bold px-2.5 py-1 rounded-xl border bg-blue-950/60 text-blue-300 border-blue-800">
-                  유아풀/보조풀 보유
+                <span className="text-[11px] font-bold px-2 py-0.5 rounded-lg border bg-blue-950/60 text-blue-300 border-blue-800">
+                  유아풀
                 </span>
               )}
             </div>
 
-            {/* 주차장 정보 */}
-            <div className="flex items-start gap-2 pt-2 border-t border-slate-700/40 text-xs text-slate-300">
+            <div className="flex items-start gap-1.5 pt-1 text-xs text-slate-300">
               <Car className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
               <span>
-                <strong>주차장:</strong> {pool.features.parking.info}
+                <strong>주차:</strong> {pool.features.parking.info}
               </span>
             </div>
-
-            {/* 안내사항 */}
-            {pool.features.notes && (
-              <p className="text-[11px] text-slate-400 bg-slate-900/60 p-2.5 rounded-xl border border-slate-800">
-                💡 {pool.features.notes}
-              </p>
-            )}
           </div>
 
-          {/* 6. 전국자유수영 카페 이용 후기 평가 */}
-          <div className="bg-gradient-to-br from-slate-850 to-slate-900 bg-slate-800/70 border border-slate-700/60 rounded-2xl p-4 flex flex-col gap-2.5">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-white flex items-center gap-1.5">
-                <Sparkles className="w-4 h-4 text-amber-400" />
-                전국자유수영 카페 생생 평가
-              </span>
-              <div className="flex items-center gap-1 text-amber-400 font-extrabold text-xs">
-                ★ {pool.review.rating.toFixed(1)} / 5.0
-              </div>
-            </div>
-
-            <p className="text-xs text-slate-200 leading-relaxed bg-slate-950/50 p-3 rounded-xl border border-slate-800 italic">
-              "{pool.review.summary}"
-            </p>
-
-            {/* 후기 키워드 태그 */}
-            <div className="flex flex-wrap gap-1 pt-1">
-              {pool.review.tags.map((tag, idx) => (
-                <span
-                  key={idx}
-                  className="text-[10px] text-cyan-400 bg-cyan-950/40 border border-cyan-800/50 px-2 py-0.5 rounded-md"
-                >
-                  #{tag}
+          {/* 6. 전국자유수영 카페 후기 요약 */}
+          {pool.review.summary && (
+            <div className="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-4 flex flex-col gap-2">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-white flex items-center gap-1.5">
+                  <Sparkles className="w-4 h-4 text-amber-400" />
+                  전국자유수영 카페 평가
                 </span>
-              ))}
-            </div>
-
-            <div className="flex items-center justify-between text-[10px] text-slate-500 pt-1">
-              <span>최종 후기 반영일: {pool.review.lastUpdated}</span>
+                <span className="text-amber-400 font-extrabold text-xs">
+                  ★ {pool.review.rating.toFixed(1)}
+                </span>
+              </div>
+              <p className="text-xs text-slate-200 italic bg-slate-950/40 p-2.5 rounded-xl border border-slate-800">
+                "{pool.review.summary}"
+              </p>
               {pool.review.cafePostUrl && (
-                <a
-                  href={pool.review.cafePostUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-cyan-400 hover:underline flex items-center gap-1"
-                >
-                  카페 원문 확인 <ExternalLink className="w-3 h-3" />
-                </a>
+                <div className="flex justify-end pt-0.5">
+                  <a
+                    href={pool.review.cafePostUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-[11px] text-cyan-400 hover:underline flex items-center gap-1"
+                  >
+                    카페 후기 보기 <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
               )}
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

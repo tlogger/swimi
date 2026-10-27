@@ -136,9 +136,7 @@ export const KakaoMapWrapper: React.FC<KakaoMapWrapperProps> = ({
                   }`}
                 />
 
-                {/* 수영장 명칭 라벨:
-                    운영중인 수영장은 명칭 표시, 회색(미운영) 수영장은 명칭 숨김 (요구사항 6)
-                */}
+                {/* 수영장 명칭 라벨 (길이 접미사 없이 표시) */}
                 {(isOperational || isSelected) && (
                   <div
                     className={`mt-1 px-2 py-0.5 rounded-lg text-[10px] font-bold shadow-md border whitespace-nowrap backdrop-blur-md transition-all ${
@@ -147,7 +145,7 @@ export const KakaoMapWrapper: React.FC<KakaoMapWrapperProps> = ({
                         : 'bg-slate-900/90 text-slate-200 border-slate-700/80'
                     }`}
                   >
-                    {pool.shortName || pool.name}
+                    {(pool.shortName || pool.name).replace(/\s*\((?:25m|50m)\)/gi, '').trim()}
                   </div>
                 )}
               </div>
