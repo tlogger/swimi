@@ -12,20 +12,22 @@ export function getNthWeekdayOfMonth(date: Date): number {
  * 특정 날짜가 수영장 휴관 규칙에 해당하는지 확인
  */
 export function isPoolClosedOnDate(pool: SwimmingPool, date: Date, isHoliday = false): boolean {
-  if (isHoliday && pool.closedRules.some(r => r.type === 'holidays')) {
+  if (isHoliday && pool.closedRules?.some(r => r.type === 'holidays')) {
     return true;
   }
 
   const dayOfWeek = date.getDay(); // 0(일) ~ 6(토)
   const nthWeek = getNthWeekdayOfMonth(date);
 
-  for (const rule of pool.closedRules) {
-    if (rule.type === 'weekly' && rule.daysOfWeek?.includes(dayOfWeek)) {
-      return true;
-    }
-    if (rule.type === 'nth_weekday') {
-      if (rule.weekday === dayOfWeek && rule.weeks?.includes(nthWeek)) {
+  if (pool.closedRules) {
+    for (const rule of pool.closedRules) {
+      if (rule.type === 'weekly' && rule.daysOfWeek?.includes(dayOfWeek)) {
         return true;
+      }
+      if (rule.type === 'nth_weekday') {
+        if (rule.weekday === dayOfWeek && rule.weeks?.includes(nthWeek)) {
+          return true;
+        }
       }
     }
   }
@@ -61,58 +63,108 @@ export function calculatePoolStatus(
   const dayOfWeek = targetDate.getDay();
   const daySchedule: DaySchedule = isHoliday
     ? pool.holidaySchedule
-    : pool.weeklySchedule[dayOfWeek];
+    : pool.weeklySchedule?.[dayOfWeek];
 
-  if (!daySchedule || !daySchedule.isOpen || daySchedule.sessions.length === 0) {
+  if (!daySchedule || !daySchedule.isOpen) {
     return {
       status: 'CLOSED',
       statusText: '오늘 운영 없음'
     };
   }
 
-  const currentMinutes = targetDate.getHours() * 60 + targetDate.getMinutes();
+  const currentHour = targetDate.getHours();
   const currentMinuteOfHour = targetDate.getMinutes();
+  const currentMinutes = currentHour * 60 + currentMinuteOfHour;
 
-  // 3. 세션 매칭
-  for (let i = 0; i < daySchedule.sessions.length; i++) {
-    const session = daySchedule.sessions[i];
-    const startMin = timeStringToMinutes(session.start);
-    const endMin = timeStringToMinutes(session.end);
+  // 3. 세션 목록이 있는 경우 세션 매칭
+  if (daySchedule.sessions && daySchedule.sessions.length > 0) {
+    // 세션을 시작 시간 오름차순으로 정렬
+    const sortedSessions = [...daySchedule.sessions].sort(
+      (a, b) => timeStringToMinutes(a.start) - timeStringToMinutes(b.start)
+    );
 
-    // 세션 범위 내에 있는 경우
-    if (currentMinutes >= startMin && currentMinutes < endMin) {
-      // 50분 휴식 룰 적용 체크
-      if (pool.breakRule === '50_10' && currentMinuteOfHour >= 50) {
+    // 1단계: 현재 시각이 포함된 세션이 있는지 확인
+    for (const session of sortedSessions) {
+      const startMin = timeStringToMinutes(session.start);
+      const endMin = timeStringToMinutes(session.end);
+
+      if (currentMinutes >= startMin && currentMinutes < endMin) {
+        // 50분 휴식 룰 적용 체크 (실제 breakRule이 50_10인 경우에만)
+        if (pool.breakRule === '50_10' && currentMinuteOfHour >= 50) {
+          return {
+            status: 'BREAK',
+            statusText: `휴식시간 (50분~정각, 다음 타임 대기)`,
+            currentSession: session,
+            closingTime: session.end
+          };
+        }
+
         return {
-          status: 'BREAK',
-          statusText: `휴식시간 (매시 50분~정각, 다음 타임 대기)`,
+          status: 'OPEN',
+          statusText: `운영중 (~${session.end})`,
           currentSession: session,
           closingTime: session.end
         };
       }
+    }
 
+    // 2단계: 현재 진행 중인 세션이 없다면 가장 빠른 다음 세션 찾기
+    for (const session of sortedSessions) {
+      const startMin = timeStringToMinutes(session.start);
+      if (currentMinutes < startMin) {
+        return {
+          status: 'CLOSED',
+          statusText: `운영 대기 (${session.start} 시작)`,
+          nextSession: session
+        };
+      }
+    }
+
+    // 모든 세션이 종료된 경우
+    return {
+      status: 'CLOSED',
+      statusText: '오늘 운영 종료'
+    };
+  }
+
+  // 4. 폴백: sessions가 비어있고 hourlySlots만 있는 경우
+  if (daySchedule.hourlySlots && daySchedule.hourlySlots[currentHour]) {
+    // 50분 휴식 룰
+    if (pool.breakRule === '50_10' && currentMinuteOfHour >= 50) {
       return {
-        status: 'OPEN',
-        statusText: `운영중 (${session.partName || ''} ~${session.end})`.trim(),
-        currentSession: session,
-        closingTime: session.end
+        status: 'BREAK',
+        statusText: `휴식시간 (50분~정각, 다음 타임 대기)`
       };
     }
 
-    // 아직 시작 전인 경우 가장 빠른 다음 세션 찾기
-    if (currentMinutes < startMin) {
-      return {
-        status: 'CLOSED',
-        statusText: `운영 대기 (${session.start} 시작)`,
-        nextSession: session
-      };
+    // 오늘 마감 시간 찾기 (마지막 true 슬롯)
+    let lastHour = currentHour;
+    for (let h = currentHour; h < 24; h++) {
+      if (daySchedule.hourlySlots[h]) lastHour = h;
+      else break;
+    }
+
+    return {
+      status: 'OPEN',
+      statusText: `운영중 (~${String(lastHour + 1).padStart(2, '0')}:00)`
+    };
+  }
+
+  // 다음 운영 시간대 탐색
+  if (daySchedule.hourlySlots) {
+    for (let h = currentHour + 1; h < 24; h++) {
+      if (daySchedule.hourlySlots[h]) {
+        return {
+          status: 'CLOSED',
+          statusText: `운영 대기 (${String(h).padStart(2, '0')}:00 시작)`
+        };
+      }
     }
   }
 
-  // 모든 세션이 종료된 경우
   return {
     status: 'CLOSED',
-    statusText: '오늘 운영 종료'
+    statusText: '오늘 운영 없음'
   };
 }
 

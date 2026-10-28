@@ -93,17 +93,34 @@ export const App: React.FC = () => {
     });
   };
 
+  // 1분마다 실시간 시각 갱신
+  const [currentTimeTick, setCurrentTimeTick] = useState<number>(Date.now());
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTimeTick(Date.now());
+    }, 30000); // 30초마다 상태 갱신
+    return () => clearInterval(timer);
+  }, []);
+
+  const effectiveTargetDate = useMemo(() => {
+    const isToday = targetDate.toDateString() === new Date().toDateString();
+    if (isToday) {
+      return new Date(currentTimeTick);
+    }
+    return targetDate;
+  }, [targetDate, currentTimeTick]);
+
   // 5. 수영장별 실시간 운영 상태 계산
   const poolStatuses = useMemo(() => {
     const statusMap: Record<string, PoolCurrentStatus> = {};
     const isHoliday = selectedDays.length === 1 && selectedDays[0] === 'holiday';
 
     pools.forEach((pool) => {
-      statusMap[pool.id] = calculatePoolStatus(pool, targetDate, isHoliday);
+      statusMap[pool.id] = calculatePoolStatus(pool, effectiveTargetDate, isHoliday);
     });
 
     return statusMap;
-  }, [pools, targetDate, selectedDays]);
+  }, [pools, effectiveTargetDate, selectedDays]);
 
   // 6. 거리 계산
   const poolDistances = useMemo(() => {
