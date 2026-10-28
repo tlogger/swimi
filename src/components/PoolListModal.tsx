@@ -150,7 +150,7 @@ export const PoolListModal: React.FC<PoolListModalProps> = ({
                 >
                   {/* 왼쪽: 수영장 이름 & 레인/상태 배지 */}
                   <div className="flex items-center gap-2.5 min-w-0 flex-1">
-                    {/* 레인 배지 */}
+                    {/* 레인 배지 (레인수 포함) */}
                     <span
                       className={`text-[11px] font-black px-2 py-0.5 rounded-full shrink-0 border ${
                         is50m
@@ -158,7 +158,7 @@ export const PoolListModal: React.FC<PoolListModalProps> = ({
                           : 'bg-blue-500/20 text-blue-300 border-blue-500/50'
                       }`}
                     >
-                      {pool.laneLength}m
+                      {pool.laneLength}m{pool.laneCount ? ` · ${pool.laneCount}L` : ''}
                     </span>
 
                     {/* 수영장 이름 (길이 표시 없는 순수 명칭) */}

@@ -30,9 +30,9 @@ export const KakaoMapWrapper: React.FC<KakaoMapWrapperProps> = ({
 
   const mapRef = useRef<kakao.maps.Map | null>(null);
   const [mapCenter, setMapCenter] = useState(center);
-  const [mapLevel, setMapLevel] = useState(level);
+  const [mapLevel] = useState(level);
 
-  // 외부 center prop 변경 시 지도 이동
+  // 외부 center prop 변경 시 지도 부드럽게 이동
   useEffect(() => {
     setMapCenter(center);
     if (mapRef.current && (window as any).kakao?.maps?.LatLng) {
@@ -79,64 +79,65 @@ export const KakaoMapWrapper: React.FC<KakaoMapWrapperProps> = ({
             yAnchor={0.5}
             xAnchor={0.5}
           >
-            <div className="relative flex items-center justify-center">
+            <div className="relative flex items-center justify-center pointer-events-none">
               <span className="animate-ping absolute inline-flex h-6 w-6 rounded-full bg-cyan-400 opacity-60" />
               <div className="relative inline-flex rounded-full h-4 w-4 bg-cyan-500 border-2 border-white shadow-lg" />
             </div>
           </CustomOverlayMap>
         )}
 
-        {/* 수영장 커스텀 마커 오버레이들 */}
+        {/* 수영장 원형 숫자 마커 오버레이 (요구사항 1: 동그라미 안에 25, 50 표기) */}
         {pools.map((pool) => {
           const status = poolStatuses[pool.id];
           const isSelected = selectedPool?.id === pool.id;
           const is50m = pool.laneLength === 50;
 
           // 오늘 운영중(OPEN 또는 BREAK) 여부 판정
-          const isOperational = status && (status.status === 'OPEN' || status.status === 'BREAK');
+          const isOpen = status?.status === 'OPEN';
+          const isBreak = status?.status === 'BREAK';
+          const isOperational = isOpen || isBreak;
 
-          // 색상 결정:
-          // 운영중: 초록색(25m) 또는 금색/에메랄드(50m)
-          // 미운영: 회색
-          const markerBgColor = isOperational
-            ? is50m
-              ? 'bg-amber-500 text-slate-950 border-amber-300'
-              : 'bg-emerald-500 text-slate-950 border-emerald-300'
-            : 'bg-slate-600 text-slate-300 border-slate-500';
+          // 원형 마커 색상 결정
+          let markerBgColor = 'bg-slate-700 text-slate-400 border-slate-600';
+          let tailColor = 'border-t-slate-700';
+
+          if (isOpen) {
+            if (is50m) {
+              markerBgColor = 'bg-amber-500 text-slate-950 border-amber-300 shadow-amber-500/40';
+              tailColor = 'border-t-amber-500';
+            } else {
+              markerBgColor = 'bg-emerald-500 text-slate-950 border-emerald-300 shadow-emerald-500/40';
+              tailColor = 'border-t-emerald-500';
+            }
+          } else if (isBreak) {
+            markerBgColor = 'bg-orange-500 text-slate-950 border-orange-300 shadow-orange-500/40';
+            tailColor = 'border-t-orange-500';
+          }
 
           return (
             <CustomOverlayMap
               key={pool.id}
               position={{ lat: pool.lat, lng: pool.lng }}
-              yAnchor={1.1}
+              yAnchor={1.15}
               xAnchor={0.5}
             >
               <div
                 onClick={() => onSelectPool(pool)}
-                className="flex flex-col items-center cursor-pointer group transition-transform active:scale-95"
+                className="flex flex-col items-center cursor-pointer group transition-transform active:scale-90"
               >
-                {/* 마커 뱃지 (25m vs 50m 규격 표시) */}
+                {/* 요구사항 1: 동그라미 안에 25 또는 50만 깔끔하게 표기 */}
                 <div
-                  className={`px-2.5 py-1 rounded-full font-black text-[11px] shadow-xl border flex items-center gap-1 transition-all ${markerBgColor} ${
-                    isSelected ? 'ring-4 ring-cyan-400 scale-110 z-30' : 'hover:scale-105'
+                  className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-black text-xs sm:text-[13px] tracking-tighter shadow-lg border-2 transition-all ${markerBgColor} ${
+                    isSelected ? 'ring-4 ring-cyan-400 scale-125 z-40' : 'hover:scale-110'
                   }`}
                 >
-                  {/* 물결 아이콘 표시 */}
-                  <span>{is50m ? '🏊 50m' : '🏊 25m'}</span>
+                  {pool.laneLength}
                 </div>
 
-                {/* 말풍선 꼬리 */}
-                <div
-                  className={`w-0 h-0 border-x-4 border-x-transparent border-t-6 -mt-0.5 ${
-                    isOperational
-                      ? is50m
-                        ? 'border-t-amber-500'
-                        : 'border-t-emerald-500'
-                      : 'border-t-slate-600'
-                  }`}
-                />
+                {/* 마커 꼬리 팁 */}
+                <div className={`w-0 h-0 border-x-4 border-x-transparent border-t-5 -mt-0.5 ${tailColor}`} />
 
-                {/* 수영장 명칭 라벨 (길이 접미사 없이 표시) */}
+                {/* 수영장 명칭 라벨 (운영중이거나 선택되었을 때만 노출, 길이 접미사 제거) */}
                 {(isOperational || isSelected) && (
                   <div
                     className={`mt-1 px-2 py-0.5 rounded-lg text-[10px] font-bold shadow-md border whitespace-nowrap backdrop-blur-md transition-all ${

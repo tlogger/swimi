@@ -131,7 +131,7 @@ export const App: React.FC = () => {
         const matchesName = pool.name.toLowerCase().includes(query);
         const matchesShortName = pool.shortName?.toLowerCase().includes(query);
         const matchesAddress = pool.address.toLowerCase().includes(query);
-        const matchesDistrict = pool.district.toLowerCase().includes(query);
+        const matchesDistrict = pool.district ? pool.district.toLowerCase().includes(query) : false;
         const matchesCity = pool.city.toLowerCase().includes(query);
 
         if (
