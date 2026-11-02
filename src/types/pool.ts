@@ -26,6 +26,13 @@ export interface PoolFee {
   discountNote?: string;
 }
 
+export interface TemporaryClosure {
+  isClosed: boolean;
+  startDate?: string; // YYYY-MM-DD
+  endDate?: string;   // YYYY-MM-DD
+  reason?: string;    // 사유 (예: "시설 개보수 공사", "정기 수질 정화")
+}
+
 export interface ClosedRule {
   type: 'weekly' | 'nth_weekday' | 'holidays';
   weeks?: number[];
@@ -91,6 +98,9 @@ export interface SwimmingPool {
   closedDaysDescription?: string;
   closedRules: ClosedRule[];
 
+  // 임시 휴관 정보 (보수공사, 정기소독 등)
+  temporaryClosure?: TemporaryClosure;
+
   // 평일/토/일/공휴일 운영시간 텍스트
   scheduleText?: ScheduleTextInfo;
 
@@ -115,11 +125,14 @@ export interface SwimmingPool {
   is_deleted?: boolean;
 }
 
-export type PoolOperationalStatus = 'OPEN' | 'BREAK' | 'CLOSED';
+export type PoolOperationalStatus = 'OPEN' | 'BREAK' | 'CLOSED' | 'TEMP_CLOSED';
 
 export interface PoolCurrentStatus {
   status: PoolOperationalStatus;
   statusText: string;
+  isTemporaryClosed?: boolean;
+  temporaryClosureReason?: string;
+  temporaryClosureRange?: string;
   currentSession?: TimeSession;
   nextSession?: TimeSession;
   closingTime?: string;

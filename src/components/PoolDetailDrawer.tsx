@@ -12,6 +12,8 @@ import {
   Trophy,
   Edit3,
   CheckCircle2,
+  Trash2,
+  AlertTriangle,
 } from 'lucide-react';
 import { SwimmingPool, PoolCurrentStatus } from '../types/pool';
 import { UserInteractionState } from '../types/auth';
@@ -27,6 +29,7 @@ interface PoolDetailDrawerProps {
   onToggleFavorite?: (poolId: string) => void;
   onToggleCheckIn?: (poolId: string) => void;
   onOpenEdit?: (pool: SwimmingPool) => void;
+  onDelete?: (poolId: string) => void;
   onRequireLogin?: () => void;
   isLoggedIn?: boolean;
 }
@@ -41,6 +44,7 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
   onToggleFavorite,
   onToggleCheckIn,
   onOpenEdit,
+  onDelete,
   onRequireLogin,
   isLoggedIn = false,
 }) => {
@@ -81,6 +85,16 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
 
   const handleEditClick = () => {
     onOpenEdit?.(pool);
+  };
+
+  const handleDeleteClick = () => {
+    if (!onDelete) return;
+    const confirmed = window.confirm(
+      `"${cleanName}" 수영장을 클라우드 DB에서 정말 삭제하시겠습니까?\n\n(잘못 등록되었거나 폐업한 수영장인 경우 삭제해 주세요. 삭제 즉시 지도와 검색 목록에서 제거됩니다.)`
+    );
+    if (confirmed) {
+      onDelete(pool.id);
+    }
   };
 
   // 현재 시각 타임라인 위치 (%) 계산
@@ -137,6 +151,8 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
                     ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
                     : status.status === 'BREAK'
                     ? 'bg-amber-500/20 text-amber-300 border-amber-500/40'
+                    : status.status === 'TEMP_CLOSED'
+                    ? 'bg-rose-500/20 text-rose-300 border-rose-500/50 animate-pulse font-extrabold'
                     : 'bg-slate-700/40 text-slate-400 border-slate-600/40'
                 }`}
               >
@@ -192,16 +208,54 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
               )}
             </div>
 
-            {/* 정보 수정 제안 버튼 */}
-            <button
-              onClick={handleEditClick}
-              title="잘못된 수영장 정보 수정하기"
-              className="py-1.5 px-2.5 rounded-xl bg-slate-800 hover:bg-slate-700/80 border border-slate-700 text-slate-300 hover:text-cyan-300 text-[11px] font-semibold flex items-center gap-1 shrink-0 transition-all"
-            >
-              <Edit3 className="w-3.5 h-3.5 text-cyan-400" />
-              정보 수정
-            </button>
+            {/* 정보 수정 및 삭제 버튼 */}
+            <div className="flex items-center gap-1.5 shrink-0">
+              <button
+                onClick={handleEditClick}
+                title="잘못된 수영장 정보 수정하기"
+                className="py-1.5 px-2.5 rounded-xl bg-slate-800 hover:bg-slate-700/80 border border-slate-700 text-slate-300 hover:text-cyan-300 text-[11px] font-semibold flex items-center gap-1 transition-all"
+              >
+                <Edit3 className="w-3.5 h-3.5 text-cyan-400" />
+                정보 수정
+              </button>
+
+              {onDelete && (
+                <button
+                  onClick={handleDeleteClick}
+                  title="잘못 등록되었거나 폐업한 수영장 삭제"
+                  className="py-1.5 px-2 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-rose-400 hover:text-rose-300 text-[11px] font-semibold flex items-center gap-1 transition-all"
+                >
+                  <Trash2 className="w-3.5 h-3.5" />
+                  삭제
+                </button>
+              )}
+            </div>
           </div>
+
+          {/* 임시 휴관 특별 안내 배너 */}
+          {pool.temporaryClosure?.isClosed && (
+            <div className="bg-rose-950/40 border border-rose-500/60 rounded-2xl p-3.5 flex items-start gap-3 shadow-lg shadow-rose-950/30 animate-in fade-in duration-200">
+              <AlertTriangle className="w-5 h-5 text-rose-400 shrink-0 mt-0.5 animate-pulse" />
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-black text-rose-300">임시 휴관 안내</span>
+                  <span className="text-[10px] font-black px-1.5 py-0.5 rounded bg-rose-500 text-white">
+                    휴관 중
+                  </span>
+                </div>
+                {pool.temporaryClosure.reason && (
+                  <p className="text-xs font-bold text-white leading-snug">
+                    사유: {pool.temporaryClosure.reason}
+                  </p>
+                )}
+                {(pool.temporaryClosure.startDate || pool.temporaryClosure.endDate) && (
+                  <p className="text-[11px] font-mono text-rose-200/90">
+                    기간: {pool.temporaryClosure.startDate || '미정'} ~ {pool.temporaryClosure.endDate || '미정'}
+                  </p>
+                )}
+              </div>
+            </div>
+          )}
 
           {/* 2. 핵심 액션 1: [도장깨기(체크인)] & [즐겨찾기] 탭/버튼 */}
           <div className="grid grid-cols-2 gap-2 pt-1">

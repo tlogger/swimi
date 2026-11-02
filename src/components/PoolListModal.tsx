@@ -245,6 +245,8 @@ export const PoolListModal: React.FC<PoolListModalProps> = ({
                             ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
                             : status.status === 'BREAK'
                             ? 'bg-amber-500/20 text-amber-300 border-amber-500/40'
+                            : status.status === 'TEMP_CLOSED'
+                            ? 'bg-rose-500/20 text-rose-300 border-rose-500/50 font-black'
                             : 'bg-slate-800 text-slate-500 border-slate-700'
                         }`}
                       >
@@ -252,6 +254,8 @@ export const PoolListModal: React.FC<PoolListModalProps> = ({
                           ? '운영중'
                           : status.status === 'BREAK'
                           ? '휴식시간'
+                          : status.status === 'TEMP_CLOSED'
+                          ? '임시휴관'
                           : '마감'}
                       </span>
                     )}

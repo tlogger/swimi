@@ -103,12 +103,16 @@ export const KakaoMapWrapper: React.FC<KakaoMapWrapperProps> = ({
           // 오늘 운영중(OPEN 또는 BREAK) 여부 판정
           const isOpen = status?.status === 'OPEN';
           const isBreak = status?.status === 'BREAK';
+          const isTempClosed = status?.status === 'TEMP_CLOSED' || Boolean(pool.temporaryClosure?.isClosed);
           const isOperational = isOpen || isBreak;
 
           let markerBgColor = 'bg-slate-700 text-slate-400 border-slate-600';
           let tailColor = 'border-t-slate-700';
 
-          if (isOpen) {
+          if (isTempClosed) {
+            markerBgColor = 'bg-rose-600 text-white border-rose-300 shadow-rose-600/40';
+            tailColor = 'border-t-rose-600';
+          } else if (isOpen) {
             if (is50m) {
               markerBgColor = 'bg-amber-500 text-slate-950 border-amber-300 shadow-amber-500/40';
               tailColor = 'border-t-amber-500';
@@ -167,11 +171,13 @@ export const KakaoMapWrapper: React.FC<KakaoMapWrapperProps> = ({
                 <div className={`w-0 h-0 border-x-4 border-x-transparent border-t-5 -mt-0.5 ${tailColor}`} />
 
                 {/* 수영장 명칭 라벨 */}
-                {(isOperational || isSelected || isVisited || isFavorite) && (
+                {(isOperational || isSelected || isVisited || isFavorite || isTempClosed) && (
                   <div
                     className={`mt-1 px-2 py-0.5 rounded-lg text-[10px] font-bold shadow-md border whitespace-nowrap backdrop-blur-md transition-all flex items-center gap-1 ${
                       isSelected
                         ? 'bg-cyan-900/95 text-cyan-200 border-cyan-400 font-extrabold shadow-cyan-900/50'
+                        : isTempClosed
+                        ? 'bg-rose-950/95 text-rose-200 border-rose-500/80 font-black'
                         : isVisited
                         ? 'bg-amber-950/90 text-amber-200 border-amber-600/80'
                         : 'bg-slate-900/90 text-slate-200 border-slate-700/80'
@@ -179,7 +185,9 @@ export const KakaoMapWrapper: React.FC<KakaoMapWrapperProps> = ({
                   >
                     {isVisited && <span className="text-[9px]">🏊</span>}
                     {isFavorite && !isVisited && <span className="text-[9px] text-cyan-400">★</span>}
+                    {isTempClosed && <span className="text-[9px] text-rose-400">⚠️</span>}
                     {(pool.shortName || pool.name).replace(/\s*\((?:25m|50m)\)/gi, '').trim()}
+                    {isTempClosed && <span className="text-[9px] text-rose-400 font-black">(휴관)</span>}
                   </div>
                 )}
               </div>

@@ -24,6 +24,7 @@ function mapRowToSwimmingPool(row: any): SwimmingPool {
     holidaySchedule: row.holiday_schedule || { isOpen: false, sessions: [], hourlySlots: [] },
     closedDaysDescription: row.closed_days_description || undefined,
     closedRules: row.closed_rules || [],
+    temporaryClosure: row.schedule_text?.temporaryClosure || undefined,
     scheduleText: row.schedule_text || {},
     fee: row.fee || { standard: { adult: 0 } },
     amenities: row.amenities || {
@@ -65,7 +66,10 @@ function mapPoolToDbRow(pool: SwimmingPool, userId?: string): Record<string, any
     holiday_schedule: pool.holidaySchedule || {},
     closed_days_description: pool.closedDaysDescription || null,
     closed_rules: pool.closedRules || [],
-    schedule_text: pool.scheduleText || {},
+    schedule_text: {
+      ...(pool.scheduleText || {}),
+      temporaryClosure: pool.temporaryClosure || null,
+    },
     fee: pool.fee || {},
     amenities: pool.amenities || {},
     parking_info: pool.parkingInfo || null,
@@ -132,6 +136,28 @@ export async function savePoolToDb(
   }
 
   return data ? mapRowToSwimmingPool(data) : updatedPool;
+}
+
+/**
+ * 2-1. 수영장 클라우드 DB 삭제 처리 (소프트 딜리트 is_deleted: true)
+ */
+export async function deletePoolFromDb(poolId: string, userId?: string): Promise<boolean> {
+  const client = getSupabase();
+  const { error } = await client
+    .from('swimi_pools')
+    .update({
+      is_deleted: true,
+      updated_by: userId || null,
+      updated_at: new Date().toISOString(),
+    })
+    .eq('id', poolId);
+
+  if (error) {
+    console.error('Supabase swami_pools 삭제(is_deleted) 실패:', error.message);
+    throw error;
+  }
+
+  return true;
 }
 
 /**

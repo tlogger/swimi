@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { X, Save, AlertCircle, Check } from 'lucide-react';
-import { SwimmingPool, LaneLength, BreakRule } from '../types/pool';
+import { X, Save, AlertCircle, Check, Trash2, CalendarOff, AlertTriangle } from 'lucide-react';
+import { SwimmingPool, LaneLength, BreakRule, TemporaryClosure } from '../types/pool';
 
 interface PoolEditModalProps {
   isOpen: boolean;
   onClose: () => void;
   pool: SwimmingPool | null;
   onSave: (updated: SwimmingPool) => Promise<void>;
+  onDelete?: (poolId: string) => Promise<void>;
 }
 
 export const PoolEditModal: React.FC<PoolEditModalProps> = ({
@@ -14,6 +15,7 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
   onClose,
   pool,
   onSave,
+  onDelete,
 }) => {
   if (!isOpen || !pool) return null;
 
@@ -24,6 +26,20 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
   const [addressDetail, setAddressDetail] = useState<string>(pool.addressDetail || '');
   const [phone, setPhone] = useState<string>(pool.phone || '');
   const [homepage, setHomepage] = useState<string>(pool.homepage || '');
+
+  // 임시 휴관 상태
+  const [isTempClosed, setIsTempClosed] = useState<boolean>(
+    Boolean(pool.temporaryClosure?.isClosed)
+  );
+  const [closureStartDate, setClosureStartDate] = useState<string>(
+    pool.temporaryClosure?.startDate || ''
+  );
+  const [closureEndDate, setClosureEndDate] = useState<string>(
+    pool.temporaryClosure?.endDate || ''
+  );
+  const [closureReason, setClosureReason] = useState<string>(
+    pool.temporaryClosure?.reason || ''
+  );
 
   // 레인 정보
   const [laneLength, setLaneLength] = useState<LaneLength>(pool.laneLength || 25);
@@ -61,9 +77,29 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
   const [etcInfo, setEtcInfo] = useState<string>(pool.etcInfo || '');
 
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [isDeleting, setIsDeleting] = useState<boolean>(false);
 
   const toggleAmenity = (key: keyof typeof amenities) => {
     setAmenities((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const handleDelete = async () => {
+    if (!onDelete) return;
+    const confirmed = window.confirm(
+      `"${pool.name}" 수영장을 클라우드 DB에서 정말 삭제하시겠습니까?\n\n(잘못 등록되었거나 폐업한 수영장인 경우 삭제해 주세요. 삭제 즉시 지도와 검색 목록에서 제거됩니다.)`
+    );
+    if (!confirmed) return;
+
+    try {
+      setIsDeleting(true);
+      await onDelete(pool.id);
+      onClose();
+    } catch (err) {
+      console.error('수영장 삭제 실패:', err);
+      alert('삭제 처리 중 오류가 발생했습니다.');
+    } finally {
+      setIsDeleting(false);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -75,6 +111,17 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
 
     try {
       setIsSubmitting(true);
+
+      const temporaryClosure: TemporaryClosure | undefined = isTempClosed
+        ? {
+            isClosed: true,
+            startDate: closureStartDate || undefined,
+            endDate: closureEndDate || undefined,
+            reason: closureReason.trim() || undefined,
+          }
+        : {
+            isClosed: false,
+          };
 
       const updatedPool: SwimmingPool = {
         ...pool,
@@ -94,6 +141,7 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
         parkingInfo: parkingInfo.trim() || undefined,
         etcInfo: etcInfo.trim() || undefined,
         closedDaysDescription: closedDays.trim() || undefined,
+        temporaryClosure,
         scheduleText: {
           weekday: weekdaySchedule.trim() || undefined,
           saturday: saturdaySchedule.trim() || undefined,
@@ -145,6 +193,105 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
               잘못되거나 변경된 운영시간, 요금, 편의시설 등을 수정하면 클라우드 DB에 즉시 반영되어
               모든 사용자에게 공유됩니다.
             </span>
+          </div>
+
+          {/* 0. 임시 휴관 설정 (휴관 중 버튼 & 휴관 일시/사유 지정) */}
+          <div
+            className={`p-4 rounded-2xl border transition-all ${
+              isTempClosed
+                ? 'bg-rose-950/30 border-rose-500/50 shadow-lg shadow-rose-950/20'
+                : 'bg-slate-800/40 border-slate-700/50'
+            }`}
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <CalendarOff
+                  className={`w-4 h-4 ${isTempClosed ? 'text-rose-400 animate-pulse' : 'text-slate-400'}`}
+                />
+                <div>
+                  <h3 className="text-xs font-bold text-white flex items-center gap-1.5">
+                    수영장 휴관 상태
+                    {isTempClosed && (
+                      <span className="text-[10px] font-black px-1.5 py-0.5 rounded-full bg-rose-500 text-white animate-pulse">
+                        휴관 중
+                      </span>
+                    )}
+                  </h3>
+                  <p className="text-[11px] text-slate-400">
+                    보수공사, 정기소독 등으로 인한 임시 휴관 여부를 설정합니다.
+                  </p>
+                </div>
+              </div>
+
+              {/* 휴관 중 토글 버튼 */}
+              <button
+                type="button"
+                onClick={() => setIsTempClosed(!isTempClosed)}
+                className={`px-3 py-1.5 rounded-xl font-bold text-xs flex items-center gap-1.5 transition-all shadow-sm active:scale-95 ${
+                  isTempClosed
+                    ? 'bg-rose-600 hover:bg-rose-500 text-white border border-rose-400'
+                    : 'bg-slate-700 hover:bg-slate-600 text-slate-300 border border-slate-600'
+                }`}
+              >
+                {isTempClosed ? (
+                  <>
+                    <AlertTriangle className="w-3.5 h-3.5 text-white" />
+                    휴관 중 해제
+                  </>
+                ) : (
+                  <>
+                    <CalendarOff className="w-3.5 h-3.5 text-slate-300" />
+                    '휴관 중'으로 변경
+                  </>
+                )}
+              </button>
+            </div>
+
+            {/* 휴관 중일 때 나타나는 일시 및 사유 입력 필드 */}
+            {isTempClosed && (
+              <div className="mt-3 pt-3 border-t border-rose-900/50 space-y-2.5 animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className="grid grid-cols-2 gap-2">
+                  <div>
+                    <label className="block text-[11px] font-semibold text-rose-300 mb-1">
+                      휴관 시작일 (선택)
+                    </label>
+                    <input
+                      type="date"
+                      value={closureStartDate}
+                      onChange={(e) => setClosureStartDate(e.target.value)}
+                      className="w-full bg-slate-950 border border-rose-900/60 rounded-xl px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-rose-400 [color-scheme:dark]"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[11px] font-semibold text-rose-300 mb-1">
+                      휴관 종료일 (선택)
+                    </label>
+                    <input
+                      type="date"
+                      value={closureEndDate}
+                      onChange={(e) => setClosureEndDate(e.target.value)}
+                      className="w-full bg-slate-950 border border-rose-900/60 rounded-xl px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-rose-400 [color-scheme:dark]"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-[11px] font-semibold text-rose-300 mb-1">
+                    휴관 사유
+                  </label>
+                  <input
+                    type="text"
+                    value={closureReason}
+                    onChange={(e) => setClosureReason(e.target.value)}
+                    placeholder="예: 시설 개보수 공사, 수조 청소 및 기계실 점검"
+                    className="w-full bg-slate-950 border border-rose-900/60 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-rose-400 placeholder:text-slate-600"
+                  />
+                  <p className="text-[10px] text-rose-400/80 mt-1">
+                    * 날짜가 지정되지 않으면 상시 '임시 휴관'으로 지도와 상세페이지에 붉은색 배지로 강조됩니다.
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* 1. 기본 정보 */}
@@ -453,15 +600,27 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
           </div>
 
           {/* 하단 저장 버튼 */}
-          <div className="pt-2">
+          <div className="pt-2 space-y-2">
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || isDeleting}
               className="w-full py-3.5 px-4 rounded-2xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20 active:scale-98 transition-all disabled:opacity-50"
             >
               <Save className="w-4 h-4" />
               {isSubmitting ? '중앙 DB에 저장 중...' : '클라우드 DB에 수정 사항 저장하기'}
             </button>
+
+            {onDelete && (
+              <button
+                type="button"
+                onClick={handleDelete}
+                disabled={isSubmitting || isDeleting}
+                className="w-full py-2.5 px-4 rounded-2xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 font-bold text-xs flex items-center justify-center gap-1.5 transition-all active:scale-98 disabled:opacity-50"
+              >
+                <Trash2 className="w-3.5 h-3.5 text-rose-400" />
+                {isDeleting ? '수영장 삭제 처리 중...' : '이 수영장 DB에서 영구 삭제하기 (폐업/오류)'}
+              </button>
+            )}
           </div>
         </form>
       </div>

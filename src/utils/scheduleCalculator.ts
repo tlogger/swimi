@@ -51,6 +51,42 @@ export function calculatePoolStatus(
   targetDate: Date = new Date(),
   isHoliday = false
 ): PoolCurrentStatus {
+  // 0. 임시 휴관 체크 (시설 보수, 소독, 공사 등)
+  if (pool.temporaryClosure?.isClosed) {
+    const year = targetDate.getFullYear();
+    const month = String(targetDate.getMonth() + 1).padStart(2, '0');
+    const day = String(targetDate.getDate()).padStart(2, '0');
+    const targetDateStr = `${year}-${month}-${day}`;
+
+    const start = pool.temporaryClosure.startDate;
+    const end = pool.temporaryClosure.endDate;
+
+    const isAfterStart = !start || targetDateStr >= start;
+    const isBeforeEnd = !end || targetDateStr <= end;
+
+    if (isAfterStart && isBeforeEnd) {
+      let rangeText = '';
+      if (start && end) {
+        rangeText = `${start} ~ ${end}`;
+      } else if (start) {
+        rangeText = `${start}부터`;
+      } else if (end) {
+        rangeText = `~ ${end}까지`;
+      }
+
+      const reason = pool.temporaryClosure.reason || '시설 점검/공사';
+      const statusText = `임시 휴관 (${reason})`;
+
+      return {
+        status: 'TEMP_CLOSED',
+        statusText,
+        isTemporaryClosed: true,
+        temporaryClosureReason: reason,
+        temporaryClosureRange: rangeText,
+      };
+    }
+  }
+
   // 1. 휴관일 체크
   if (isPoolClosedOnDate(pool, targetDate, isHoliday)) {
     return {

@@ -9,6 +9,7 @@ import {
 import {
   loadAllPoolsWithDbSync,
   savePoolToDb,
+  deletePoolFromDb,
   loadUserInteractions,
   toggleFavoriteInDb,
   toggleCheckInInDb,
@@ -161,6 +162,22 @@ export const App: React.FC = () => {
     setPools((prev) => prev.map((p) => (p.id === saved.id ? saved : p)));
     if (selectedPool?.id === saved.id) {
       setSelectedPool(saved);
+    }
+  };
+
+  // 9-1. 잘못된 수영장 클라우드 DB 삭제 핸들러 (is_deleted: true)
+  const handleDeletePool = async (poolId: string) => {
+    try {
+      await deletePoolFromDb(poolId, currentUser?.id);
+      setPools((prev) => prev.filter((p) => p.id !== poolId));
+      if (selectedPool?.id === poolId) {
+        setSelectedPool(null);
+      }
+      setEditingPool(null);
+      alert('수영장이 클라우드 DB에서 정상적으로 삭제되었습니다.');
+    } catch (err) {
+      console.error('수영장 삭제 실패:', err);
+      alert('수영장 삭제 중 오류가 발생했습니다.');
     }
   };
 
@@ -410,6 +427,7 @@ export const App: React.FC = () => {
         onToggleFavorite={handleToggleFavorite}
         onToggleCheckIn={handleToggleCheckIn}
         onOpenEdit={(pool) => setEditingPool(pool)}
+        onDelete={handleDeletePool}
         onRequireLogin={() => setIsAuthOpen(true)}
         isLoggedIn={Boolean(currentUser)}
       />
@@ -469,6 +487,7 @@ export const App: React.FC = () => {
         onClose={() => setEditingPool(null)}
         pool={editingPool}
         onSave={handleSavePool}
+        onDelete={handleDeletePool}
       />
 
       {/* 9. 화면 하단 오른쪽 데이터 동기화 일자 항상 표시 */}
