@@ -34,6 +34,13 @@ jobs:
       - name: Build project
         env:
           VITE_KAKAO_MAP_API_KEY: ${{ secrets.VITE_KAKAO_MAP_API_KEY || '61ebf0b7a0daf24cba357d92677c8d8a' }}
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL || 'https://johtqemdlprtbpohdkgu.supabase.co' }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY || 'sb_publishable_Aj8gNxqXefjkBg6H6zsCxw_icac_-2G' }}
+          VITE_NAVER_CLIENT_ID: ${{ secrets.VITE_NAVER_CLIENT_ID || 'ZlO4zT_XXNDHb24LQL5u' }}
+          VITE_NAVER_CALLBACK_URL: ${{ secrets.VITE_NAVER_CALLBACK_URL || 'https://tlogger.github.io/swimi/naverlogin' }}
+          VITE_KAKAO_CLIENT_ID: ${{ secrets.VITE_KAKAO_CLIENT_ID || '354131879d586356f9c160db0f834840' }}
+          VITE_KAKAO_CALLBACK_URL: ${{ secrets.VITE_KAKAO_CALLBACK_URL || 'https://tlogger.github.io/swimi/kakaologin' }}
+          VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID || '91988805001-t93p6nlfov5adjalmkjn3qlgvo6o1133.apps.googleusercontent.com' }}
         run: npm run build
 
       - name: Upload artifact

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Map, CustomOverlayMap, useKakaoLoader } from 'react-kakao-maps-sdk';
 import { SwimmingPool, PoolCurrentStatus } from '../types/pool';
+import { UserInteractionsMap } from '../types/auth';
 
 interface KakaoMapWrapperProps {
   pools: SwimmingPool[];
@@ -10,6 +11,7 @@ interface KakaoMapWrapperProps {
   center: { lat: number; lng: number };
   level?: number;
   userLocation: { lat: number; lng: number } | null;
+  interactions?: UserInteractionsMap;
 }
 
 const KAKAO_KEY = import.meta.env.VITE_KAKAO_MAP_API_KEY || '61ebf0b7a0daf24cba357d92677c8d8a';
@@ -22,6 +24,7 @@ export const KakaoMapWrapper: React.FC<KakaoMapWrapperProps> = ({
   center,
   level = 7,
   userLocation,
+  interactions = {},
 }) => {
   const [loading, error] = useKakaoLoader({
     appkey: KAKAO_KEY,
@@ -86,18 +89,22 @@ export const KakaoMapWrapper: React.FC<KakaoMapWrapperProps> = ({
           </CustomOverlayMap>
         )}
 
-        {/* 수영장 원형 숫자 마커 오버레이 (요구사항 1: 동그라미 안에 25, 50 표기) */}
+        {/* 수영장 원형 숫자 마커 오버레이 */}
         {pools.map((pool) => {
           const status = poolStatuses[pool.id];
           const isSelected = selectedPool?.id === pool.id;
           const is50m = pool.laneLength === 50;
+
+          // 도장깨기 & 즐겨찾기 상태
+          const interaction = interactions[pool.id];
+          const isVisited = Boolean(interaction?.isVisited);
+          const isFavorite = Boolean(interaction?.isFavorite);
 
           // 오늘 운영중(OPEN 또는 BREAK) 여부 판정
           const isOpen = status?.status === 'OPEN';
           const isBreak = status?.status === 'BREAK';
           const isOperational = isOpen || isBreak;
 
-          // 원형 마커 색상 결정
           let markerBgColor = 'bg-slate-700 text-slate-400 border-slate-600';
           let tailColor = 'border-t-slate-700';
 
@@ -125,27 +132,53 @@ export const KakaoMapWrapper: React.FC<KakaoMapWrapperProps> = ({
                 onClick={() => onSelectPool(pool)}
                 className="flex flex-col items-center cursor-pointer group transition-transform active:scale-90"
               >
-                {/* 요구사항 1: 동그라미 안에 25 또는 50만 깔끔하게 표기 */}
-                <div
-                  className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-black text-xs sm:text-[13px] tracking-tighter shadow-lg border-2 transition-all ${markerBgColor} ${
-                    isSelected ? 'ring-4 ring-cyan-400 scale-125 z-40' : 'hover:scale-110'
-                  }`}
-                >
-                  {pool.laneLength}
+                {/* 메인 마커 원형 */}
+                <div className="relative">
+                  <div
+                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-black text-xs sm:text-[13px] tracking-tighter shadow-lg border-2 transition-all ${markerBgColor} ${
+                      isSelected ? 'ring-4 ring-cyan-400 scale-125 z-40' : 'hover:scale-110'
+                    }`}
+                  >
+                    {pool.laneLength}
+                  </div>
+
+                  {/* 도장깨기 완료(체크인) 뱃지 (트로피) */}
+                  {isVisited && (
+                    <div
+                      title="도장깨기 완료!"
+                      className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-amber-400 text-slate-950 flex items-center justify-center text-[9px] shadow-md border border-slate-950 z-10 animate-bounce"
+                    >
+                      🏆
+                    </div>
+                  )}
+
+                  {/* 즐겨찾기 뱃지 (별표) */}
+                  {isFavorite && !isVisited && (
+                    <div
+                      title="즐겨찾기 보관됨"
+                      className="absolute -top-2 -left-2 w-4 h-4 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center text-[9px] font-bold shadow-md border border-slate-950 z-10"
+                    >
+                      ★
+                    </div>
+                  )}
                 </div>
 
                 {/* 마커 꼬리 팁 */}
                 <div className={`w-0 h-0 border-x-4 border-x-transparent border-t-5 -mt-0.5 ${tailColor}`} />
 
-                {/* 수영장 명칭 라벨 (운영중이거나 선택되었을 때만 노출, 길이 접미사 제거) */}
-                {(isOperational || isSelected) && (
+                {/* 수영장 명칭 라벨 */}
+                {(isOperational || isSelected || isVisited || isFavorite) && (
                   <div
-                    className={`mt-1 px-2 py-0.5 rounded-lg text-[10px] font-bold shadow-md border whitespace-nowrap backdrop-blur-md transition-all ${
+                    className={`mt-1 px-2 py-0.5 rounded-lg text-[10px] font-bold shadow-md border whitespace-nowrap backdrop-blur-md transition-all flex items-center gap-1 ${
                       isSelected
                         ? 'bg-cyan-900/95 text-cyan-200 border-cyan-400 font-extrabold shadow-cyan-900/50'
+                        : isVisited
+                        ? 'bg-amber-950/90 text-amber-200 border-amber-600/80'
                         : 'bg-slate-900/90 text-slate-200 border-slate-700/80'
                     }`}
                   >
+                    {isVisited && <span className="text-[9px]">🏊</span>}
+                    {isFavorite && !isVisited && <span className="text-[9px] text-cyan-400">★</span>}
                     {(pool.shortName || pool.name).replace(/\s*\((?:25m|50m)\)/gi, '').trim()}
                   </div>
                 )}

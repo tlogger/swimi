@@ -8,8 +8,13 @@ import {
   ShieldAlert,
   ChevronDown,
   Info,
+  Star,
+  Trophy,
+  Edit3,
+  CheckCircle2,
 } from 'lucide-react';
 import { SwimmingPool, PoolCurrentStatus } from '../types/pool';
+import { UserInteractionState } from '../types/auth';
 import { getKakaoNaviLinks } from '../utils/scheduleCalculator';
 
 interface PoolDetailDrawerProps {
@@ -17,6 +22,13 @@ interface PoolDetailDrawerProps {
   status?: PoolCurrentStatus;
   targetDate: Date;
   onClose: () => void;
+  lastUpdate?: string;
+  interaction?: UserInteractionState;
+  onToggleFavorite?: (poolId: string) => void;
+  onToggleCheckIn?: (poolId: string) => void;
+  onOpenEdit?: (pool: SwimmingPool) => void;
+  onRequireLogin?: () => void;
+  isLoggedIn?: boolean;
 }
 
 export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
@@ -24,6 +36,13 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
   status,
   targetDate,
   onClose,
+  lastUpdate = '2026-10-31',
+  interaction,
+  onToggleFavorite,
+  onToggleCheckIn,
+  onOpenEdit,
+  onRequireLogin,
+  isLoggedIn = false,
 }) => {
   if (!pool) return null;
 
@@ -41,7 +60,30 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
   const is50m = pool.laneLength === 50;
   const cleanName = pool.name.replace(/\s*\((?:25m|50m)\)/gi, '').trim();
 
-  // 요구사항 3: 현재 시각 타임라인 위치 (%) 계산
+  const isFavorite = Boolean(interaction?.isFavorite);
+  const isVisited = Boolean(interaction?.isVisited);
+
+  const handleFavoriteClick = () => {
+    if (!isLoggedIn) {
+      onRequireLogin?.();
+      return;
+    }
+    onToggleFavorite?.(pool.id);
+  };
+
+  const handleCheckInClick = () => {
+    if (!isLoggedIn) {
+      onRequireLogin?.();
+      return;
+    }
+    onToggleCheckIn?.(pool.id);
+  };
+
+  const handleEditClick = () => {
+    onOpenEdit?.(pool);
+  };
+
+  // 현재 시각 타임라인 위치 (%) 계산
   const now = new Date();
   const currentMinutesTotal = now.getHours() * 60 + now.getMinutes();
   const currentTimelinePercent = Math.min(
@@ -49,7 +91,7 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
     Math.max(0, (currentMinutesTotal / (24 * 60)) * 100)
   );
 
-  // 요구사항 3: 부대시설 항목 목록 ('탈수기', '헤어드라이어', '비누', '걷기레인', '킥판', '오리발', '주차장')
+  // 부대시설 항목 목록
   const amenityList = useMemo(() => {
     const am = pool.amenities || {
       dehydrator: false,
@@ -73,12 +115,12 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 flex justify-center pointer-events-auto">
-      <div className="w-full max-w-2xl bg-slate-900/98 backdrop-blur-xl border-t sm:border-x border-slate-700/80 rounded-t-3xl shadow-2xl flex flex-col max-h-[82vh] overflow-hidden animate-in slide-in-from-bottom-6 duration-300">
+      <div className="w-full max-w-2xl bg-slate-900/98 backdrop-blur-xl border-t sm:border-x border-slate-700/80 rounded-t-3xl shadow-2xl flex flex-col max-h-[84vh] overflow-hidden animate-in slide-in-from-bottom-6 duration-300">
         {/* 상단 드래그 핸들 & 닫기 바 */}
         <div className="relative pt-2.5 pb-2 px-5 border-b border-slate-800 flex items-center justify-between shrink-0">
           <div className="absolute left-1/2 -translate-x-1/2 top-2 w-10 h-1 bg-slate-700 rounded-full" />
           <div className="flex items-center gap-2 mt-2">
-            {/* 요구사항 5: 레인수 정보 표기 */}
+            {/* 레인수 정보 표기 */}
             <span
               className={`text-xs font-black px-2.5 py-0.5 rounded-full border ${
                 is50m
@@ -101,6 +143,13 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
                 {status.statusText}
               </span>
             )}
+            {/* 도장깨기 배지 */}
+            {isVisited && (
+              <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/40 flex items-center gap-1 shadow-sm">
+                <Trophy className="w-3 h-3 text-amber-400" />
+                도장깨기 완료!
+              </span>
+            )}
           </div>
           <button
             onClick={onClose}
@@ -114,36 +163,88 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
         {/* 스크롤 가능한 본문 영역 */}
         <div className="flex-1 overflow-y-auto p-5 space-y-4 no-scrollbar">
           {/* 1. 수영장 명칭 및 주소 */}
-          <div>
-            <h1 className="text-xl font-black text-white tracking-tight">
-              {cleanName}
-            </h1>
-            <p className="text-xs text-slate-300 mt-1">
-              {pool.address}{' '}
-              {pool.addressDetail && (
-                <span className="text-slate-400">({pool.addressDetail})</span>
-              )}
-            </p>
-
-            {/* 요구사항 2: 실제 자료에 있는 내용만 표기 (수심 및 50분 휴식제) */}
-            {(pool.depth || pool.breakRule) && (
-              <p className="text-xs text-slate-400 mt-1 flex items-center gap-2">
-                {pool.depth && (
-                  <span>
-                    수심: <strong className="text-slate-200">{pool.depth}</strong>
-                  </span>
-                )}
-                {pool.depth && pool.breakRule && <span className="text-slate-600">·</span>}
-                {pool.breakRule === '50_10' && (
-                  <span className="text-cyan-400 font-semibold">
-                    50분 수영 / 10분 휴식제
-                  </span>
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <h1 className="text-xl font-black text-white tracking-tight flex items-center gap-2">
+                {cleanName}
+              </h1>
+              <p className="text-xs text-slate-300 mt-1">
+                {pool.address}{' '}
+                {pool.addressDetail && (
+                  <span className="text-slate-400">({pool.addressDetail})</span>
                 )}
               </p>
-            )}
+
+              {(pool.depth || pool.breakRule) && (
+                <p className="text-xs text-slate-400 mt-1 flex items-center gap-2">
+                  {pool.depth && (
+                    <span>
+                      수심: <strong className="text-slate-200">{pool.depth}</strong>
+                    </span>
+                  )}
+                  {pool.depth && pool.breakRule && <span className="text-slate-600">·</span>}
+                  {pool.breakRule === '50_10' && (
+                    <span className="text-cyan-400 font-semibold">
+                      50분 수영 / 10분 휴식제
+                    </span>
+                  )}
+                </p>
+              )}
+            </div>
+
+            {/* 정보 수정 제안 버튼 */}
+            <button
+              onClick={handleEditClick}
+              title="잘못된 수영장 정보 수정하기"
+              className="py-1.5 px-2.5 rounded-xl bg-slate-800 hover:bg-slate-700/80 border border-slate-700 text-slate-300 hover:text-cyan-300 text-[11px] font-semibold flex items-center gap-1 shrink-0 transition-all"
+            >
+              <Edit3 className="w-3.5 h-3.5 text-cyan-400" />
+              정보 수정
+            </button>
           </div>
 
-          {/* 2. 빠른 액션 버튼: 카카오내비 / 전화걸기 / 홈페이지 */}
+          {/* 2. 핵심 액션 1: [도장깨기(체크인)] & [즐겨찾기] 탭/버튼 */}
+          <div className="grid grid-cols-2 gap-2 pt-1">
+            {/* 도장깨기 (방문한 적이 있음) */}
+            <button
+              onClick={handleCheckInClick}
+              className={`py-3 px-3.5 rounded-2xl border font-bold text-xs flex items-center justify-center gap-2 transition-all active:scale-98 shadow-md ${
+                isVisited
+                  ? 'bg-amber-500/20 border-amber-400 text-amber-300 shadow-amber-500/10'
+                  : 'bg-slate-800/80 hover:bg-slate-700/80 border-slate-700 text-slate-300'
+              }`}
+            >
+              <Trophy className={`w-4 h-4 ${isVisited ? 'text-amber-400 fill-amber-400' : 'text-slate-400'}`} />
+              <div className="flex flex-col items-start text-left">
+                <span>{isVisited ? '도장깨기 완료 (방문함)' : '도장깨기 체크인'}</span>
+                {isVisited && interaction?.visitedAt && (
+                  <span className="text-[10px] text-amber-400/80 font-normal">
+                    {interaction.visitedAt.slice(0, 10)} 방문
+                  </span>
+                )}
+              </div>
+            </button>
+
+            {/* 즐겨찾기 (내가 가고 싶은 곳) */}
+            <button
+              onClick={handleFavoriteClick}
+              className={`py-3 px-3.5 rounded-2xl border font-bold text-xs flex items-center justify-center gap-2 transition-all active:scale-98 shadow-md ${
+                isFavorite
+                  ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300 shadow-cyan-500/10'
+                  : 'bg-slate-800/80 hover:bg-slate-700/80 border-slate-700 text-slate-300'
+              }`}
+            >
+              <Star className={`w-4 h-4 ${isFavorite ? 'text-cyan-400 fill-cyan-400' : 'text-slate-400'}`} />
+              <div className="flex flex-col items-start text-left">
+                <span>{isFavorite ? '즐겨찾기 보관됨' : '가고 싶은 곳 추가'}</span>
+                <span className="text-[10px] text-slate-400 font-normal">
+                  {isFavorite ? '내 리스트에 저장됨' : '즐겨찾기'}
+                </span>
+              </div>
+            </button>
+          </div>
+
+          {/* 3. 빠른 액션 버튼: 카카오내비 / 전화걸기 / 홈페이지 */}
           <div className="grid grid-cols-3 gap-2">
             <button
               onClick={handleNaviClick}
@@ -182,7 +283,7 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
             )}
           </div>
 
-          {/* 3. 요구사항 3 & 6: 수영 가능 시간 + 현재 시각 위치 깜빡임 + 요일별 운영시간 */}
+          {/* 4. 수영 가능 시간 + 현재 시각 위치 깜빡임 + 요일별 운영시간 */}
           <div className="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-4 flex flex-col gap-3">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-white flex items-center gap-1.5">
@@ -194,7 +295,7 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
               </span>
             </div>
 
-            {/* 24시간 타임라인 바 (현재 시각 깜빡이는 인디케이터 포함) */}
+            {/* 24시간 타임라인 바 */}
             <div className="flex flex-col gap-1">
               <div className="flex items-center justify-between text-[10px] text-slate-500 font-mono px-0.5">
                 <span>00시</span>
@@ -207,7 +308,6 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
                 <span>24시</span>
               </div>
               <div className="relative h-5 bg-slate-950 rounded-md p-0.5 border border-slate-800 flex items-center">
-                {/* 24시간 블록들 */}
                 <div className="grid grid-cols-24 gap-0.5 w-full h-full">
                   {Array.from({ length: 24 }).map((_, hour) => {
                     const isAvailable = daySchedule?.hourlySlots?.[hour] ?? false;
@@ -225,7 +325,6 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
                   })}
                 </div>
 
-                {/* 요구사항 3: 현재 시각 위치 깜빡이는 수직 인디케이터 */}
                 <div
                   style={{ left: `${currentTimelinePercent}%` }}
                   className="absolute top-0 bottom-0 w-1 bg-amber-400 shadow-md shadow-amber-400/80 rounded-full pointer-events-none -translate-x-1/2 z-10 animate-pulse"
@@ -235,7 +334,7 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
               </div>
             </div>
 
-            {/* 요구사항 6: 평일, 토요일, 일요일, 공휴일 운영 시간 및 휴관 안내 정보 */}
+            {/* 평일, 토요일, 일요일, 공휴일 운영 시간 및 휴관 안내 */}
             <div className="pt-2 border-t border-slate-700/50 flex flex-col gap-1.5 text-xs">
               <div className="grid grid-cols-2 gap-2 text-[11px]">
                 <div className="bg-slate-900/60 p-2 rounded-xl border border-slate-800">
@@ -277,7 +376,7 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
             </div>
           </div>
 
-          {/* 4. 일일 입장료 단순 표기 (있는 항목만 표기) */}
+          {/* 5. 일일 입장료 단순 표기 */}
           {pool.fee?.standard && (
             <div className="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-3.5 flex items-center justify-between">
               <span className="text-xs font-bold text-slate-300">일일 입장료</span>
@@ -305,7 +404,7 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
             </div>
           )}
 
-          {/* 5. 요구사항 3: 부대시설 및 편의시설 (있는 것은 밝은 색, 없는 것은 회색 처리) */}
+          {/* 6. 부대시설 및 편의시설 (7종) */}
           <div className="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-4 flex flex-col gap-2.5">
             <span className="text-xs font-bold text-white flex items-center gap-1.5">
               부대시설 및 편의시설
@@ -337,7 +436,7 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
             )}
           </div>
 
-          {/* 6. 요구사항 7: 기타 비정형 정보 (실제 자료에 없으면 아예 보여주지 않음) */}
+          {/* 7. 기타 비정형 정보 */}
           {pool.etcInfo && (
             <div className="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-4 flex flex-col gap-2">
               <span className="text-xs font-bold text-white flex items-center gap-1.5">
@@ -349,6 +448,13 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
               </p>
             </div>
           )}
+
+          {/* 데이터 동기화 일자 표기 */}
+          <div className="pt-2 pb-1 text-center">
+            <span className="text-[10px] font-mono text-slate-500">
+              {pool.updatedAt ? `수정 일시: ${pool.updatedAt.slice(0, 10)} · ` : ''}Last Update: {lastUpdate}
+            </span>
+          </div>
         </div>
       </div>
     </div>

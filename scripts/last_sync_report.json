@@ -1,0 +1,666 @@
+{
+  "feeUpdates": [
+    {
+      "name": "용산초등학교",
+      "before": 11000,
+      "after": 8000
+    },
+    {
+      "name": "올림픽기념국민생활관",
+      "before": 6050,
+      "after": 5500
+    },
+    {
+      "name": "인천중구국민체육센터",
+      "before": 4000,
+      "after": 3500
+    },
+    {
+      "name": "대구학생문화센터",
+      "before": 2500,
+      "after": 3500
+    },
+    {
+      "name": "제주종합경기장수영장",
+      "before": 2,
+      "after": 3000
+    },
+    {
+      "name": "강릉국민체육센터",
+      "before": 4000,
+      "after": 3500
+    },
+    {
+      "name": "부산곰두리스포츠센터",
+      "before": 1300,
+      "after": 2600
+    },
+    {
+      "name": "동래구국민체육센터",
+      "before": 33,
+      "after": 3300
+    },
+    {
+      "name": "조이스포츠센터수영장",
+      "before": 10000,
+      "after": 12000
+    },
+    {
+      "name": "강북웰빙스포츠센터",
+      "before": 4000,
+      "after": 4800
+    },
+    {
+      "name": "계양구효성수영장",
+      "before": 5000,
+      "after": 7000
+    },
+    {
+      "name": "동구국민체육문예센터",
+      "before": 3000,
+      "after": 3300
+    },
+    {
+      "name": "디아넥스호텔",
+      "before": 42000,
+      "after": 41000
+    }
+  ],
+  "addressUpdates": [
+    {
+      "name": "강릉국민체육센터",
+      "before": "강원 강릉시 수리골길 102",
+      "after": "강원 강릉시 수리골길 76"
+    },
+    {
+      "name": "남원교육문화회관",
+      "before": "전라북도 남원시 용성로 49",
+      "after": "전북특별자치도 남원시 용성로 49"
+    },
+    {
+      "name": "동구국민체육문예센터",
+      "before": "부산광역시 동구 구청로 8",
+      "after": "부산 동구 구청로 8"
+    }
+  ],
+  "scheduleUpdates": [
+    {
+      "name": "화성국민체육센터",
+      "diffs": "공휴일: 운영 -> 휴관"
+    },
+    {
+      "name": "함안체육관실내수영장",
+      "diffs": "일요일: 휴관 -> 운영, 공휴일: 운영 -> 휴관"
+    },
+    {
+      "name": "남원교육문화회관",
+      "diffs": "토요일: 운영 -> 휴관"
+    },
+    {
+      "name": "동구국민체육문예센터",
+      "diffs": "일요일: 운영 -> 휴관, 공휴일: 휴관 -> 운영"
+    }
+  ],
+  "amenityUpdates": [
+    {
+      "name": "잠실 제1수영장",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "서초종합체육관",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "스포츠아일랜드",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "구로남 체육센터(운영종료/Permanent Closure)",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "고척체육센터",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "삼성스포렉스",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "목동문화체육센터",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "시립목동청소년센터",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "은평통일로스포츠센터",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "용산초등학교",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "용산청소년수련관수영장",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "마포아트센터수영장",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "중구회현체육센터",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "성동청소년수련관",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "현대프라임스포츠센터",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "광진문화예술회관",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "시립동대문청소년센터",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "시립강북청소년센터",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "돈암문화스포츠센터",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "하늘문화센터",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "인천도원수영장",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "송림체육관수영장",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "인천청소년수련관",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "부평국민체육센터",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "인천삼산월드체육관",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "인천환경공단 송도스포츠파크",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "오정레포츠센터",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "기아스포츠문화센터",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "예체능수영장",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "복사골스포츠센터",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "부천국민체육센터수영장",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "신안웰리스스포츠센터",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "월드스포츠센터",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "한샘레포츠타운",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "한숲스포츠센타",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "광주시스포츠헬스센터",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "분당올림픽스포츠센터",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "반월체육센터",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "소사벌레포츠타운",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "원동초스포츠센터",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "오산스포츠센터",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "유앤아이센터",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "이천스포츠센터",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "도두봉실내수영장",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "코오롱스포렉스운정점",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "화도문화체육센터",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "오남체육문화센터",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "에덴수영장",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "별내커뮤니티센터",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "호평체육문화센터",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "구리멀티스포츠센터",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "정부세종청사체육관",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "당진교육문화스포츠센터",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "송악문화스포츠센터",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "천안국민체육센터",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "북부스포츠센터",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "육우수영장",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "배방스포츠센터",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "아산배미수영장",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "단양군청소년수련관",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "전주완산수영장",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "진남수영장",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "성황스포츠센터",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "봉화국민체육센터",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "예천청소년수련관",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "상주국민체육센터",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "경주국민체육센터",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "포항수영장",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "경산수영장",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "태백국민체육센터",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "양양문화복지회관",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "사천시실내수영장",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "남해군국민체육센터",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "진영스포츠센터",
+      "kickboard": "false -> true",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "통영수영장",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "해동이국민체육센터",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "진해국민체육센터",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "의창스포츠센터",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "창원올림픽기념관",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "문수실내수영장",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "포항오천실내수영장",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "대영스포렉스",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "봉래체육문화센터",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "에코랜드수영장",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "한석봉체육관",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "덕진수영장",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "정관아쿠아드림파크",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "모건우방스포츠센터",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "영운국민체육센터",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "쌍문종합체육센터",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "은평청여울수영장",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "시민행복채움센터",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "공항동문화체육센터",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "관저다목적체육관",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "예산1100년기념관",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "유성반다비체육센터",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "월계구민체육센터",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "울주종합체육센터",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "스퍼트스위밍랩",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "신도림생활체육관",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "향남복합문화센터",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "용인시시민체육센터",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "금곡청소년수련관",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "광양수영장",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "해돋이힐링센터",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "진주시장애인문화체육센",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "서부여성회관",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "다원복합센터",
+      "kickboard": "false -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "기아스포츠센터화성점",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    },
+    {
+      "name": "충남대스포렉스",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "애월복합문화체육센터",
+      "kickboard": "true -> false",
+      "flippers": "false -> false"
+    },
+    {
+      "name": "마이스위밍",
+      "kickboard": "true -> false",
+      "flippers": "true -> false"
+    }
+  ]
+}

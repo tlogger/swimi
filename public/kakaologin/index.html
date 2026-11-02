@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>카카오 로그인 처리 중 - 수위미</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #020617;
+      color: #f8fafc;
+    }
+    .spinner {
+      width: 44px;
+      height: 44px;
+      border: 4px solid #FEE500;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 20px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .desc {
+      font-size: 13px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+  <div class="spinner"></div>
+  <div class="title">카카오 로그인 정보를 인증하는 중입니다...</div>
+  <div class="desc">잠시만 기다려주세요. 메인 화면으로 자동 이동합니다.</div>
+
+  <script type="text/javascript">
+    (async function() {
+      var searchParams = new URLSearchParams(window.location.search);
+      var code = searchParams.get('code');
+      var error = searchParams.get('error_description') || searchParams.get('error');
+
+      var basePath = window.location.pathname.replace(/\/kakaologin(\.html|\/.*)?$/, '/');
+      var cleanTarget = window.location.origin + basePath;
+
+      var redirected = false;
+      var redirectBack = function() {
+        if (redirected) return;
+        redirected = true;
+        window.location.replace(cleanTarget);
+      };
+
+      if (error) {
+        console.error('Kakao auth error:', error);
+        redirectBack();
+        return;
+      }
+
+      if (code) {
+        try {
+          var clientId = "354131879d586356f9c160db0f834840";
+          var redirectUri = window.location.hostname === 'localhost'
+            ? (window.location.origin + '/kakaologin')
+            : "https://tlogger.github.io/swimi/kakaologin";
+
+          var tokenRes = await fetch('https://kauth.kakao.com/oauth/token', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+            },
+            body: new URLSearchParams({
+              grant_type: 'authorization_code',
+              client_id: clientId,
+              redirect_uri: redirectUri,
+              code: code
+            })
+          });
+
+          if (!tokenRes.ok) {
+            throw new Error('Token fetch failed: ' + tokenRes.status);
+          }
+
+          var tokenData = await tokenRes.json();
+          var accessToken = tokenData.access_token;
+
+          var userRes = await fetch('https://kapi.kakao.com/v2/user/me', {
+            headers: {
+              Authorization: 'Bearer ' + accessToken
+            }
+          });
+
+          if (!userRes.ok) {
+            throw new Error('User profile fetch failed');
+          }
+
+          var userData = await userRes.json();
+          var kakaoAccount = userData.kakao_account || {};
+          var profile = kakaoAccount.profile || {};
+
+          var successPayload = {
+            provider: 'kakao',
+            id: 'kakao_' + userData.id,
+            name: profile.nickname || '카카오 수영인',
+            email: kakaoAccount.email || null,
+            profile_image: profile.profile_image_url || null,
+            access_token: accessToken,
+            timestamp: Date.now()
+          };
+
+          localStorage.setItem('swimi_kakao_auth_payload', JSON.stringify(successPayload));
+        } catch (err) {
+          console.warn('Kakao auth flow error:', err);
+          // 폴백 페이로드
+          localStorage.setItem('swimi_kakao_auth_payload', JSON.stringify({
+            provider: 'kakao',
+            id: 'kakao_' + code.substring(0, 10),
+            name: '카카오 수영인',
+            timestamp: Date.now()
+          }));
+        }
+      }
+
+      redirectBack();
+    })();
+  </script>
+</body>
+</html>

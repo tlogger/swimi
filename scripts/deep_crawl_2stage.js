@@ -177,18 +177,24 @@ async function run() {
   const uniqueArticleIds = Array.from(new Set(articleIds));
   console.log(`Found ${uniqueArticleIds.length} unique cafe articles to fetch/parse.`);
 
-  // 배치 다운로드 (동시 10개)
-  const batchSize = 10;
-  for (let i = 0; i < uniqueArticleIds.length; i += batchSize) {
-    const batch = uniqueArticleIds.slice(i, i + batchSize);
-    await Promise.all(batch.map(id => fetchArticle(id)));
-    if (i % 100 === 0 || i + batchSize >= uniqueArticleIds.length) {
-      fs.writeFileSync(CACHE_FILE, JSON.stringify(cache), 'utf8');
-      console.log(`Progress: ${Math.min(i + batchSize, uniqueArticleIds.length)} / ${uniqueArticleIds.length}`);
-    }
+  const missingArticleIds = uniqueArticleIds.filter(id => !cache[id]);
+  console.log(`Found ${uniqueArticleIds.length} unique articles. Need to fetch ${missingArticleIds.length} missing articles.`);
+
+  if (missingArticleIds.length === 0) {
+    console.log('All articles are already cached!');
+    return;
   }
 
-  fs.writeFileSync(CACHE_FILE, JSON.stringify(cache), 'utf8');
+  // 배치 다운로드 (동시 5개)
+  const batchSize = 5;
+  for (let i = 0; i < missingArticleIds.length; i += batchSize) {
+    const batch = missingArticleIds.slice(i, i + batchSize);
+    await Promise.all(batch.map(id => fetchArticle(id)));
+    console.log(`Progress: ${Math.min(i + batchSize, missingArticleIds.length)} / ${missingArticleIds.length}`);
+    await new Promise(r => setTimeout(r, 200));
+  }
+
+  fs.writeFileSync(CACHE_FILE, JSON.stringify(cache, null, 2), 'utf8');
   console.log('Finished caching all articles.');
 }
 

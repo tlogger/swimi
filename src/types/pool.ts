@@ -108,6 +108,11 @@ export interface SwimmingPool {
 
   // 관련 링크
   links?: { title: string; url: string }[];
+
+  // DB 수정 이력
+  updatedAt?: string;
+  updatedBy?: string;
+  is_deleted?: boolean;
 }
 
 export type PoolOperationalStatus = 'OPEN' | 'BREAK' | 'CLOSED';

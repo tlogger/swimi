@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, RotateCcw, Calendar, ChevronLeft, ChevronRight, Waves } from 'lucide-react';
+import { X, RotateCcw, Calendar, ChevronLeft, ChevronRight, Waves, Trophy, Star } from 'lucide-react';
 
 export type DayTypeOption = 'weekday' | 'saturday' | 'sunday' | 'holiday';
 
@@ -16,6 +16,10 @@ interface FilterModalProps {
   onlyOpenNow: boolean;
   onToggleOnlyOpenNow: () => void;
   onResetAllFilters: () => void;
+  onlyVisited?: boolean;
+  onToggleOnlyVisited?: () => void;
+  onlyFavorite?: boolean;
+  onToggleOnlyFavorite?: () => void;
 }
 
 export const FilterModal: React.FC<FilterModalProps> = ({
@@ -31,6 +35,10 @@ export const FilterModal: React.FC<FilterModalProps> = ({
   onlyOpenNow,
   onToggleOnlyOpenNow,
   onResetAllFilters,
+  onlyVisited = false,
+  onToggleOnlyVisited,
+  onlyFavorite = false,
+  onToggleOnlyFavorite,
 }) => {
   if (!isOpen) return null;
 
@@ -72,7 +80,37 @@ export const FilterModal: React.FC<FilterModalProps> = ({
           </button>
         </div>
 
-        {/* 1. 날짜 선택기 (+/- 증감 및 오늘 버튼) */}
+        {/* 1. 도장깨기 & 즐겨찾기 특별 필터 */}
+        <div className="space-y-2">
+          <span className="text-xs font-semibold text-slate-400">내 수영 기록 필터</span>
+          <div className="grid grid-cols-2 gap-2">
+            <button
+              onClick={onToggleOnlyVisited}
+              className={`py-2.5 px-3 rounded-2xl border text-xs font-bold flex items-center justify-center gap-1.5 transition-all ${
+                onlyVisited
+                  ? 'bg-amber-500/20 border-amber-400 text-amber-300 shadow-sm shadow-amber-500/10'
+                  : 'bg-slate-800/40 border-slate-700/60 text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <Trophy className="w-4 h-4 text-amber-400" />
+              도장깨기 한 곳만
+            </button>
+
+            <button
+              onClick={onToggleOnlyFavorite}
+              className={`py-2.5 px-3 rounded-2xl border text-xs font-bold flex items-center justify-center gap-1.5 transition-all ${
+                onlyFavorite
+                  ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300 shadow-sm shadow-cyan-500/10'
+                  : 'bg-slate-800/40 border-slate-700/60 text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <Star className="w-4 h-4 text-cyan-400" />
+              즐겨찾기한 곳만
+            </button>
+          </div>
+        </div>
+
+        {/* 2. 날짜 선택기 (+/- 증감 및 오늘 버튼) */}
         <div className="flex flex-col gap-2">
           <div className="flex items-center justify-between text-xs font-semibold text-slate-400">
             <span>방문 기준 날짜</span>
@@ -111,7 +149,7 @@ export const FilterModal: React.FC<FilterModalProps> = ({
           )}
         </div>
 
-        {/* 2. 요일 및 공휴일 다중 선택 버튼군 ('요일 및 공휴일 조건' 텍스트 삭제) */}
+        {/* 3. 요일 및 공휴일 다중 선택 버튼군 */}
         <div className="grid grid-cols-4 gap-2">
           {dayOptions.map((item) => {
             const isSelected = selectedDays.includes(item.id);
@@ -131,7 +169,7 @@ export const FilterModal: React.FC<FilterModalProps> = ({
           })}
         </div>
 
-        {/* 3. 레인 규격 (25m / 50m 다중 선택 토글) */}
+        {/* 4. 레인 규격 (25m / 50m 다중 선택 토글) */}
         <div className="flex flex-col gap-2">
           <div className="grid grid-cols-2 gap-2">
             {[25, 50].map((lane) => {
@@ -154,9 +192,9 @@ export const FilterModal: React.FC<FilterModalProps> = ({
           </div>
         </div>
 
-        {/* 4. 운영 중 토글 (문구 단순화: '운영 중') */}
+        {/* 5. 운영 중 토글 */}
         <div className="flex items-center justify-between bg-slate-800/40 border border-slate-800 rounded-2xl p-3.5">
-          <span className="text-sm font-bold text-slate-200">운영 중</span>
+          <span className="text-sm font-bold text-slate-200">운영 중인 곳만 보기</span>
           <button
             onClick={onToggleOnlyOpenNow}
             className={`w-12 h-6 flex items-center rounded-full p-1 transition-colors ${

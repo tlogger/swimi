@@ -1,8 +1,10 @@
-import React from 'react';
-import { X, ArrowDownAZ, Navigation, Clock, CheckCircle2, Waves } from 'lucide-react';
+import React, { useState } from 'react';
+import { X, ArrowDownAZ, Navigation, Clock, CheckCircle2, Waves, Trophy, Star } from 'lucide-react';
 import { SwimmingPool, PoolCurrentStatus } from '../types/pool';
+import { UserInteractionsMap } from '../types/auth';
 
 export type SortMode = 'name' | 'distance';
+export type ListFilterTab = 'all' | 'visited' | 'favorite';
 
 interface PoolListModalProps {
   isOpen: boolean;
@@ -16,6 +18,7 @@ interface PoolListModalProps {
   onToggleOnlyOpenNow: () => void;
   onSelectPool: (pool: SwimmingPool) => void;
   selectedPoolId?: string;
+  interactions?: UserInteractionsMap;
 }
 
 export const PoolListModal: React.FC<PoolListModalProps> = ({
@@ -30,17 +33,28 @@ export const PoolListModal: React.FC<PoolListModalProps> = ({
   onToggleOnlyOpenNow,
   onSelectPool,
   selectedPoolId,
+  interactions = {},
 }) => {
+  const [activeTab, setActiveTab] = useState<ListFilterTab>('all');
+
   if (!isOpen) return null;
 
-  // 1. 운영중 필터링
-  let displayedPools = pools.filter((pool) => {
+  // 1. 도장깨기 & 즐겨찾기 탭 필터링
+  let filtered = pools.filter((pool) => {
+    const inter = interactions[pool.id];
+    if (activeTab === 'visited') return Boolean(inter?.isVisited);
+    if (activeTab === 'favorite') return Boolean(inter?.isFavorite);
+    return true;
+  });
+
+  // 2. 운영중 필터링
+  let displayedPools = filtered.filter((pool) => {
     if (!onlyOpenNow) return true;
     const st = poolStatuses[pool.id];
     return st && (st.status === 'OPEN' || st.status === 'BREAK');
   });
 
-  // 2. 정렬 (가나다순 vs 가까운순)
+  // 3. 정렬 (가나다순 vs 가까운순)
   displayedPools.sort((a, b) => {
     if (sortMode === 'name') {
       return a.name.localeCompare(b.name, 'ko');
@@ -50,6 +64,9 @@ export const PoolListModal: React.FC<PoolListModalProps> = ({
       return distA - distB;
     }
   });
+
+  const visitedCount = Object.values(interactions).filter((i) => i.isVisited).length;
+  const favoriteCount = Object.values(interactions).filter((i) => i.isFavorite).length;
 
   return (
     <div className="fixed inset-0 z-40 flex flex-col justify-end sm:justify-center items-center p-0 sm:p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
@@ -69,6 +86,42 @@ export const PoolListModal: React.FC<PoolListModalProps> = ({
               aria-label="닫기"
             >
               <X className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* 전체 / 도장깨기 / 즐겨찾기 탭 */}
+          <div className="grid grid-cols-3 gap-1.5 p-1 bg-slate-800/80 rounded-2xl border border-slate-700">
+            <button
+              onClick={() => setActiveTab('all')}
+              className={`py-1.5 text-xs font-bold rounded-xl transition-all ${
+                activeTab === 'all'
+                  ? 'bg-cyan-600 text-white shadow'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              전체 ({pools.length})
+            </button>
+            <button
+              onClick={() => setActiveTab('visited')}
+              className={`py-1.5 text-xs font-bold rounded-xl flex items-center justify-center gap-1 transition-all ${
+                activeTab === 'visited'
+                  ? 'bg-amber-600 text-white shadow'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <Trophy className="w-3.5 h-3.5 text-amber-300" />
+              도장깨기 ({visitedCount})
+            </button>
+            <button
+              onClick={() => setActiveTab('favorite')}
+              className={`py-1.5 text-xs font-bold rounded-xl flex items-center justify-center gap-1 transition-all ${
+                activeTab === 'favorite'
+                  ? 'bg-blue-600 text-white shadow'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <Star className="w-3.5 h-3.5 text-cyan-300" />
+              즐겨찾기 ({favoriteCount})
             </button>
           </div>
 
@@ -115,18 +168,20 @@ export const PoolListModal: React.FC<PoolListModalProps> = ({
           </div>
         </div>
 
-        {/* 간결한 리스트뷰 (전화번호, 요금, 주소 삭제) */}
+        {/* 간결한 리스트뷰 */}
         <div className="flex-1 overflow-y-auto divide-y divide-slate-800/80 no-scrollbar">
           {displayedPools.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center text-slate-500 py-16 gap-2">
               <Waves className="w-10 h-10 text-slate-600 animate-bounce" />
               <p className="text-sm">조건에 맞는 수영장이 없습니다.</p>
-              <button
-                onClick={onToggleOnlyOpenNow}
-                className="text-xs text-cyan-400 hover:underline mt-1"
-              >
-                운영중 필터 끄기
-              </button>
+              {onlyOpenNow && (
+                <button
+                  onClick={onToggleOnlyOpenNow}
+                  className="text-xs text-cyan-400 hover:underline mt-1"
+                >
+                  운영중 필터 끄기
+                </button>
+              )}
             </div>
           ) : (
             displayedPools.map((pool) => {
@@ -134,6 +189,10 @@ export const PoolListModal: React.FC<PoolListModalProps> = ({
               const dist = poolDistances[pool.id];
               const isSelected = selectedPoolId === pool.id;
               const is50m = pool.laneLength === 50;
+
+              const inter = interactions[pool.id];
+              const isVisited = Boolean(inter?.isVisited);
+              const isFavorite = Boolean(inter?.isFavorite);
 
               return (
                 <div
@@ -149,8 +208,8 @@ export const PoolListModal: React.FC<PoolListModalProps> = ({
                   }`}
                 >
                   {/* 왼쪽: 수영장 이름 & 레인/상태 배지 */}
-                  <div className="flex items-center gap-2.5 min-w-0 flex-1">
-                    {/* 레인 배지 (레인수 포함) */}
+                  <div className="flex items-center gap-2 min-w-0 flex-1">
+                    {/* 레인 배지 */}
                     <span
                       className={`text-[11px] font-black px-2 py-0.5 rounded-full shrink-0 border ${
                         is50m
@@ -161,7 +220,19 @@ export const PoolListModal: React.FC<PoolListModalProps> = ({
                       {pool.laneLength}m{pool.laneCount ? ` · ${pool.laneCount}L` : ''}
                     </span>
 
-                    {/* 수영장 이름 (길이 표시 없는 순수 명칭) */}
+                    {/* 도장깨기 & 즐겨찾기 아이콘 */}
+                    {isVisited && (
+                      <span title="도장깨기 완료!" className="text-xs shrink-0">
+                        🏆
+                      </span>
+                    )}
+                    {isFavorite && !isVisited && (
+                      <span title="즐겨찾기" className="text-xs text-cyan-400 shrink-0">
+                        ★
+                      </span>
+                    )}
+
+                    {/* 수영장 이름 */}
                     <span className="text-sm font-bold truncate text-white">
                       {pool.name}
                     </span>
