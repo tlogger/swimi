@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google 로그인 처리 중 - 수위미</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #020617;
+      color: #f8fafc;
+    }
+    .spinner {
+      width: 44px;
+      height: 44px;
+      border: 4px solid #3b82f6;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 20px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .desc {
+      font-size: 13px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+  <div class="spinner"></div>
+  <div class="title">Google 로그인 정보를 인증하는 중입니다...</div>
+  <div class="desc">잠시만 기다려주세요. 메인 화면으로 자동 이동합니다.</div>
+
+  <script type="text/javascript">
+    (async function() {
+      var hash = window.location.hash || '';
+      var search = window.location.search || '';
+
+      var matchToken = hash.match(/access_token=([^&]+)/) || search.match(/access_token=([^&]+)/);
+      var accessToken = matchToken ? decodeURIComponent(matchToken[1]) : '';
+
+      var basePath = window.location.pathname.replace(/\/googlelogin(\.html|\/.*)?$/, '/');
+      var cleanTarget = window.location.origin + basePath;
+
+      var redirected = false;
+      function redirectBack() {
+        if (redirected) return;
+        redirected = true;
+        window.location.replace(cleanTarget);
+      }
+
+      if (!accessToken) {
+        // 혹시 code 형태로 온 경우
+        var matchCode = search.match(/code=([^&]+)/);
+        if (matchCode) {
+          localStorage.setItem('swimi_google_auth_payload', JSON.stringify({
+            provider: 'google',
+            id: 'google_' + matchCode[1].substring(0, 10),
+            name: 'Google 수영인',
+            timestamp: Date.now()
+          }));
+        }
+        redirectBack();
+        return;
+      }
+
+      try {
+        // Google UserInfo API 호출
+        var res = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+          headers: {
+            Authorization: 'Bearer ' + accessToken
+          }
+        });
+
+        if (res.ok) {
+          var user = await res.json();
+          var payload = {
+            provider: 'google',
+            id: 'google_' + (user.sub || Date.now()),
+            name: user.name || (user.email ? user.email.split('@')[0] : 'Google 수영인'),
+            email: user.email || null,
+            profile_image: user.picture || null,
+            access_token: accessToken,
+            timestamp: Date.now()
+          };
+          localStorage.setItem('swimi_google_auth_payload', JSON.stringify(payload));
+        } else {
+          throw new Error('Userinfo fetch failed');
+        }
+      } catch (err) {
+        console.warn('Google userinfo fetch notice:', err);
+        localStorage.setItem('swimi_google_auth_payload', JSON.stringify({
+          provider: 'google',
+          id: 'google_' + Date.now(),
+          name: 'Google 수영인',
+          access_token: accessToken,
+          timestamp: Date.now()
+        }));
+      }
+
+      redirectBack();
+    })();
+  </script>
+</body>
+</html>

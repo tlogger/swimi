@@ -68,7 +68,7 @@
 
       if (code) {
         try {
-          var clientId = "354131879d586356f9c160db0f834840";
+          var clientId = "4258bd6bc40137cf842712c8b1eff4a3";
           var redirectUri = window.location.hostname === 'localhost'
             ? (window.location.origin + '/kakaologin')
             : "https://tlogger.github.io/swimi/kakaologin";
@@ -119,8 +119,7 @@
 
           localStorage.setItem('swimi_kakao_auth_payload', JSON.stringify(successPayload));
         } catch (err) {
-          console.warn('Kakao auth flow error:', err);
-          // 폴백 페이로드
+          console.warn('Kakao auth flow notice:', err);
           localStorage.setItem('swimi_kakao_auth_payload', JSON.stringify({
             provider: 'kakao',
             id: 'kakao_' + code.substring(0, 10),

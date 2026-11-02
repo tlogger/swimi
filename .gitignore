@@ -4,4 +4,8 @@ dist
 .env.local
 *.log
 jasumap_raw.html
+scripts/test_oauth_network.js
+scripts/test_oauth_urls.ts
+scripts/verify_live_site.js
+
 

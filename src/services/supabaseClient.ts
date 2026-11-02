@@ -8,8 +8,8 @@ let supabaseInstance: SupabaseClient | null = null;
 export const getSupabase = (): SupabaseClient => {
   if (supabaseInstance) return supabaseInstance;
 
-  const url = import.meta.env.VITE_SUPABASE_URL || DEFAULT_SUPABASE_URL;
-  const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || DEFAULT_SUPABASE_KEY;
+  const url = import.meta.env?.VITE_SUPABASE_URL || DEFAULT_SUPABASE_URL;
+  const anonKey = import.meta.env?.VITE_SUPABASE_ANON_KEY || DEFAULT_SUPABASE_KEY;
 
   supabaseInstance = createClient(url, anonKey, {
     realtime: {
