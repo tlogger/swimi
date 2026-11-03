@@ -33,7 +33,8 @@ export const KakaoMapWrapper: React.FC<KakaoMapWrapperProps> = ({
 
   const mapRef = useRef<kakao.maps.Map | null>(null);
   const [mapCenter, setMapCenter] = useState(center);
-  const [mapLevel] = useState(level);
+  const [mapLevel, setMapLevel] = useState(level);
+  const [currentZoomLevel, setCurrentZoomLevel] = useState<number>(level);
 
   // 외부 center prop 변경 시 지도 부드럽게 이동
   useEffect(() => {
@@ -71,11 +72,15 @@ export const KakaoMapWrapper: React.FC<KakaoMapWrapperProps> = ({
         level={mapLevel}
         onCreate={(map) => {
           mapRef.current = map;
+          setCurrentZoomLevel(map.getLevel());
+        }}
+        onZoomChanged={(map) => {
+          setCurrentZoomLevel(map.getLevel());
         }}
         className="w-full h-full"
         isPanto={true}
       >
-        {/* 사용자 현재 위치 마커 */}
+        {/* 사용자 현재 위치 마커 (모던 펄스 링 & 아쿠아 블루 글래스) */}
         {userLocation && (
           <CustomOverlayMap
             position={{ lat: userLocation.lat, lng: userLocation.lng }}
@@ -83,8 +88,8 @@ export const KakaoMapWrapper: React.FC<KakaoMapWrapperProps> = ({
             xAnchor={0.5}
           >
             <div className="relative flex items-center justify-center pointer-events-none">
-              <span className="animate-ping absolute inline-flex h-6 w-6 rounded-full bg-cyan-400 opacity-60" />
-              <div className="relative inline-flex rounded-full h-4 w-4 bg-cyan-500 border-2 border-white shadow-lg" />
+              <span className="animate-ping absolute inline-flex h-7 w-7 rounded-full bg-cyan-400 opacity-40" />
+              <div className="relative inline-flex rounded-full h-4 w-4 bg-gradient-to-tr from-cyan-400 to-blue-500 ring-2 ring-cyan-300/60 border border-white shadow-lg shadow-cyan-500/50" />
             </div>
           </CustomOverlayMap>
         )}
@@ -106,24 +111,33 @@ export const KakaoMapWrapper: React.FC<KakaoMapWrapperProps> = ({
           const isTempClosed = status?.status === 'TEMP_CLOSED' || Boolean(pool.temporaryClosure?.isClosed);
           const isOperational = isOpen || isBreak;
 
-          let markerBgColor = 'bg-slate-700 text-slate-400 border-slate-600';
-          let tailColor = 'border-t-slate-700';
+          // 모던 색상 시스템 (촌스러운 단색 녹색/흰 테두리 전면 탈피)
+          let markerBgColor = 'bg-slate-800/95 text-slate-400 border border-slate-600/60 shadow-sm';
+          let tailColor = 'border-t-slate-800';
 
           if (isTempClosed) {
-            markerBgColor = 'bg-rose-600 text-white border-rose-300 shadow-rose-600/40';
-            tailColor = 'border-t-rose-600';
+            // 임시 휴관: 모던 네온 로즈/크림슨
+            markerBgColor = 'bg-gradient-to-b from-rose-500 to-red-600 text-white border border-rose-200/70 shadow-lg shadow-rose-950/50';
+            tailColor = 'border-t-red-600';
           } else if (isOpen) {
             if (is50m) {
-              markerBgColor = 'bg-amber-500 text-slate-950 border-amber-300 shadow-amber-500/40';
-              tailColor = 'border-t-amber-500';
+              // 50m 정규 레인: 프리미엄 앰버 골드/탠저린 오렌지
+              markerBgColor = 'bg-gradient-to-b from-amber-400 to-orange-500 text-slate-950 font-black border border-amber-200/80 shadow-lg shadow-amber-950/50';
+              tailColor = 'border-t-orange-500';
             } else {
-              markerBgColor = 'bg-emerald-500 text-slate-950 border-emerald-300 shadow-emerald-500/40';
-              tailColor = 'border-t-emerald-500';
+              // 25m 레인: 청량하고 세련된 모던 오션 틸 / 시안
+              markerBgColor = 'bg-gradient-to-b from-cyan-500 to-teal-600 text-white font-black border border-cyan-200/70 shadow-lg shadow-cyan-950/50';
+              tailColor = 'border-t-teal-600';
             }
           } else if (isBreak) {
-            markerBgColor = 'bg-orange-500 text-slate-950 border-orange-300 shadow-orange-500/40';
-            tailColor = 'border-t-orange-500';
+            // 휴식 시간: 모던 인디고 / 바이올렛
+            markerBgColor = 'bg-gradient-to-b from-indigo-500 to-purple-600 text-white border border-indigo-200/60 shadow-lg shadow-purple-950/50';
+            tailColor = 'border-t-purple-600';
           }
+
+          // 줌 레벨 스케일 연동 (2km/8km 이상 광역에서는 이름 숨겨 시인성 확보, 상세 확대 뷰에서는 전체 표시)
+          // 선택된 수영장은 줌 레벨과 상관없이 항상 표시
+          const shouldShowName = isSelected || currentZoomLevel <= 8;
 
           return (
             <CustomOverlayMap
@@ -139,7 +153,7 @@ export const KakaoMapWrapper: React.FC<KakaoMapWrapperProps> = ({
                 {/* 메인 마커 원형 */}
                 <div className="relative">
                   <div
-                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-black text-xs sm:text-[13px] tracking-tighter shadow-lg border-2 transition-all ${markerBgColor} ${
+                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-black text-xs sm:text-[13px] tracking-tighter transition-all ${markerBgColor} ${
                       isSelected ? 'ring-4 ring-cyan-400 scale-125 z-40' : 'hover:scale-110'
                     }`}
                   >
@@ -170,24 +184,26 @@ export const KakaoMapWrapper: React.FC<KakaoMapWrapperProps> = ({
                 {/* 마커 꼬리 팁 */}
                 <div className={`w-0 h-0 border-x-4 border-x-transparent border-t-5 -mt-0.5 ${tailColor}`} />
 
-                {/* 수영장 명칭 라벨 */}
-                {(isOperational || isSelected || isVisited || isFavorite || isTempClosed) && (
+                {/* 수영장 명칭 라벨 (1pt 상향 text-[11.5px], 불투명 다크 배경 bg-slate-950/98로 모던하게 개선) */}
+                {shouldShowName && (
                   <div
-                    className={`mt-1 px-2 py-0.5 rounded-lg text-[10px] font-bold shadow-md border whitespace-nowrap backdrop-blur-md transition-all flex items-center gap-1 ${
+                    className={`mt-1 px-2.5 py-0.5 rounded-lg text-[11.5px] font-extrabold tracking-tight shadow-xl whitespace-nowrap transition-all flex items-center gap-1.5 ${
                       isSelected
-                        ? 'bg-cyan-900/95 text-cyan-200 border-cyan-400 font-extrabold shadow-cyan-900/50'
+                        ? 'bg-cyan-500 text-slate-950 font-black border border-cyan-300 ring-2 ring-cyan-400/40 shadow-cyan-500/40'
                         : isTempClosed
-                        ? 'bg-rose-950/95 text-rose-200 border-rose-500/80 font-black'
+                        ? 'bg-slate-950/98 text-rose-300 border border-rose-500/90 font-black shadow-black/80'
                         : isVisited
-                        ? 'bg-amber-950/90 text-amber-200 border-amber-600/80'
-                        : 'bg-slate-900/90 text-slate-200 border-slate-700/80'
+                        ? 'bg-slate-950/98 text-amber-300 border border-amber-500/80 shadow-black/80'
+                        : isOperational
+                        ? 'bg-slate-950/98 text-white border border-slate-700/90 shadow-black/80'
+                        : 'bg-slate-950/95 text-slate-300 border border-slate-800/80 shadow-black/80'
                     }`}
                   >
-                    {isVisited && <span className="text-[9px]">🏊</span>}
-                    {isFavorite && !isVisited && <span className="text-[9px] text-cyan-400">★</span>}
-                    {isTempClosed && <span className="text-[9px] text-rose-400">⚠️</span>}
+                    {isVisited && <span className="text-[10px]">🏊</span>}
+                    {isFavorite && !isVisited && <span className="text-[10px] text-cyan-400">★</span>}
+                    {isTempClosed && <span className="text-[10px] text-rose-400">⚠️</span>}
                     {(pool.shortName || pool.name).replace(/\s*\((?:25m|50m)\)/gi, '').trim()}
-                    {isTempClosed && <span className="text-[9px] text-rose-400 font-black">(휴관)</span>}
+                    {isTempClosed && <span className="text-[10.5px] text-rose-400 font-black">(휴관)</span>}
                   </div>
                 )}
               </div>
