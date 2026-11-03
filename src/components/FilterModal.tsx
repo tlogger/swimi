@@ -93,7 +93,7 @@ export const FilterModal: React.FC<FilterModalProps> = ({
               }`}
             >
               <Trophy className="w-4 h-4 text-amber-400" />
-              도장깨기 한 곳만
+              방문한 곳만
             </button>
 
             <button

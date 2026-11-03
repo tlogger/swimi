@@ -384,11 +384,11 @@ export const App: React.FC = () => {
             {currentUser ? (
               <span className="text-[10px] font-mono text-amber-300 flex items-center gap-0.5">
                 <Trophy className="w-2.5 h-2.5 fill-amber-300 text-amber-300" />
-                도장 {visitedCount}곳
+                방문 {visitedCount}곳
               </span>
             ) : (
               <span className="text-[10px] text-cyan-400/90 font-medium">
-                도장깨기 시작
+                방문 기록 시작
               </span>
             )}
           </div>

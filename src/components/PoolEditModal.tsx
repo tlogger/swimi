@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Save, AlertCircle, Check, Trash2, CalendarOff, AlertTriangle } from 'lucide-react';
+import { X, Save, Check, Trash2, CalendarOff, AlertTriangle } from 'lucide-react';
 import { SwimmingPool, LaneLength, BreakRule, TemporaryClosure } from '../types/pool';
 
 interface PoolEditModalProps {
@@ -175,7 +175,7 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
         <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-800 shrink-0">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse" />
-            <h2 className="text-base font-bold text-white">수영장 정보 수정 제보 (DB 반영)</h2>
+            <h2 className="text-base font-bold text-white">정보수정</h2>
           </div>
           <button
             onClick={onClose}
@@ -187,14 +187,6 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
 
         {/* 폼 스크롤 본문 */}
         <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-5 space-y-4 no-scrollbar">
-          <div className="p-3 bg-cyan-950/40 border border-cyan-800/40 rounded-2xl flex items-start gap-2 text-xs text-cyan-200">
-            <AlertCircle className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-            <span>
-              잘못되거나 변경된 운영시간, 요금, 편의시설 등을 수정하면 클라우드 DB에 즉시 반영되어
-              모든 사용자에게 공유됩니다.
-            </span>
-          </div>
-
           {/* 0. 임시 휴관 설정 (휴관 중 버튼 & 휴관 일시/사유 지정) */}
           <div
             className={`p-4 rounded-2xl border transition-all ${
@@ -599,15 +591,15 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
             </div>
           </div>
 
-          {/* 하단 저장 버튼 */}
-          <div className="pt-2 space-y-2">
+          {/* 하단 저장 & 삭제 버튼 (한 줄 표시) */}
+          <div className="pt-2 flex items-center gap-2">
             <button
               type="submit"
               disabled={isSubmitting || isDeleting}
-              className="w-full py-3.5 px-4 rounded-2xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20 active:scale-98 transition-all disabled:opacity-50"
+              className="flex-1 py-3 px-4 rounded-2xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20 active:scale-98 transition-all disabled:opacity-50"
             >
               <Save className="w-4 h-4" />
-              {isSubmitting ? '중앙 DB에 저장 중...' : '클라우드 DB에 수정 사항 저장하기'}
+              {isSubmitting ? '저장 중...' : '저장'}
             </button>
 
             {onDelete && (
@@ -615,10 +607,10 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
                 type="button"
                 onClick={handleDelete}
                 disabled={isSubmitting || isDeleting}
-                className="w-full py-2.5 px-4 rounded-2xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 font-bold text-xs flex items-center justify-center gap-1.5 transition-all active:scale-98 disabled:opacity-50"
+                className="py-3 px-4 rounded-2xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 font-bold text-xs flex items-center justify-center gap-1.5 transition-all active:scale-98 disabled:opacity-50 shrink-0 min-w-[70px]"
               >
                 <Trash2 className="w-3.5 h-3.5 text-rose-400" />
-                {isDeleting ? '수영장 삭제 처리 중...' : '이 수영장 DB에서 영구 삭제하기 (폐업/오류)'}
+                {isDeleting ? '삭제 중...' : '삭제'}
               </button>
             )}
           </div>

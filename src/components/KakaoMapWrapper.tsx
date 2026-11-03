@@ -135,9 +135,9 @@ export const KakaoMapWrapper: React.FC<KakaoMapWrapperProps> = ({
             tailColor = 'border-t-purple-600';
           }
 
-          // 줌 레벨 스케일 연동 (2km/8km 이상 광역에서는 이름 숨겨 시인성 확보, 상세 확대 뷰에서는 전체 표시)
+          // 줌 레벨 스케일 연동 (4km까지는 수영장 명칭 표시, level 9 = 4km)
           // 선택된 수영장은 줌 레벨과 상관없이 항상 표시
-          const shouldShowName = isSelected || currentZoomLevel <= 8;
+          const shouldShowName = isSelected || currentZoomLevel <= 9;
 
           return (
             <CustomOverlayMap
@@ -160,10 +160,10 @@ export const KakaoMapWrapper: React.FC<KakaoMapWrapperProps> = ({
                     {pool.laneLength}
                   </div>
 
-                  {/* 도장깨기 완료(체크인) 뱃지 (트로피) */}
+                  {/* 방문 완료 뱃지 (트로피) */}
                   {isVisited && (
                     <div
-                      title="도장깨기 완료!"
+                      title="방문 완료"
                       className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-amber-400 text-slate-950 flex items-center justify-center text-[9px] shadow-md border border-slate-950 z-10 animate-bounce"
                     >
                       🏆
@@ -184,26 +184,26 @@ export const KakaoMapWrapper: React.FC<KakaoMapWrapperProps> = ({
                 {/* 마커 꼬리 팁 */}
                 <div className={`w-0 h-0 border-x-4 border-x-transparent border-t-5 -mt-0.5 ${tailColor}`} />
 
-                {/* 수영장 명칭 라벨 (1pt 상향 text-[11.5px], 불투명 다크 배경 bg-slate-950/98로 모던하게 개선) */}
+                {/* 수영장 명칭 라벨 (그림자 없음, 1pt 상향 text-[13px], 배경 opacity 50% 투명) */}
                 {shouldShowName && (
                   <div
-                    className={`mt-1 px-2.5 py-0.5 rounded-lg text-[11.5px] font-extrabold tracking-tight shadow-xl whitespace-nowrap transition-all flex items-center gap-1.5 ${
+                    className={`mt-1 px-2.5 py-0.5 rounded-lg text-[13px] font-bold tracking-tight whitespace-nowrap transition-all flex items-center gap-1.5 backdrop-blur-[2px] ${
                       isSelected
-                        ? 'bg-cyan-500 text-slate-950 font-black border border-cyan-300 ring-2 ring-cyan-400/40 shadow-cyan-500/40'
+                        ? 'bg-cyan-500/80 text-slate-950 font-black border border-cyan-300 ring-2 ring-cyan-400/40'
                         : isTempClosed
-                        ? 'bg-slate-950/98 text-rose-300 border border-rose-500/90 font-black shadow-black/80'
+                        ? 'bg-slate-950/50 text-rose-300 border border-rose-500/60 font-black'
                         : isVisited
-                        ? 'bg-slate-950/98 text-amber-300 border border-amber-500/80 shadow-black/80'
+                        ? 'bg-slate-950/50 text-amber-300 border border-amber-500/60'
                         : isOperational
-                        ? 'bg-slate-950/98 text-white border border-slate-700/90 shadow-black/80'
-                        : 'bg-slate-950/95 text-slate-300 border border-slate-800/80 shadow-black/80'
+                        ? 'bg-slate-950/50 text-white border border-slate-700/50'
+                        : 'bg-slate-950/50 text-slate-300 border border-slate-800/50'
                     }`}
                   >
-                    {isVisited && <span className="text-[10px]">🏊</span>}
-                    {isFavorite && !isVisited && <span className="text-[10px] text-cyan-400">★</span>}
-                    {isTempClosed && <span className="text-[10px] text-rose-400">⚠️</span>}
+                    {isVisited && <span className="text-[11px]">🏊</span>}
+                    {isFavorite && !isVisited && <span className="text-[11px] text-cyan-400">★</span>}
+                    {isTempClosed && <span className="text-[11px] text-rose-400">⚠️</span>}
                     {(pool.shortName || pool.name).replace(/\s*\((?:25m|50m)\)/gi, '').trim()}
-                    {isTempClosed && <span className="text-[10.5px] text-rose-400 font-black">(휴관)</span>}
+                    {isTempClosed && <span className="text-[11.5px] text-rose-400 font-black">(휴관)</span>}
                   </div>
                 )}
               </div>

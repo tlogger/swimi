@@ -12,7 +12,6 @@ import {
   Trophy,
   Edit3,
   CheckCircle2,
-  Trash2,
   AlertTriangle,
 } from 'lucide-react';
 import { SwimmingPool, PoolCurrentStatus } from '../types/pool';
@@ -87,16 +86,6 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
     onOpenEdit?.(pool);
   };
 
-  const handleDeleteClick = () => {
-    if (!onDelete) return;
-    const confirmed = window.confirm(
-      `"${cleanName}" 수영장을 클라우드 DB에서 정말 삭제하시겠습니까?\n\n(잘못 등록되었거나 폐업한 수영장인 경우 삭제해 주세요. 삭제 즉시 지도와 검색 목록에서 제거됩니다.)`
-    );
-    if (confirmed) {
-      onDelete(pool.id);
-    }
-  };
-
   // 현재 시각 타임라인 위치 (%) 계산
   const now = new Date();
   const currentMinutesTotal = now.getHours() * 60 + now.getMinutes();
@@ -159,11 +148,11 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
                 {status.statusText}
               </span>
             )}
-            {/* 도장깨기 배지 */}
+            {/* 방문 완료 배지 */}
             {isVisited && (
               <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/40 flex items-center gap-1 shadow-sm">
                 <Trophy className="w-3 h-3 text-amber-400" />
-                도장깨기 완료!
+                방문
               </span>
             )}
           </div>
@@ -208,27 +197,16 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
               )}
             </div>
 
-            {/* 정보 수정 및 삭제 버튼 */}
+            {/* 수정 버튼 */}
             <div className="flex items-center gap-1.5 shrink-0">
               <button
                 onClick={handleEditClick}
                 title="잘못된 수영장 정보 수정하기"
-                className="py-1.5 px-2.5 rounded-xl bg-slate-800 hover:bg-slate-700/80 border border-slate-700 text-slate-300 hover:text-cyan-300 text-[11px] font-semibold flex items-center gap-1 transition-all"
+                className="py-1.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700/80 border border-slate-700 text-slate-300 hover:text-cyan-300 text-[11px] font-semibold flex items-center gap-1 transition-all"
               >
                 <Edit3 className="w-3.5 h-3.5 text-cyan-400" />
-                정보 수정
+                수정
               </button>
-
-              {onDelete && (
-                <button
-                  onClick={handleDeleteClick}
-                  title="잘못 등록되었거나 폐업한 수영장 삭제"
-                  className="py-1.5 px-2 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-rose-400 hover:text-rose-300 text-[11px] font-semibold flex items-center gap-1 transition-all"
-                >
-                  <Trash2 className="w-3.5 h-3.5" />
-                  삭제
-                </button>
-              )}
             </div>
           </div>
 
@@ -257,9 +235,9 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
             </div>
           )}
 
-          {/* 2. 핵심 액션 1: [도장깨기(체크인)] & [즐겨찾기] 탭/버튼 */}
+          {/* 2. 핵심 액션 1: [방문] & [즐겨찾기] 탭/버튼 */}
           <div className="grid grid-cols-2 gap-2 pt-1">
-            {/* 도장깨기 (방문한 적이 있음) */}
+            {/* 방문 여부 */}
             <button
               onClick={handleCheckInClick}
               className={`py-3 px-3.5 rounded-2xl border font-bold text-xs flex items-center justify-center gap-2 transition-all active:scale-98 shadow-md ${
@@ -270,7 +248,7 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
             >
               <Trophy className={`w-4 h-4 ${isVisited ? 'text-amber-400 fill-amber-400' : 'text-slate-400'}`} />
               <div className="flex flex-col items-start text-left">
-                <span>{isVisited ? '도장깨기 완료 (방문함)' : '도장깨기 체크인'}</span>
+                <span>{isVisited ? '방문' : '미방문'}</span>
                 {isVisited && interaction?.visitedAt && (
                   <span className="text-[10px] text-amber-400/80 font-normal">
                     {interaction.visitedAt.slice(0, 10)} 방문
@@ -279,7 +257,7 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
               </div>
             </button>
 
-            {/* 즐겨찾기 (내가 가고 싶은 곳) */}
+            {/* 즐겨찾기 */}
             <button
               onClick={handleFavoriteClick}
               className={`py-3 px-3.5 rounded-2xl border font-bold text-xs flex items-center justify-center gap-2 transition-all active:scale-98 shadow-md ${
@@ -290,10 +268,7 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
             >
               <Star className={`w-4 h-4 ${isFavorite ? 'text-cyan-400 fill-cyan-400' : 'text-slate-400'}`} />
               <div className="flex flex-col items-start text-left">
-                <span>{isFavorite ? '즐겨찾기 보관됨' : '가고 싶은 곳 추가'}</span>
-                <span className="text-[10px] text-slate-400 font-normal">
-                  {isFavorite ? '내 리스트에 저장됨' : '즐겨찾기'}
-                </span>
+                <span>{isFavorite ? '즐겨찾기 취소' : '즐겨찾기 추가'}</span>
               </div>
             </button>
           </div>

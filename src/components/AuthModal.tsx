@@ -111,12 +111,12 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 </div>
               </div>
 
-              {/* 도장깨기 & 즐겨찾기 달성 현황 카드 */}
+              {/* 방문 & 즐겨찾기 달성 현황 카드 */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="p-4 rounded-2xl bg-gradient-to-br from-amber-500/10 to-amber-600/5 border border-amber-500/30 flex flex-col justify-between">
                   <div className="flex items-center gap-2 text-amber-400">
                     <Trophy className="w-5 h-5" />
-                    <span className="text-xs font-bold">도장깨기 (방문)</span>
+                    <span className="text-xs font-bold">방문한 수영장</span>
                   </div>
                   <div className="mt-2">
                     <span className="text-2xl font-black text-white">{visitedCount}</span>
@@ -146,7 +146,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               <div className="flex items-start gap-2 p-3 bg-slate-800/40 border border-slate-700/50 rounded-xl text-xs text-slate-300">
                 <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                 <span>
-                  방문한 수영장 도장깨기 기록과 즐겨찾기는 클라우드 DB에 안전하게 자동 저장됩니다.
+                  방문한 수영장 기록과 즐겨찾기는 클라우드 DB에 안전하게 자동 저장됩니다.
                 </span>
               </div>
 
@@ -166,9 +166,9 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 <div className="w-12 h-12 mx-auto rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-3 shadow-lg shadow-cyan-500/10">
                   <Trophy className="w-6 h-6" />
                 </div>
-                <h3 className="text-lg font-bold text-white">수영장 도장깨기 & 즐겨찾기</h3>
+                <h3 className="text-lg font-bold text-white">수영장 방문 기록 & 즐겨찾기</h3>
                 <p className="text-xs text-slate-400 leading-relaxed">
-                  로그인하면 내가 방문한 전국 수영장에 <strong>'도장'</strong>을 찍고,
+                  로그인하면 내가 방문한 전국 수영장을 <strong>'방문'</strong>으로 기록하고,
                   가고 싶은 수영장을 <strong>'즐겨찾기'</strong>로 보관할 수 있습니다.
                 </p>
               </div>

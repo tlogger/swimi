@@ -110,7 +110,7 @@ export const PoolListModal: React.FC<PoolListModalProps> = ({
               }`}
             >
               <Trophy className="w-3.5 h-3.5 text-amber-300" />
-              도장깨기 ({visitedCount})
+              방문 ({visitedCount})
             </button>
             <button
               onClick={() => setActiveTab('favorite')}
@@ -220,9 +220,9 @@ export const PoolListModal: React.FC<PoolListModalProps> = ({
                       {pool.laneLength}m{pool.laneCount ? ` · ${pool.laneCount}L` : ''}
                     </span>
 
-                    {/* 도장깨기 & 즐겨찾기 아이콘 */}
+                    {/* 방문 & 즐겨찾기 아이콘 */}
                     {isVisited && (
-                      <span title="도장깨기 완료!" className="text-xs shrink-0">
+                      <span title="방문 완료" className="text-xs shrink-0">
                         🏆
                       </span>
                     )}
