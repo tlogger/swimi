@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, Save, Check, Trash2, CalendarOff, AlertTriangle } from 'lucide-react';
-import { SwimmingPool, LaneLength, BreakRule, TemporaryClosure } from '../types/pool';
+import { SwimmingPool, LaneLength, BreakRule, TemporaryClosure, DaySchedule } from '../types/pool';
+import { rebuildDaySchedule, parseClosedDaysDescription } from '../utils/scheduleCalculator';
 
 interface PoolEditModalProps {
   isOpen: boolean;
@@ -47,7 +48,7 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
   const [depth, setDepth] = useState<string>(pool.depth || '');
   const [breakRule, setBreakRule] = useState<BreakRule | ''>(pool.breakRule || '');
 
-  // 편의시설 7종
+  // 편의시설 10종
   const [amenities, setAmenities] = useState({
     dehydrator: Boolean(pool.amenities?.dehydrator),
     dryer: Boolean(pool.amenities?.dryer),
@@ -55,14 +56,20 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
     walkingLane: Boolean(pool.amenities?.walkingLane),
     kickboard: Boolean(pool.amenities?.kickboard),
     flippers: Boolean(pool.amenities?.flippers),
-    parking: Boolean(pool.amenities?.parking),
+    parking: Boolean(pool.amenities?.parking || pool.parkingInfo),
+    swimShop: Boolean(pool.amenities?.swimShop),
+    cafe: Boolean(pool.amenities?.cafe),
+    warmRoom: Boolean(pool.amenities?.warmRoom || pool.features?.hasWarmRoom),
   });
 
-  // 운영시간 텍스트
+  // 운영시간 텍스트 및 브레이크 타임
   const [weekdaySchedule, setWeekdaySchedule] = useState<string>(pool.scheduleText?.weekday || '');
   const [saturdaySchedule, setSaturdaySchedule] = useState<string>(pool.scheduleText?.saturday || '');
   const [sundaySchedule, setSundaySchedule] = useState<string>(pool.scheduleText?.sunday || '');
   const [holidaySchedule, setHolidaySchedule] = useState<string>(pool.scheduleText?.holiday || '');
+  const [breakTime, setBreakTime] = useState<string>(
+    pool.breakTime || pool.scheduleText?.breakTime || ''
+  );
   const [closedDays, setClosedDays] = useState<string>(
     pool.scheduleText?.closedDays || pool.closedDaysDescription || ''
   );
@@ -123,6 +130,25 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
             isClosed: false,
           };
 
+      // 1. 휴관 규칙 자동 파싱
+      const parsedClosedRules = parseClosedDaysDescription(closedDays.trim());
+
+      // 2. 운영시간 텍스트 기반 24시간 슬롯 및 세션 재구축
+      const weekdayScheduleObj = rebuildDaySchedule(weekdaySchedule.trim());
+      const satScheduleObj = rebuildDaySchedule(saturdaySchedule.trim());
+      const sunScheduleObj = rebuildDaySchedule(sundaySchedule.trim());
+      const holidayScheduleObj = rebuildDaySchedule(holidaySchedule.trim());
+
+      const updatedWeeklySchedule: Record<number, DaySchedule> = {
+        0: sunScheduleObj,
+        1: weekdayScheduleObj,
+        2: weekdayScheduleObj,
+        3: weekdayScheduleObj,
+        4: weekdayScheduleObj,
+        5: weekdayScheduleObj,
+        6: satScheduleObj,
+      };
+
       const updatedPool: SwimmingPool = {
         ...pool,
         name: name.trim(),
@@ -135,12 +161,16 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
         laneCount: laneCount.trim() ? parseInt(laneCount.trim(), 10) : undefined,
         depth: depth.trim() || undefined,
         breakRule: breakRule ? (breakRule as BreakRule) : undefined,
+        breakTime: breakTime.trim() || undefined,
         amenities: {
           ...amenities,
         },
         parkingInfo: parkingInfo.trim() || undefined,
         etcInfo: etcInfo.trim() || undefined,
         closedDaysDescription: closedDays.trim() || undefined,
+        closedRules: parsedClosedRules,
+        weeklySchedule: updatedWeeklySchedule,
+        holidaySchedule: holidayScheduleObj,
         temporaryClosure,
         scheduleText: {
           weekday: weekdaySchedule.trim() || undefined,
@@ -148,6 +178,7 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
           sunday: sundaySchedule.trim() || undefined,
           holiday: holidaySchedule.trim() || undefined,
           closedDays: closedDays.trim() || undefined,
+          breakTime: breakTime.trim() || undefined,
         },
         fee: {
           ...pool.fee,
@@ -442,10 +473,10 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
             </div>
           </div>
 
-          {/* 3. 부대시설 7종 */}
+          {/* 3. 부대시설 10종 */}
           <div className="space-y-2 bg-slate-800/40 p-4 rounded-2xl border border-slate-700/50">
-            <h3 className="text-xs font-bold text-slate-300">부대시설 및 편의시설 (7종)</h3>
-            <div className="grid grid-cols-3 gap-2 pt-1">
+            <h3 className="text-xs font-bold text-slate-300">부대시설 및 편의시설 (10종)</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 pt-1">
               {[
                 { key: 'dehydrator', label: '탈수기' },
                 { key: 'dryer', label: '헤어드라이어' },
@@ -454,6 +485,9 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
                 { key: 'kickboard', label: '킥판' },
                 { key: 'flippers', label: '오리발' },
                 { key: 'parking', label: '주차장' },
+                { key: 'swimShop', label: '용품점' },
+                { key: 'cafe', label: '카페' },
+                { key: 'warmRoom', label: '체온조절실' },
               ].map(({ key, label }) => {
                 const checked = amenities[key as keyof typeof amenities];
                 return (
@@ -475,9 +509,9 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
             </div>
           </div>
 
-          {/* 4. 운영시간 & 휴관일 안내 */}
+          {/* 4. 운영시간 & 브레이크 타임 & 휴관일 안내 */}
           <div className="space-y-3 bg-slate-800/40 p-4 rounded-2xl border border-slate-700/50">
-            <h3 className="text-xs font-bold text-slate-300">운영시간 텍스트 및 휴관일</h3>
+            <h3 className="text-xs font-bold text-slate-300">운영시간 텍스트, 브레이크 타임 및 휴관일</h3>
 
             <div className="grid grid-cols-2 gap-2 text-xs">
               <div>
@@ -533,15 +567,32 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
               </div>
             </div>
 
+            {/* 브레이크 타임 (정비 시간) */}
             <div>
-              <label className="block text-[11px] font-semibold text-slate-400 mb-1">
-                정기 휴관일 안내
+              <label className="block text-[11px] font-semibold text-amber-300 mb-1 flex items-center justify-between">
+                <span>브레이크 타임 (정비 시간)</span>
+                <span className="text-[10px] text-slate-400 font-normal">쉼표(,)로 복수 입력 가능</span>
+              </label>
+              <input
+                type="text"
+                value={breakTime}
+                onChange={(e) => setBreakTime(e.target.value)}
+                placeholder="예: 12:00~13:00, 17:00~18:00"
+                className="w-full bg-slate-950 border border-amber-500/50 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 font-mono"
+              />
+            </div>
+
+            {/* 정기 휴관일 안내 */}
+            <div>
+              <label className="block text-[11px] font-semibold text-slate-400 mb-1 flex items-center justify-between">
+                <span>정기 휴관일 안내</span>
+                <span className="text-[10px] text-cyan-400 font-normal">자동 파싱 반영됨 (예: 1,3주차 일요일 휴관)</span>
               </label>
               <input
                 type="text"
                 value={closedDays}
                 onChange={(e) => setClosedDays(e.target.value)}
-                placeholder="예: 매주 월요일, 설/추석 연휴"
+                placeholder="예: 1,3주차 일요일 휴관, 매주 월요일 등"
                 className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400"
               />
             </div>

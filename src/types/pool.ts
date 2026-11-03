@@ -46,6 +46,7 @@ export interface ScheduleTextInfo {
   sunday?: string;
   holiday?: string;
   closedDays?: string;
+  breakTime?: string; // 예: "12:00~13:00, 17:00~18:00"
 }
 
 export interface PoolAmenities {
@@ -56,6 +57,9 @@ export interface PoolAmenities {
   kickboard: boolean;  // 킥판
   flippers: boolean;   // 오리발
   parking: boolean;    // 주차장
+  swimShop?: boolean;  // 용품점
+  cafe?: boolean;      // 카페
+  warmRoom?: boolean;  // 체온조절실
 }
 
 export interface FacilityFeatures {
@@ -91,6 +95,7 @@ export interface SwimmingPool {
 
   // 운영 방식 (실제 자료에 있을 때만 존재)
   breakRule?: BreakRule;
+  breakTime?: string; // 브레이크 타임 (예: "12:00~13:00, 17:00~18:00")
 
   // 24시간 매트릭스
   weeklySchedule: Record<number, DaySchedule>;
@@ -107,8 +112,9 @@ export interface SwimmingPool {
   // 요금
   fee: PoolFee;
 
-  // 편의시설 (탈수기, 드라이어, 비누, 걷기레인, 킥판, 오리발, 주차장)
+  // 편의시설 (탈수기, 드라이어, 비누, 걷기레인, 킥판, 오리발, 주차장, 용품점, 카페, 체온조절실)
   amenities: PoolAmenities;
+  features?: FacilityFeatures;
 
   // 주차 상세 정보
   parkingInfo?: string;

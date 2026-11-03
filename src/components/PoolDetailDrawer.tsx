@@ -14,10 +14,19 @@ import {
   CheckCircle2,
   AlertTriangle,
   ExternalLink,
+  PauseCircle,
+  ShoppingBag,
+  Coffee,
+  Flame,
 } from 'lucide-react';
 import { SwimmingPool, PoolCurrentStatus } from '../types/pool';
 import { UserInteractionState } from '../types/auth';
-import { getKakaoNaviLinks } from '../utils/scheduleCalculator';
+import {
+  getKakaoNaviLinks,
+  isPoolClosedOnDate,
+  parseBreakTimeRanges,
+  isHourInBreakTime,
+} from '../utils/scheduleCalculator';
 
 interface PoolDetailDrawerProps {
   pool: SwimmingPool | null;
@@ -54,6 +63,18 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
   const daySchedule = pool.weeklySchedule[dayOfWeek];
   const daysKor = ['일', '월', '화', '수', '목', '금', '토'];
   const dayName = daysKor[dayOfWeek];
+
+  // 오늘 휴관일 여부 판정 (규칙 및 텍스트 파싱)
+  const isClosedToday = useMemo(
+    () => isPoolClosedOnDate(pool, targetDate),
+    [pool, targetDate]
+  );
+
+  // 브레이크 타임 구간 파싱
+  const breakRanges = useMemo(
+    () => parseBreakTimeRanges(pool.breakTime || pool.scheduleText?.breakTime),
+    [pool.breakTime, pool.scheduleText?.breakTime]
+  );
 
   const { webNaviUrl } = getKakaoNaviLinks(pool.name, pool.lat, pool.lng);
 
@@ -95,7 +116,7 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
     Math.max(0, (currentMinutesTotal / (24 * 60)) * 100)
   );
 
-  // 부대시설 항목 목록
+  // 부대시설 및 편의시설 항목 목록 (10종)
   const amenityList = useMemo(() => {
     const am = pool.amenities || {
       dehydrator: false,
@@ -105,6 +126,9 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
       kickboard: false,
       flippers: false,
       parking: false,
+      swimShop: false,
+      cafe: false,
+      warmRoom: false,
     };
     return [
       { name: '탈수기', available: Boolean(am.dehydrator) },
@@ -114,6 +138,9 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
       { name: '킥판', available: Boolean(am.kickboard) },
       { name: '오리발', available: Boolean(am.flippers) },
       { name: '주차장', available: Boolean(am.parking || pool.parkingInfo) },
+      { name: '용품점', available: Boolean(am.swimShop) },
+      { name: '카페', available: Boolean(am.cafe) },
+      { name: '체온조절실', available: Boolean(am.warmRoom || pool.features?.hasWarmRoom) },
     ];
   }, [pool]);
 
@@ -319,6 +346,11 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
               <span className="text-xs font-bold text-white flex items-center gap-1.5">
                 <Clock className="w-4 h-4 text-cyan-400" />
                 {targetDate.getMonth() + 1}월 {targetDate.getDate()}일 ({dayName}) 수영 가능 시간
+                {isClosedToday && (
+                  <span className="text-[10px] font-black px-1.5 py-0.2 rounded bg-rose-500/80 text-white border border-rose-400">
+                    휴관일
+                  </span>
+                )}
               </span>
               <span className="text-[11px] text-slate-400 font-mono">
                 현재 {String(now.getHours()).padStart(2, '0')}:{String(now.getMinutes()).padStart(2, '0')}
@@ -326,7 +358,7 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
             </div>
 
             {/* 24시간 타임라인 바 */}
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1.5">
               <div className="flex items-center justify-between text-[10px] text-slate-500 font-mono px-0.5">
                 <span>00시</span>
                 <span>06시</span>
@@ -340,16 +372,28 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
               <div className="relative h-5 bg-slate-950 rounded-md p-0.5 border border-slate-800 flex items-center">
                 <div className="grid grid-cols-24 gap-0.5 w-full h-full">
                   {Array.from({ length: 24 }).map((_, hour) => {
-                    const isAvailable = daySchedule?.hourlySlots?.[hour] ?? false;
+                    const isAvailable = !isClosedToday && (daySchedule?.hourlySlots?.[hour] ?? false);
+                    const isBreak = !isClosedToday && isHourInBreakTime(hour, breakRanges);
+
+                    let barColor = 'bg-slate-850 bg-slate-900/60';
+                    let tooltip = `${hour}시: 이용불가`;
+
+                    if (isClosedToday) {
+                      barColor = 'bg-slate-900/70 border border-slate-800/50';
+                      tooltip = `${hour}시: 정기 휴관`;
+                    } else if (isBreak && isAvailable) {
+                      barColor = 'bg-amber-500 shadow-xs shadow-amber-400/60';
+                      tooltip = `${hour}시: 브레이크 타임 (정비시간)`;
+                    } else if (isAvailable) {
+                      barColor = 'bg-cyan-500/80 shadow-xs shadow-cyan-400/50';
+                      tooltip = `${hour}시: 자유수영 가능`;
+                    }
+
                     return (
                       <div
                         key={hour}
-                        title={`${hour}시: ${isAvailable ? '자유수영 가능' : '이용불가'}`}
-                        className={`h-full rounded-xs transition-colors ${
-                          isAvailable
-                            ? 'bg-cyan-500/80 shadow-xs shadow-cyan-400/50'
-                            : 'bg-slate-850 bg-slate-900/60'
-                        }`}
+                        title={tooltip}
+                        className={`h-full rounded-xs transition-colors ${barColor}`}
                       />
                     );
                   })}
@@ -362,7 +406,35 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
                   <div className="w-2.5 h-2.5 -top-1 -left-[3px] absolute bg-amber-400 rounded-full border border-slate-950 shadow animate-ping opacity-75" />
                 </div>
               </div>
+
+              {/* 타임라인 범례 (Legend) */}
+              <div className="flex items-center justify-end gap-3 text-[10px] text-slate-400 pt-0.5">
+                <span className="flex items-center gap-1">
+                  <span className="w-2 h-2 rounded-xs bg-cyan-500/80" /> 가능
+                </span>
+                {breakRanges.length > 0 && (
+                  <span className="flex items-center gap-1 text-amber-300">
+                    <span className="w-2 h-2 rounded-xs bg-amber-500" /> 브레이크 타임
+                  </span>
+                )}
+                <span className="flex items-center gap-1">
+                  <span className="w-2 h-2 rounded-xs bg-slate-800" /> 휴관/불가
+                </span>
+              </div>
             </div>
+
+            {/* 브레이크 타임 명시 정보 */}
+            {(pool.breakTime || pool.scheduleText?.breakTime) && (
+              <div className="bg-amber-950/30 border border-amber-500/40 p-2.5 rounded-xl flex items-center justify-between text-xs">
+                <div className="flex items-center gap-1.5 text-amber-300 font-bold">
+                  <PauseCircle className="w-4 h-4 text-amber-400 shrink-0" />
+                  <span>브레이크 타임</span>
+                </div>
+                <span className="font-mono font-bold text-white bg-amber-500/20 px-2 py-0.5 rounded border border-amber-500/40">
+                  {pool.breakTime || pool.scheduleText?.breakTime}
+                </span>
+              </div>
+            )}
 
             {/* 평일, 토요일, 일요일, 공휴일 운영 시간 및 휴관 안내 */}
             <div className="pt-2 border-t border-slate-700/50 flex flex-col gap-1.5 text-xs">
@@ -393,12 +465,22 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
                 </div>
               </div>
 
-              {/* 휴관 안내 정보 */}
+              {/* 오늘 정기 휴관일 안내 */}
+              {isClosedToday && (
+                <div className="text-[11px] text-rose-300 bg-rose-950/40 p-2.5 rounded-xl border border-rose-500/50 flex items-start gap-1.5 mt-0.5 font-bold">
+                  <ShieldAlert className="w-3.5 h-3.5 text-rose-400 shrink-0 mt-0.5" />
+                  <span>
+                    선택하신 일자({targetDate.getMonth() + 1}월 {targetDate.getDate()}일 {dayName}요일)는 정기 휴관일입니다.
+                  </span>
+                </div>
+              )}
+
+              {/* 정기 휴관 안내 정보 */}
               {(pool.scheduleText?.closedDays || pool.closedDaysDescription) && (
                 <div className="text-[11px] text-slate-300 bg-slate-900/40 p-2.5 rounded-xl border border-slate-800/80 flex items-start gap-1.5 mt-0.5">
                   <ShieldAlert className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
                   <span>
-                    <strong>휴관 안내:</strong>{' '}
+                    <strong>정기 휴관 안내:</strong>{' '}
                     {pool.scheduleText?.closedDays || pool.closedDaysDescription}
                   </span>
                 </div>
