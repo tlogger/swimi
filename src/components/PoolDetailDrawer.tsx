@@ -13,6 +13,7 @@ import {
   Edit3,
   CheckCircle2,
   AlertTriangle,
+  ExternalLink,
 } from 'lucide-react';
 import { SwimmingPool, PoolCurrentStatus } from '../types/pool';
 import { UserInteractionState } from '../types/auth';
@@ -478,11 +479,24 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
             </div>
           )}
 
-          {/* 데이터 동기화 일자 표기 */}
-          <div className="pt-2 pb-1 text-center">
+          {/* 데이터 동기화 일자 & 출처 표기 */}
+          <div className="pt-2 pb-1 text-center flex flex-col items-center gap-0.5">
             <span className="text-[10px] font-mono text-slate-500">
               {pool.updatedAt ? `수정 일시: ${pool.updatedAt.slice(0, 10)} · ` : ''}Last Update: {lastUpdate}
             </span>
+            <div className="text-[10px] text-slate-500 flex items-center gap-1">
+              <span>Source:</span>
+              <a
+                href="https://jasumap.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-cyan-500 hover:text-cyan-400 hover:underline inline-flex items-center gap-0.5"
+                title="Jasumap (자수맵) 웹사이트로 이동"
+              >
+                Jasumap
+                <ExternalLink className="w-2.5 h-2.5 ml-0.5" />
+              </a>
+            </div>
           </div>
         </div>
       </div>

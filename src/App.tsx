@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { User, Trophy, MapPin } from 'lucide-react';
+import { User, Trophy, MapPin, ExternalLink } from 'lucide-react';
 import { SwimmingPool, PoolCurrentStatus } from './types/pool';
 import { UserAccount, UserInteractionsMap } from './types/auth';
 import {
@@ -490,13 +490,28 @@ export const App: React.FC = () => {
         onDelete={handleDeletePool}
       />
 
-      {/* 9. 화면 하단 오른쪽 데이터 동기화 일자 항상 표시 */}
-      <div className="fixed bottom-2.5 right-3 z-30 pointer-events-none select-none">
-        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-900/85 backdrop-blur-md border border-slate-700/60 shadow-lg text-slate-300">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-[11px] font-mono tracking-tight text-slate-300">
-            Last Update: {lastUpdateDate}
-          </span>
+      {/* 9. 화면 하단 오른쪽 데이터 동기화 일자 & 출처 항상 표시 */}
+      <div className="fixed bottom-3 right-3 z-30 select-none pointer-events-auto">
+        <div className="flex flex-col items-end gap-1 px-2.5 py-1.5 rounded-lg bg-slate-900/90 backdrop-blur-md border border-slate-700/80 shadow-2xl text-slate-300">
+          <div className="flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="text-[11px] font-mono tracking-tight text-slate-300">
+              Last Update: {lastUpdateDate}
+            </span>
+          </div>
+          <div className="text-[10px] text-slate-400 flex items-center gap-1 font-sans">
+            <span>Source:</span>
+            <a
+              href="https://jasumap.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan-400 hover:text-cyan-300 hover:underline font-semibold inline-flex items-center gap-0.5 transition-colors cursor-pointer"
+              title="Jasumap(자수맵) 웹사이트로 이동 (새 창)"
+            >
+              Jasumap
+              <ExternalLink className="w-2.5 h-2.5 ml-0.5" />
+            </a>
+          </div>
         </div>
       </div>
     </div>
