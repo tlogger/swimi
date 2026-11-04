@@ -7,5 +7,10 @@ jasumap_raw.html
 scripts/test_oauth_network.js
 scripts/test_oauth_urls.ts
 scripts/verify_live_site.js
+.vercel
+scripts/files_manifest.json
+scripts/deploy_payload.json
+scripts/pkg_lock_b64.txt
+scripts/icon512_b64.txt
 
 

@@ -15,12 +15,12 @@ export interface OAuthClientConfig {
 
 export function getOAuthClientConfig(): OAuthClientConfig {
   const envKakao = import.meta.env?.VITE_KAKAO_CLIENT_ID || '4258bd6bc40137cf842712c8b1eff4a3';
-  const envKakaoCallback = import.meta.env?.VITE_KAKAO_CALLBACK_URL || 'https://tlogger.github.io/swimi/kakaologin';
+  const envKakaoCallback = import.meta.env?.VITE_KAKAO_CALLBACK_URL || 'https://swimi.vercel.app/kakaologin';
   const envNaver = import.meta.env?.VITE_NAVER_CLIENT_ID || 'mY4vWf76_UKYGQE8jDjZ';
-  const envNaverCallback = import.meta.env?.VITE_NAVER_CALLBACK_URL || 'https://tlogger.github.io/swimi/naverlogin';
+  const envNaverCallback = import.meta.env?.VITE_NAVER_CALLBACK_URL || 'https://swimi.vercel.app/naverlogin';
   const defaultGoogleId = ['91988805001-lbb6visd0jhmisb359509uta8mgje95q', 'apps', 'googleusercontent', 'com'].join('.');
   const envGoogle = import.meta.env?.VITE_GOOGLE_CLIENT_ID || defaultGoogleId;
-  const envGoogleCallback = import.meta.env?.VITE_GOOGLE_CALLBACK_URL || 'https://tlogger.github.io/swimi/googlelogin';
+  const envGoogleCallback = import.meta.env?.VITE_GOOGLE_CALLBACK_URL || 'https://swimi.vercel.app/googlelogin';
 
   return {
     kakaoClientId: envKakao,
@@ -35,7 +35,7 @@ export function getOAuthClientConfig(): OAuthClientConfig {
 /** 현재 브라우저의 리다이렉트 URI 산출 */
 export function getOAuthRedirectUri(provider: AuthProvider): string {
   const config = getOAuthClientConfig();
-  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://tlogger.github.io';
+  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://swimi.vercel.app';
 
   // 로컬 개발 환경(localhost)인 경우 현재 포트 기준
   if (origin.includes('localhost') || origin.includes('127.0.0.1')) {

@@ -71,7 +71,7 @@
           var clientId = "4258bd6bc40137cf842712c8b1eff4a3";
           var redirectUri = window.location.hostname === 'localhost'
             ? (window.location.origin + '/kakaologin')
-            : "https://tlogger.github.io/swimi/kakaologin";
+            : "https://swimi.vercel.app/kakaologin";
 
           var tokenRes = await fetch('https://kauth.kakao.com/oauth/token', {
             method: 'POST',
