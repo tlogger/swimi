@@ -21,8 +21,12 @@ export const HeaderSearch: React.FC<HeaderSearchProps> = ({
   return (
     <header className="absolute top-3 left-3 right-3 z-30 flex items-center gap-2 pointer-events-auto">
       {/* 검색 입력창 카드 (min-w-0으로 작은 화면에서도 넘침 방지) */}
-      <div className="flex-1 min-w-0 flex items-center bg-slate-900/90 backdrop-blur-md border border-slate-700/80 rounded-2xl shadow-xl px-3 py-2.5 transition-all focus-within:border-cyan-500 focus-within:ring-2 focus-within:ring-cyan-500/20">
-        <Search className="w-4 h-4 text-cyan-400 shrink-0 mr-2" />
+      <div className="flex-1 min-w-0 flex items-center bg-slate-900/90 backdrop-blur-md border border-slate-700/80 rounded-2xl shadow-xl px-2.5 sm:px-3 py-2 sm:py-2.5 transition-all focus-within:border-cyan-500 focus-within:ring-2 focus-within:ring-cyan-500/20">
+        <img
+          src="./favicon.svg"
+          alt="Swimi 로고"
+          className="w-5 h-5 rounded-md shrink-0 mr-2 shadow-xs ring-1 ring-cyan-400/30"
+        />
         <input
           type="text"
           value={searchQuery}
