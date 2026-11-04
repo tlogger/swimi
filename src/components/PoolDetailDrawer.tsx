@@ -48,7 +48,7 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
   status,
   targetDate,
   onClose,
-  lastUpdate = '2026-10-31',
+  lastUpdate = '2026-11-02',
   interaction,
   onToggleFavorite,
   onToggleCheckIn,

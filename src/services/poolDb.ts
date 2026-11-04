@@ -48,6 +48,9 @@ function mapRowToSwimmingPool(row: any): SwimmingPool {
   };
 }
 
+const isValidUuid = (id?: string): boolean =>
+  Boolean(id && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id));
+
 /** SwimmingPool 도메인 모델 -> Supabase upsert 레코드 매핑 */
 function mapPoolToDbRow(pool: SwimmingPool, userId?: string): Record<string, any> {
   return {
@@ -79,14 +82,14 @@ function mapPoolToDbRow(pool: SwimmingPool, userId?: string): Record<string, any
     amenities: pool.amenities || {},
     parking_info: pool.parkingInfo || null,
     etc_info: pool.etcInfo || null,
-    updated_by: userId || null,
+    updated_by: isValidUuid(userId) ? userId : null,
     is_deleted: pool.is_deleted ?? false,
     updated_at: new Date().toISOString(),
   };
 }
 
 /**
- * 1. 클라우드 DB(Supabase swami_pools)에서 전체 수영장 직접 로드
+ * 1. 클라우드 DB(Supabase swimi_pools)에서 전체 수영장 직접 로드
  * - 로컬 파일이나 로컬 캐시를 거치지 않고 오직 클라우드 중앙 DB에서 직접 조회
  */
 export async function loadAllPoolsFromDb(): Promise<SwimmingPool[]> {
@@ -99,12 +102,12 @@ export async function loadAllPoolsFromDb(): Promise<SwimmingPool[]> {
     .limit(2000);
 
   if (error) {
-    console.error('Supabase swami_pools 로드 실패:', error.message);
+    console.error('Supabase swimi_pools 로드 실패:', error.message);
     throw error;
   }
 
   if (!data || data.length === 0) {
-    console.warn('Supabase swami_pools에 수영장 데이터가 없습니다.');
+    console.warn('Supabase swimi_pools에 수영장 데이터가 없습니다.');
     return [];
   }
 
@@ -136,7 +139,7 @@ export async function savePoolToDb(
     .single();
 
   if (error) {
-    console.error('Supabase swami_pools 저장 실패:', error.message);
+    console.error('Supabase swimi_pools 저장 실패:', error.message);
     throw error;
   }
 
@@ -152,13 +155,13 @@ export async function deletePoolFromDb(poolId: string, userId?: string): Promise
     .from('swimi_pools')
     .update({
       is_deleted: true,
-      updated_by: userId || null,
+      updated_by: isValidUuid(userId) ? userId : null,
       updated_at: new Date().toISOString(),
     })
     .eq('id', poolId);
 
   if (error) {
-    console.error('Supabase swami_pools 삭제(is_deleted) 실패:', error.message);
+    console.error('Supabase swimi_pools 삭제(is_deleted) 실패:', error.message);
     throw error;
   }
 
@@ -176,7 +179,7 @@ export async function loadUserInteractions(userId: string): Promise<UserInteract
     .eq('user_id', userId);
 
   if (error) {
-    console.error('Supabase swami_user_interactions 로드 실패:', error.message);
+    console.error('Supabase swimi_user_interactions 로드 실패:', error.message);
     return {};
   }
 

@@ -46,10 +46,27 @@ export const KakaoMapWrapper: React.FC<KakaoMapWrapperProps> = ({
   }, [center]);
 
   if (error) {
+    const currentOrigin = typeof window !== 'undefined' ? window.location.origin : '';
     return (
-      <div className="w-full h-full flex flex-col items-center justify-center bg-slate-900 text-slate-300 p-6 text-center">
-        <p className="text-red-400 font-bold mb-2">카카오맵 로드 중 오류가 발생했습니다.</p>
-        <p className="text-xs text-slate-400">카카오 개발자 콘솔의 사이트 도메인 등록 상태를 확인해 주세요.</p>
+      <div className="w-full h-full flex flex-col items-center justify-center bg-slate-900 text-slate-300 p-6 text-center space-y-3">
+        <div className="w-12 h-12 rounded-2xl bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-rose-400 mb-1">
+          ⚠️
+        </div>
+        <p className="text-rose-400 font-bold text-base">카카오맵 로드 중 오류가 발생했습니다.</p>
+        <p className="text-xs text-slate-400 max-w-sm leading-relaxed">
+          카카오 개발자 콘솔의 <strong>[플랫폼 &gt; Web &gt; 사이트 도메인]</strong>에 아래 주소가 등록되어 있는지 확인해 주세요.
+        </p>
+        {currentOrigin && (
+          <code className="text-[11px] font-mono px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-cyan-300 select-all">
+            {currentOrigin}
+          </code>
+        )}
+        <button
+          onClick={() => window.location.reload()}
+          className="mt-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs border border-slate-700 active:scale-95 transition-all"
+        >
+          페이지 새로고침
+        </button>
       </div>
     );
   }
