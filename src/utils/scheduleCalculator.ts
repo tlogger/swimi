@@ -46,6 +46,35 @@ export function isHourInBreakTime(hour: number, breakRanges: BreakRange[]): bool
 }
 
 /**
+ * 수심 문자열(예: "1.4m ~ 1.8m", "2.0m", "1.2~2m", "1.35m ~ 1.85m")에서
+ * 최대 수심이 1.8m 이상(>= 1.8m)인지 판정
+ */
+export function isDepthOver18m(depthStr?: string): boolean {
+  if (!depthStr || !depthStr.trim()) return false;
+  const matches = depthStr.match(/(\d+(?:\.\d+)?)\s*m?/g);
+  if (!matches) return false;
+  for (const m of matches) {
+    const val = parseFloat(m);
+    // 비정상적인 값(오타 등 10m 초과 수치 제외) 및 1.8m 이상 판정
+    if (!isNaN(val) && val >= 1.8 && val <= 10) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * 수영장이 수심 1.8m 이상을 보유하고 있는지 종합 판정 (플래그 or 수심 텍스트 파싱)
+ */
+export function isPoolOver18m(pool: SwimmingPool): boolean {
+  if (pool.over18m || pool.amenities?.over18m) {
+    return true;
+  }
+  return isDepthOver18m(pool.depth);
+}
+
+
+/**
  * 휴관일 텍스트(예: "1,3주차 일요일 휴관", "매주 월요일", "둘째, 넷째 일요일", "공휴일 휴관")를 ClosedRule[]로 파싱
  */
 export function parseClosedDaysDescription(text?: string): ClosedRule[] {

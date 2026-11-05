@@ -1,9 +1,16 @@
 import { SwimmingPool } from '../types/pool';
 import { UserInteractionState, UserInteractionsMap } from '../types/auth';
 import { getSupabase } from './supabaseClient';
+import { isDepthOver18m } from '../utils/scheduleCalculator';
 
 /** Supabase row -> SwimmingPool 도메인 모델 매핑 */
 function mapRowToSwimmingPool(row: any): SwimmingPool {
+  const isOver18 = Boolean(
+    row.over18m ||
+    row.amenities?.over18m ||
+    (row.depth && isDepthOver18m(row.depth))
+  );
+
   return {
     id: row.id,
     name: row.name,
@@ -19,7 +26,7 @@ function mapRowToSwimmingPool(row: any): SwimmingPool {
     laneLength: row.lane_length as 25 | 50,
     laneCount: row.lane_count ? Number(row.lane_count) : undefined,
     depth: row.depth || undefined,
-    over18m: Boolean(row.over18m || row.amenities?.over18m),
+    over18m: isOver18,
     breakRule: row.break_rule || undefined,
     breakTime: row.break_time || row.schedule_text?.breakTime || undefined,
     weeklySchedule: row.weekly_schedule || {},
@@ -40,7 +47,7 @@ function mapRowToSwimmingPool(row: any): SwimmingPool {
       swimShop: Boolean(row.amenities?.swimShop),
       cafe: Boolean(row.amenities?.cafe),
       warmRoom: Boolean(row.amenities?.warmRoom),
-      over18m: Boolean(row.amenities?.over18m || row.over18m),
+      over18m: isOver18,
     },
     parkingInfo: row.parking_info || undefined,
     etcInfo: row.etc_info || undefined,
@@ -83,7 +90,11 @@ function mapPoolToDbRow(pool: SwimmingPool, userId?: string): Record<string, any
     fee: pool.fee || {},
     amenities: {
       ...(pool.amenities || {}),
-      over18m: Boolean(pool.over18m || pool.amenities?.over18m),
+      over18m: Boolean(
+        pool.over18m ||
+        pool.amenities?.over18m ||
+        (pool.depth && isDepthOver18m(pool.depth))
+      ),
     },
     parking_info: pool.parkingInfo || null,
     etc_info: pool.etcInfo || null,

@@ -26,6 +26,7 @@ import {
   isPoolClosedOnDate,
   parseBreakTimeRanges,
   isHourInBreakTime,
+  isPoolOver18m,
 } from '../utils/scheduleCalculator';
 
 interface PoolDetailDrawerProps {
@@ -131,8 +132,9 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
       warmRoom: false,
       over18m: false,
     };
+    const isOver18 = isPoolOver18m(pool);
     return [
-      { name: '수심 >1.8m', available: Boolean(pool.over18m || am.over18m) },
+      { name: '수심 >1.8m', available: isOver18 },
       { name: '탈수기', available: Boolean(am.dehydrator) },
       { name: '헤어드라이어', available: Boolean(am.dryer) },
       { name: '비누', available: Boolean(am.soap) },
@@ -163,7 +165,7 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
             >
               {pool.laneLength}m {pool.laneCount ? `· ${pool.laneCount}레인` : ''}
             </span>
-            {(pool.over18m || pool.amenities?.over18m) && (
+            {isPoolOver18m(pool) && (
               <span className="text-xs font-black px-2.5 py-0.5 rounded-full border bg-indigo-500/20 text-indigo-300 border-indigo-500/50">
                 수심 &gt;1.8m
               </span>

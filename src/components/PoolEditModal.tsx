@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { X, Save, Check, Trash2, CalendarOff, AlertTriangle } from 'lucide-react';
 import { SwimmingPool, LaneLength, BreakRule, TemporaryClosure, DaySchedule } from '../types/pool';
-import { rebuildDaySchedule, parseClosedDaysDescription } from '../utils/scheduleCalculator';
+import { rebuildDaySchedule, parseClosedDaysDescription, isDepthOver18m, isPoolOver18m } from '../utils/scheduleCalculator';
 
 interface PoolEditModalProps {
   isOpen: boolean;
@@ -60,7 +60,7 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
     swimShop: Boolean(pool.amenities?.swimShop),
     cafe: Boolean(pool.amenities?.cafe),
     warmRoom: Boolean(pool.amenities?.warmRoom || pool.features?.hasWarmRoom),
-    over18m: Boolean(pool.over18m || pool.amenities?.over18m),
+    over18m: isPoolOver18m(pool),
   });
 
   // 운영시간 텍스트 및 브레이크 타임
@@ -161,11 +161,12 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
         laneLength: laneLength,
         laneCount: laneCount.trim() ? parseInt(laneCount.trim(), 10) : undefined,
         depth: depth.trim() || undefined,
-        over18m: Boolean(amenities.over18m),
+        over18m: Boolean(amenities.over18m || (depth.trim() && isDepthOver18m(depth.trim()))),
         breakRule: breakRule ? (breakRule as BreakRule) : undefined,
         breakTime: breakTime.trim() || undefined,
         amenities: {
           ...amenities,
+          over18m: Boolean(amenities.over18m || (depth.trim() && isDepthOver18m(depth.trim()))),
         },
         parkingInfo: parkingInfo.trim() || undefined,
         etcInfo: etcInfo.trim() || undefined,

@@ -5,6 +5,7 @@ import { UserAccount, UserInteractionsMap } from './types/auth';
 import {
   calculatePoolStatus,
   calculateDistanceKm,
+  isPoolOver18m,
 } from './utils/scheduleCalculator';
 import {
   loadAllPoolsWithDbSync,
@@ -237,7 +238,7 @@ export const App: React.FC = () => {
       const inter = interactions[pool.id];
       if (onlyVisited && !inter?.isVisited) return false;
       if (onlyFavorite && !inter?.isFavorite) return false;
-      if (onlyOver18m && !pool.over18m && !pool.amenities?.over18m) return false;
+      if (onlyOver18m && !isPoolOver18m(pool)) return false;
 
       if (searchQuery.trim()) {
         const query = searchQuery.trim().toLowerCase();

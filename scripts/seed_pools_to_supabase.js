@@ -64,7 +64,10 @@ async function runSeed() {
       closed_rules: p.closedRules || [],
       schedule_text: p.scheduleText || {},
       fee: p.fee || {},
-      amenities: p.amenities || {},
+      amenities: {
+        ...(p.amenities || {}),
+        over18m: Boolean(p.over18m || p.amenities?.over18m),
+      },
       parking_info: p.parkingInfo || null,
       etc_info: p.etcInfo || null,
       is_deleted: false,
