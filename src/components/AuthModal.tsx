@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { X, LogOut, CheckCircle2, Star, Trophy, ShieldCheck, Sparkles } from 'lucide-react';
+import { X, LogOut, CheckCircle2, Star, Trophy } from 'lucide-react';
 import { UserAccount, AuthProvider, UserInteractionsMap } from '../types/auth';
-import { buildOAuthAuthorizeUrl, loginAsGuest, logout } from '../services/authService';
+import { buildOAuthAuthorizeUrl, logout } from '../services/authService';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -20,7 +20,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   interactions,
   totalPoolsCount,
 }) => {
-  const [guestName, setGuestName] = useState<string>('');
   const [loadingProvider, setLoadingProvider] = useState<string | null>(null);
 
   if (!isOpen) return null;
@@ -40,17 +39,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({
     }
     // 실제 OAuth 리다이렉트
     window.location.href = url;
-  };
-
-  const handleGuestLogin = async () => {
-    try {
-      setLoadingProvider('guest');
-      const user = await loginAsGuest(guestName);
-      onUserChange(user);
-      onClose();
-    } finally {
-      setLoadingProvider(null);
-    }
   };
 
   const handleLogout = () => {
@@ -142,14 +130,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 </div>
               </div>
 
-              {/* 안내 문구 */}
-              <div className="flex items-start gap-2 p-3 bg-slate-800/40 border border-slate-700/50 rounded-xl text-xs text-slate-300">
-                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                <span>
-                  방문한 수영장 기록과 즐겨찾기는 클라우드 DB에 안전하게 자동 저장됩니다.
-                </span>
-              </div>
-
               {/* 로그아웃 버튼 */}
               <button
                 onClick={handleLogout}
@@ -204,33 +184,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                   <span className="font-black text-sm">G</span>
                   Google 계정으로 계속
                 </button>
-              </div>
-
-              {/* 간편 게스트/체험 시작 (테스트 및 빠른 시작) */}
-              <div className="pt-3 border-t border-slate-800 space-y-2">
-                <span className="text-[11px] text-slate-400 block text-center font-medium">
-                  또는 닉네임으로 바로 시작
-                </span>
-                <div className="flex gap-2">
-                  <input
-                    type="text"
-                    value={guestName}
-                    onChange={(e) => setGuestName(e.target.value)}
-                    placeholder="사용할 닉네임 입력 (미입력 시 자동)"
-                    className="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400"
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') handleGuestLogin();
-                    }}
-                  />
-                  <button
-                    onClick={handleGuestLogin}
-                    disabled={loadingProvider !== null}
-                    className="px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs transition-all active:scale-95 disabled:opacity-50 shrink-0 flex items-center gap-1"
-                  >
-                    <Sparkles className="w-3.5 h-3.5" />
-                    시작
-                  </button>
-                </div>
               </div>
             </div>
           )}

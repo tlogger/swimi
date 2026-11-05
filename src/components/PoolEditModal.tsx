@@ -48,7 +48,7 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
   const [depth, setDepth] = useState<string>(pool.depth || '');
   const [breakRule, setBreakRule] = useState<BreakRule | ''>(pool.breakRule || '');
 
-  // 편의시설 10종
+  // 편의시설
   const [amenities, setAmenities] = useState({
     dehydrator: Boolean(pool.amenities?.dehydrator),
     dryer: Boolean(pool.amenities?.dryer),
@@ -60,6 +60,7 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
     swimShop: Boolean(pool.amenities?.swimShop),
     cafe: Boolean(pool.amenities?.cafe),
     warmRoom: Boolean(pool.amenities?.warmRoom || pool.features?.hasWarmRoom),
+    over18m: Boolean(pool.over18m || pool.amenities?.over18m),
   });
 
   // 운영시간 텍스트 및 브레이크 타임
@@ -160,6 +161,7 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
         laneLength: laneLength,
         laneCount: laneCount.trim() ? parseInt(laneCount.trim(), 10) : undefined,
         depth: depth.trim() || undefined,
+        over18m: Boolean(amenities.over18m),
         breakRule: breakRule ? (breakRule as BreakRule) : undefined,
         breakTime: breakTime.trim() || undefined,
         amenities: {
@@ -473,11 +475,12 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
             </div>
           </div>
 
-          {/* 3. 부대시설 10종 */}
+          {/* 3. 부대시설 */}
           <div className="space-y-2 bg-slate-800/40 p-4 rounded-2xl border border-slate-700/50">
-            <h3 className="text-xs font-bold text-slate-300">부대시설 및 편의시설 (10종)</h3>
+            <h3 className="text-xs font-bold text-slate-300">부대시설 및 편의시설</h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 pt-1">
               {[
+                { key: 'over18m', label: '수심 >1.8m' },
                 { key: 'dehydrator', label: '탈수기' },
                 { key: 'dryer', label: '헤어드라이어' },
                 { key: 'soap', label: '비누/샤워용품' },

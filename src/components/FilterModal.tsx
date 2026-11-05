@@ -20,6 +20,8 @@ interface FilterModalProps {
   onToggleOnlyVisited?: () => void;
   onlyFavorite?: boolean;
   onToggleOnlyFavorite?: () => void;
+  onlyOver18m?: boolean;
+  onToggleOnlyOver18m?: () => void;
 }
 
 export const FilterModal: React.FC<FilterModalProps> = ({
@@ -39,6 +41,8 @@ export const FilterModal: React.FC<FilterModalProps> = ({
   onToggleOnlyVisited,
   onlyFavorite = false,
   onToggleOnlyFavorite,
+  onlyOver18m = false,
+  onToggleOnlyOver18m,
 }) => {
   if (!isOpen) return null;
 
@@ -169,16 +173,17 @@ export const FilterModal: React.FC<FilterModalProps> = ({
           })}
         </div>
 
-        {/* 4. 레인 규격 (25m / 50m 다중 선택 토글) */}
+        {/* 4. 레인 규격 및 수심 (>1.8m) 다중 선택 토글 */}
         <div className="flex flex-col gap-2">
-          <div className="grid grid-cols-2 gap-2">
+          <span className="text-xs font-semibold text-slate-400">레인 규격 및 수심</span>
+          <div className="grid grid-cols-3 gap-2">
             {[25, 50].map((lane) => {
               const isSelected = selectedLanes.includes(lane as 25 | 50);
               return (
                 <button
                   key={lane}
                   onClick={() => onToggleLane(lane as 25 | 50)}
-                  className={`py-2.5 px-3 text-xs font-bold rounded-xl border transition-all flex items-center justify-center gap-1.5 ${
+                  className={`py-2.5 px-2 text-xs font-bold rounded-xl border transition-all flex items-center justify-center gap-1.5 ${
                     isSelected
                       ? 'bg-cyan-600 border-cyan-400 text-white shadow-md shadow-cyan-600/30'
                       : 'bg-slate-800/40 border-slate-700/60 text-slate-500 hover:text-slate-300'
@@ -189,6 +194,17 @@ export const FilterModal: React.FC<FilterModalProps> = ({
                 </button>
               );
             })}
+
+            <button
+              onClick={onToggleOnlyOver18m}
+              className={`py-2.5 px-2 text-xs font-bold rounded-xl border transition-all flex items-center justify-center gap-1 ${
+                onlyOver18m
+                  ? 'bg-indigo-600 border-indigo-400 text-white shadow-md shadow-indigo-600/30'
+                  : 'bg-slate-800/40 border-slate-700/60 text-slate-500 hover:text-slate-300'
+              }`}
+            >
+              <span>수심 &gt;1.8m</span>
+            </button>
           </div>
         </div>
 

@@ -60,6 +60,7 @@ export interface PoolAmenities {
   swimShop?: boolean;  // 용품점
   cafe?: boolean;      // 카페
   warmRoom?: boolean;  // 체온조절실
+  over18m?: boolean;   // 수심 >1.8m
 }
 
 export interface FacilityFeatures {
@@ -92,6 +93,7 @@ export interface SwimmingPool {
   laneLength: LaneLength;
   laneCount?: number;
   depth?: string; // 실제 자료에 있을 때만 존재
+  over18m?: boolean; // 수심 1.8m 이상 보유 여부
 
   // 운영 방식 (실제 자료에 있을 때만 존재)
   breakRule?: BreakRule;

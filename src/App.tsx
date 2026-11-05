@@ -32,7 +32,7 @@ const ALL_LANES: (25 | 50)[] = [25, 50];
 
 export const App: React.FC = () => {
   const [pools, setPools] = useState<SwimmingPool[]>([]);
-  const [lastUpdateDate, setLastUpdateDate] = useState<string>('2026-11-02');
+  const [lastUpdateDate, setLastUpdateDate] = useState<string>('2026-10-31');
   const [selectedPool, setSelectedPool] = useState<SwimmingPool | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [targetDate, setTargetDate] = useState<Date>(new Date());
@@ -43,6 +43,7 @@ export const App: React.FC = () => {
   const [onlyOpenNow, setOnlyOpenNow] = useState<boolean>(false);
   const [onlyVisited, setOnlyVisited] = useState<boolean>(false);
   const [onlyFavorite, setOnlyFavorite] = useState<boolean>(false);
+  const [onlyOver18m, setOnlyOver18m] = useState<boolean>(false);
 
   const [sortMode, setSortMode] = useState<SortMode>('distance');
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
@@ -83,12 +84,6 @@ export const App: React.FC = () => {
     try {
       const data = await loadAllPoolsWithDbSync();
       setPools(data);
-
-      const latestUpdate = data.reduce((latest, p) => {
-        if (!p.updatedAt) return latest;
-        return p.updatedAt > latest ? p.updatedAt : latest;
-      }, '2026-11-02');
-      setLastUpdateDate(latestUpdate.slice(0, 10));
     } catch (err) {
       console.error('클라우드 DB 수영장 데이터 로드 실패:', err);
     }
@@ -96,6 +91,15 @@ export const App: React.FC = () => {
 
   useEffect(() => {
     refreshPools();
+    // 일괄 업데이트 메타데이터 로드
+    fetch(`${import.meta.env.BASE_URL}data/metadata.json`)
+      .then((res) => res.json())
+      .then((meta) => {
+        if (meta.lastUpdate) {
+          setLastUpdateDate(meta.lastUpdate);
+        }
+      })
+      .catch(() => {});
   }, [refreshPools]);
 
   // 5. 현재 위치 조회
@@ -233,6 +237,7 @@ export const App: React.FC = () => {
       const inter = interactions[pool.id];
       if (onlyVisited && !inter?.isVisited) return false;
       if (onlyFavorite && !inter?.isFavorite) return false;
+      if (onlyOver18m && !pool.over18m && !pool.amenities?.over18m) return false;
 
       if (searchQuery.trim()) {
         const query = searchQuery.trim().toLowerCase();
@@ -301,6 +306,7 @@ export const App: React.FC = () => {
     onlyOpenNow,
     onlyVisited,
     onlyFavorite,
+    onlyOver18m,
     poolStatuses,
     interactions,
   ]);
@@ -324,6 +330,7 @@ export const App: React.FC = () => {
     setOnlyOpenNow(false);
     setOnlyVisited(false);
     setOnlyFavorite(false);
+    setOnlyOver18m(false);
     setSelectedPool(null);
   };
 
@@ -333,7 +340,8 @@ export const App: React.FC = () => {
     selectedLanes.length !== 2 ||
     onlyOpenNow ||
     onlyVisited ||
-    onlyFavorite;
+    onlyFavorite ||
+    onlyOver18m;
 
   const visitedCount = Object.values(interactions).filter((i) => i.isVisited).length;
 
@@ -450,6 +458,8 @@ export const App: React.FC = () => {
         onToggleOnlyVisited={() => setOnlyVisited(!onlyVisited)}
         onlyFavorite={onlyFavorite}
         onToggleOnlyFavorite={() => setOnlyFavorite(!onlyFavorite)}
+        onlyOver18m={onlyOver18m}
+        onToggleOnlyOver18m={() => setOnlyOver18m(!onlyOver18m)}
       />
 
       {/* 6. 전체 수영장 리스트 모달 (도장깨기 & 즐겨찾기 전용 탭 지원) */}
@@ -502,13 +512,13 @@ export const App: React.FC = () => {
           <div className="text-[10px] text-slate-400 flex items-center gap-1 font-sans">
             <span>Source:</span>
             <a
-              href="https://jasumap.com"
+              href="https://cafe.naver.com/everyswim"
               target="_blank"
               rel="noopener noreferrer"
               className="text-cyan-400 hover:text-cyan-300 hover:underline font-semibold inline-flex items-center gap-0.5 transition-colors cursor-pointer"
-              title="Jasumap(자수맵) 웹사이트로 이동 (새 창)"
+              title="전국 자유수영 네이버 카페로 이동 (새 창)"
             >
-              Jasumap
+              전국 자유수영
               <ExternalLink className="w-2.5 h-2.5 ml-0.5" />
             </a>
           </div>

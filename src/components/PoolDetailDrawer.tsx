@@ -129,8 +129,10 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
       swimShop: false,
       cafe: false,
       warmRoom: false,
+      over18m: false,
     };
     return [
+      { name: '수심 >1.8m', available: Boolean(pool.over18m || am.over18m) },
       { name: '탈수기', available: Boolean(am.dehydrator) },
       { name: '헤어드라이어', available: Boolean(am.dryer) },
       { name: '비누', available: Boolean(am.soap) },
@@ -161,6 +163,11 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
             >
               {pool.laneLength}m {pool.laneCount ? `· ${pool.laneCount}레인` : ''}
             </span>
+            {(pool.over18m || pool.amenities?.over18m) && (
+              <span className="text-xs font-black px-2.5 py-0.5 rounded-full border bg-indigo-500/20 text-indigo-300 border-indigo-500/50">
+                수심 &gt;1.8m
+              </span>
+            )}
             {status && (
               <span
                 className={`text-xs font-bold px-2.5 py-0.5 rounded-full border ${
@@ -569,13 +576,13 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
             <div className="text-[10px] text-slate-500 flex items-center gap-1">
               <span>Source:</span>
               <a
-                href="https://jasumap.com"
+                href="https://cafe.naver.com/everyswim"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-cyan-500 hover:text-cyan-400 hover:underline inline-flex items-center gap-0.5"
-                title="Jasumap (자수맵) 웹사이트로 이동"
+                title="전국 자유수영 네이버 카페로 이동 (새 창)"
               >
-                Jasumap
+                전국 자유수영
                 <ExternalLink className="w-2.5 h-2.5 ml-0.5" />
               </a>
             </div>
