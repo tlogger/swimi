@@ -41,6 +41,9 @@ npm run dev
 
 # 프로덕션 빌드
 npm run build
+
+# Vercel 프로덕션 배포
+npm run deploy
 ```
 
 ---
@@ -49,7 +52,7 @@ npm run build
 
 ```text
 swimi/
-├── .github/workflows/deploy.yml   # GitHub Pages 자동 배포 CI/CD
+├── .vercel/                       # Vercel 프로젝트 설정
 ├── crawler/                       # jasumap.com & 후기 수집 파이프라인
 │   └── crawl_jasumap.py
 ├── public/
