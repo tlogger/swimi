@@ -51,11 +51,12 @@ export function isHourInBreakTime(hour: number, breakRanges: BreakRange[]): bool
  */
 export function isDepthOver18m(depthStr?: string): boolean {
   if (!depthStr || !depthStr.trim()) return false;
-  const matches = depthStr.match(/(\d+(?:\.\d+)?)\s*m?/g);
+  // 소수점이 있거나(1.8 등), 단위(m, 미터)가 붙은 수치만 수심 측정값으로 매칭 (레인수 '8레인' 등 오매칭 방지)
+  const matches = depthStr.match(/\d+\.\d+|\d+(?=\s*(?:m|미터))/gi);
   if (!matches) return false;
   for (const m of matches) {
     const val = parseFloat(m);
-    // 비정상적인 값(오타 등 10m 초과 수치 제외) 및 1.8m 이상 판정
+    // 비정상적인 값(오타, 레인길이 등 10m 초과 수치 제외) 및 1.8m 이상 판정
     if (!isNaN(val) && val >= 1.8 && val <= 10) {
       return true;
     }

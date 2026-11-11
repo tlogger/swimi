@@ -86,9 +86,21 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
 
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [isDeleting, setIsDeleting] = useState<boolean>(false);
+  const [isOver18ManuallySet, setIsOver18ManuallySet] = useState<boolean>(false);
 
   const toggleAmenity = (key: keyof typeof amenities) => {
+    if (key === 'over18m') {
+      setIsOver18ManuallySet(true);
+    }
     setAmenities((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const handleDepthChange = (newDepth: string) => {
+    setDepth(newDepth);
+    // 사용자가 직접 수심 토글을 수동 조작하지 않은 경우에만 수심 텍스트에 따라 자동 연동
+    if (!isOver18ManuallySet) {
+      setAmenities((prev) => ({ ...prev, over18m: isDepthOver18m(newDepth) }));
+    }
   };
 
   const handleDelete = async () => {
@@ -150,6 +162,9 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
         6: satScheduleObj,
       };
 
+      const trimmedDepth = depth.trim();
+      const isOver18 = Boolean(amenities.over18m);
+
       const updatedPool: SwimmingPool = {
         ...pool,
         name: name.trim(),
@@ -160,13 +175,13 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
         homepage: homepage.trim() || undefined,
         laneLength: laneLength,
         laneCount: laneCount.trim() ? parseInt(laneCount.trim(), 10) : undefined,
-        depth: depth.trim() || undefined,
-        over18m: Boolean(amenities.over18m || (depth.trim() && isDepthOver18m(depth.trim()))),
+        depth: trimmedDepth || undefined,
+        over18m: isOver18,
         breakRule: breakRule ? (breakRule as BreakRule) : undefined,
         breakTime: breakTime.trim() || undefined,
         amenities: {
           ...amenities,
-          over18m: Boolean(amenities.over18m || (depth.trim() && isDepthOver18m(depth.trim()))),
+          over18m: isOver18,
         },
         parkingInfo: parkingInfo.trim() || undefined,
         etcInfo: etcInfo.trim() || undefined,
@@ -453,7 +468,7 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
                 <input
                   type="text"
                   value={depth}
-                  onChange={(e) => setDepth(e.target.value)}
+                  onChange={(e) => handleDepthChange(e.target.value)}
                   placeholder="예: 1.2m ~ 1.8m"
                   className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400"
                 />

@@ -42,6 +42,9 @@ npm run dev
 # 프로덕션 빌드
 npm run build
 
+# Vercel 프로젝트 연동 (최초 1회 설정 또는 신규 환경 시)
+npx vercel link
+
 # Vercel 프로덕션 배포
 npm run deploy
 ```
