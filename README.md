@@ -39,14 +39,11 @@ npm install
 # 로컬 개발 서버 실행 (포트 3000)
 npm run dev
 
-# 프로덕션 빌드
+# 프로덕션 빌드 및 로컬 검증
 npm run build
 
-# Vercel 프로젝트 연동 (최초 1회 설정 또는 신규 환경 시)
-npx vercel link
-
-# Vercel 프로덕션 배포
-npm run deploy
+# Vercel 프로덕션 자동 배포 (GitHub origin/main 연동)
+git push origin main
 ```
 
 ---
