@@ -42,8 +42,8 @@ npm run dev
 # 프로덕션 빌드 및 로컬 검증
 npm run build
 
-# Vercel 프로덕션 자동 배포 (GitHub origin/main 연동)
-git push origin main
+# GitHub 푸시 및 Vercel 프로덕션 배포 (push 완료 후 배포 순차 실행)
+npm run deploy
 ```
 
 ---

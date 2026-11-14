@@ -14,3 +14,4 @@ scripts/pkg_lock_b64.txt
 scripts/icon512_b64.txt
 
 
+.env*
