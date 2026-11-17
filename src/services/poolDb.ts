@@ -106,11 +106,126 @@ function mapPoolToDbRow(pool: SwimmingPool, userId?: string): Record<string, any
   };
 }
 
+const SWIMI_POOLS_CACHE_KEY = 'swimi_pools_cache_v1';
+const SWIMI_POOLS_CACHE_TS_KEY = 'swimi_pools_cache_ts_v1';
+const SWIMI_POOLS_CURSOR_KEY = 'swimi_pools_cursor_v1';
+const SWIMI_CACHE_TTL_MS = 30 * 60 * 1000; // 30분 로컬 캐시
+
+function readCachedPools(): { pools: SwimmingPool[]; cachedAt: number; cursor: string | null } | null {
+  if (typeof window === 'undefined' || !window.localStorage) return null;
+  try {
+    const raw = window.localStorage.getItem(SWIMI_POOLS_CACHE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as SwimmingPool[];
+    if (!Array.isArray(parsed) || parsed.length === 0) return null;
+    const cachedAt = Number(window.localStorage.getItem(SWIMI_POOLS_CACHE_TS_KEY) || '0');
+    const cursor = window.localStorage.getItem(SWIMI_POOLS_CURSOR_KEY);
+    return { pools: parsed, cachedAt, cursor };
+  } catch {
+    return null;
+  }
+}
+
+function writeCachedPools(pools: SwimmingPool[]): void {
+  if (typeof window === 'undefined' || !window.localStorage) return;
+  try {
+    let maxUpdatedAt = '';
+    for (const p of pools) {
+      if (p.updatedAt && p.updatedAt > maxUpdatedAt) {
+        maxUpdatedAt = p.updatedAt;
+      }
+    }
+    window.localStorage.setItem(SWIMI_POOLS_CACHE_KEY, JSON.stringify(pools));
+    window.localStorage.setItem(SWIMI_POOLS_CACHE_TS_KEY, String(Date.now()));
+    if (maxUpdatedAt) {
+      window.localStorage.setItem(SWIMI_POOLS_CURSOR_KEY, maxUpdatedAt);
+    }
+  } catch {
+    // localStorage 용량 초과 시 무시
+  }
+}
+
+function upsertCachedPool(pool: SwimmingPool): void {
+  const cached = readCachedPools();
+  if (!cached) return;
+  const idx = cached.pools.findIndex((p) => p.id === pool.id);
+  const next = idx >= 0
+    ? cached.pools.map((p, i) => (i === idx ? pool : p))
+    : [...cached.pools, pool].sort((a, b) => a.name.localeCompare(b.name, 'ko'));
+  writeCachedPools(next);
+}
+
+function removeCachedPool(poolId: string): void {
+  const cached = readCachedPools();
+  if (!cached) return;
+  writeCachedPools(cached.pools.filter((p) => p.id !== poolId));
+}
+
 /**
- * 1. 클라우드 DB(Supabase swimi_pools)에서 전체 수영장 직접 로드
- * - 로컬 파일이나 로컬 캐시를 거치지 않고 오직 클라우드 중앙 DB에서 직접 조회
+ * 1. 수영장 데이터 로드 (L1 localStorage 캐시 -> Vercel Edge CDN /api/pools -> Supabase 폴백)
+ * - 재방문(30분 이내) 시 네트워크 요청 0회
+ * - 30분 경과 시 updated_at 델타 동기화 또는 Vercel Edge CDN(s-maxage=3600) 경유로 Supabase Egress 최소화
  */
-export async function loadAllPoolsFromDb(): Promise<SwimmingPool[]> {
+export async function loadAllPoolsFromDb(forceRefresh = false): Promise<SwimmingPool[]> {
+  const cached = readCachedPools();
+  const now = Date.now();
+
+  if (!forceRefresh && cached && now - cached.cachedAt < SWIMI_CACHE_TTL_MS) {
+    return cached.pools;
+  }
+
+  // 델타 동기화 시도 (로컬 캐시 + 커서가 있는 경우)
+  if (!forceRefresh && cached && cached.cursor) {
+    try {
+      const deltaRes = await fetch(`/api/pools?since=${encodeURIComponent(cached.cursor)}`);
+      if (deltaRes.ok) {
+        const deltaRows = (await deltaRes.json()) as Record<string, any>[];
+        if (Array.isArray(deltaRows)) {
+          if (deltaRows.length === 0) {
+            window.localStorage.setItem(SWIMI_POOLS_CACHE_TS_KEY, String(now));
+            return cached.pools;
+          }
+          const byId = new Map<string, SwimmingPool>(cached.pools.map((p) => [p.id, p]));
+          let maxUpdated = cached.cursor;
+          for (const row of deltaRows) {
+            if (row.updated_at && row.updated_at > maxUpdated) {
+              maxUpdated = row.updated_at;
+            }
+            if (row.is_deleted) {
+              byId.delete(row.id);
+            } else {
+              byId.set(row.id, mapRowToSwimmingPool(row));
+            }
+          }
+          const merged = Array.from(byId.values()).sort((a, b) => a.name.localeCompare(b.name, 'ko'));
+          writeCachedPools(merged);
+          if (maxUpdated) {
+            window.localStorage.setItem(SWIMI_POOLS_CURSOR_KEY, maxUpdated);
+          }
+          return merged;
+        }
+      }
+    } catch {
+      // Edge 델타 실패 시 전체 캐시 API로 폴백
+    }
+  }
+
+  // Vercel Edge CDN 프록시(/api/pools) 우선 조회
+  try {
+    const apiUrl = forceRefresh ? '/api/pools?bust=1' : '/api/pools';
+    const res = await fetch(apiUrl);
+    if (res.ok) {
+      const rows = (await res.json()) as Record<string, any>[];
+      if (Array.isArray(rows) && rows.length > 0) {
+        const mapped = rows.map(mapRowToSwimmingPool);
+        writeCachedPools(mapped);
+        return mapped;
+      }
+    }
+  } catch {
+    // 로컬 vite dev 등 /api/pools 미지원 환경에서는 Supabase 직접 조회로 폴백
+  }
+
   const client = getSupabase();
   const { data, error } = await client
     .from('swimi_pools')
@@ -121,6 +236,7 @@ export async function loadAllPoolsFromDb(): Promise<SwimmingPool[]> {
 
   if (error) {
     console.error('Supabase swimi_pools 로드 실패:', error.message);
+    if (cached) return cached.pools;
     throw error;
   }
 
@@ -129,7 +245,9 @@ export async function loadAllPoolsFromDb(): Promise<SwimmingPool[]> {
     return [];
   }
 
-  return data.map(mapRowToSwimmingPool);
+  const mapped = data.map(mapRowToSwimmingPool);
+  writeCachedPools(mapped);
+  return mapped;
 }
 
 // 하위 호환 별칭
@@ -161,7 +279,9 @@ export async function savePoolToDb(
     throw error;
   }
 
-  return data ? mapRowToSwimmingPool(data) : updatedPool;
+  const saved = data ? mapRowToSwimmingPool(data) : updatedPool;
+  upsertCachedPool(saved);
+  return saved;
 }
 
 /**
@@ -183,6 +303,7 @@ export async function deletePoolFromDb(poolId: string, userId?: string): Promise
     throw error;
   }
 
+  removeCachedPool(poolId);
   return true;
 }
 
