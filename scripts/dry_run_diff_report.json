@@ -1,0 +1,5576 @@
+{
+  "checkedAt": "2026-11-17T10:44:26.582Z",
+  "liveDbPoolsCount": 895,
+  "crawledPoolsCount": 898,
+  "newPoolsInCrawler": [
+    {
+      "rawName": "남원국민체육센터",
+      "cleanName": "남원국민체육센터",
+      "address": "",
+      "fee": 0,
+      "laneLength": 25,
+      "url": "https://cafe.naver.com/everyswim/463"
+    },
+    {
+      "rawName": "강릉아이스아레나수영장",
+      "cleanName": "강릉아이스아레나수영장",
+      "address": "",
+      "fee": 0,
+      "laneLength": 50,
+      "url": "https://cafe.naver.com/everyswim/811"
+    },
+    {
+      "rawName": "홍천국민체육센터",
+      "cleanName": "홍천국민체육센터",
+      "address": "",
+      "fee": 0,
+      "laneLength": 25,
+      "url": "https://cafe.naver.com/everyswim/742"
+    },
+    {
+      "rawName": "마산실내체육관",
+      "cleanName": "마산실내체육관",
+      "address": "",
+      "fee": 0,
+      "laneLength": 25,
+      "url": "https://cafe.naver.com/everyswim/790"
+    }
+  ],
+  "missingPoolsInCrawler": [
+    {
+      "id": "pool-670",
+      "name": "고성국민체육센터",
+      "city": "고성군",
+      "address": "경상남도 고성군 고성읍 송학고분로 193"
+    },
+    {
+      "id": "pool-753",
+      "name": "남구국민체육센터",
+      "city": "남구",
+      "address": "부산광역시 남구 백운포로 110"
+    },
+    {
+      "id": "hwaseong-dongtan-central-25m",
+      "name": "동탄중앙어울림센터 수영장",
+      "city": "화성시",
+      "address": "경기도 화성시 동탄대로시범길 133"
+    },
+    {
+      "id": "pool-956",
+      "name": "올림픽기념국민생활관",
+      "city": "달서구",
+      "address": "대구 달서구 학산로 130"
+    },
+    {
+      "id": "pool-748",
+      "name": "올림픽기념국민생활관",
+      "city": "해운대구",
+      "address": "부산 해운대구 APEC로 68"
+    },
+    {
+      "id": "pool-283",
+      "name": "올림픽기념국민생활관",
+      "city": "남동구",
+      "address": "인천 남동구 구월로 251"
+    },
+    {
+      "id": "pool-326",
+      "name": "월드스포츠센터",
+      "city": "용인시",
+      "address": "경기 용인시 기흥구 구갈로 74"
+    },
+    {
+      "id": "jeonju-wansan-swimming-pool-50m",
+      "name": "전주 완산수영장",
+      "city": "전주시",
+      "address": "전북특별자치도 전주시 완산구 백제대로 310"
+    },
+    {
+      "id": "hwaseong-green-center-25m",
+      "name": "화성그린환경센터 수영장",
+      "city": "화성시",
+      "address": "경기도 화성시 봉담읍 하가등1길 100"
+    },
+    {
+      "id": "hwaseong-sports-complex-50m",
+      "name": "화성종합경기타운 실내수영장",
+      "city": "화성시",
+      "address": "경기도 화성시 향남읍 향남로 470"
+    }
+  ],
+  "feeDifferences": [],
+  "scheduleDifferences": [
+    {
+      "poolId": "pool-100",
+      "name": "고덕어울림수영장",
+      "field": "평일",
+      "currentDb": "12:00~12:50 (정원 80명)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-101",
+      "name": "장애인종합복지관 수중재활센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-102",
+      "name": "고덕사회체육센터",
+      "field": "평일",
+      "currentDb": "21:00~21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-103",
+      "name": "올림픽수영장",
+      "field": "평일",
+      "currentDb": "13:00~13:50 / 18:00~18:50 / 19:00~19:50 / 21:00~21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-104",
+      "name": "온조대왕문화체육관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-105",
+      "name": "잠실 제1수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-106",
+      "name": "송파구체육문화회관",
+      "field": "평일",
+      "currentDb": "13:00~13:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-107",
+      "name": "문정교육문화관",
+      "field": "평일",
+      "currentDb": "1부) 08:00~08:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-109",
+      "name": "성일스포렉스",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-110",
+      "name": "더논현스포츠센터",
+      "field": "평일",
+      "currentDb": "1) 08:00~08:50 (화목)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-111",
+      "name": "역삼청소년수련관",
+      "field": "평일",
+      "currentDb": "12:00~12:50 / 13:00~13:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-113",
+      "name": "포이스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-114",
+      "name": "동영휘트니스클럽",
+      "field": "평일",
+      "currentDb": "13:00~14:00 / 21:00~22:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-115",
+      "name": "우성스포츠센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 13:00~13:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-117",
+      "name": "강남스포츠문화센터",
+      "field": "평일",
+      "currentDb": "12:30~13:20 (60명)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-119",
+      "name": "태화기독교사회복지관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-120",
+      "name": "풍무국민체육센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 14:00~14:50 / 18:00~18:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-122",
+      "name": "서초구민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-123",
+      "name": "신사스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-124",
+      "name": "방배현대스포츠클럽",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-125",
+      "name": "일흥스포타운",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-126",
+      "name": "평화스포웰빙",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-127",
+      "name": "슈퍼빌 스포츠클럽",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-128",
+      "name": "삼성레포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-129",
+      "name": "코오롱스포렉스서초점",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-130",
+      "name": "양곡문화체육센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 12:00~12:50 / 18:00~18:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-131",
+      "name": "스포타임",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-132",
+      "name": "언남문화체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-133",
+      "name": "서초종합체육관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-134",
+      "name": "삼모스포렉스&스파",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-135",
+      "name": "서울YMCA관광호텔",
+      "field": "평일",
+      "currentDb": "12:10~13:40 (월 77,000 / 일 8,000)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-136",
+      "name": "관악구민종합체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-139",
+      "name": "신림체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-140",
+      "name": "사당문화회관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-141",
+      "name": "동작구민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-142",
+      "name": "동작삼일수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-143",
+      "name": "흑석체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-144",
+      "name": "서울여성플라자스포츠센터(Seoul Women's Plaza Sports Center)",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-145",
+      "name": "스포츠아일랜드",
+      "field": "평일",
+      "currentDb": "06:00~22:00 (12:20~13:00 휴장)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-146",
+      "name": "영등포제1스포츠센터(Yeongdeungpo  Sports Center1)",
+      "field": "평일",
+      "currentDb": "성인 4,000 / 청소년 3,000 / 어린이 2,500",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-147",
+      "name": "영등포제2스포츠센터(Yeongdeungpo Sports Center 2)",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-149",
+      "name": "50플러스수영장(50Plus Swimming Pool)",
+      "field": "평일",
+      "currentDb": "성인 4,000 / 청소년 3,000 / 어린이 2,000",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-150",
+      "name": "시립구로청소년수련관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-151",
+      "name": "궁동종합사회복지관",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 13:00~13:50 (주5회)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-154",
+      "name": "금천구민문화체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-155",
+      "name": "금천청소년수련관",
+      "field": "평일",
+      "currentDb": "성인 4,290 / 중고생 2,800 / 초등이하 2,200",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-156",
+      "name": "신길종합사회복지관",
+      "field": "평일",
+      "currentDb": "성인 5,300 / 아동 3,200",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-157",
+      "name": "엠스타휘트니스 1호점",
+      "field": "평일",
+      "currentDb": "06:10~22:20 (상시가능)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-158",
+      "name": "한전아트센터스포츠클럽",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-159",
+      "name": "신정스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-160",
+      "name": "마곡레포츠센터",
+      "field": "평일",
+      "currentDb": "1부) 08:00~08:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-161",
+      "name": "강서구민올림픽체육센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 12:00~12:50 / 18:00~18:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-162",
+      "name": "삼성스포렉스",
+      "field": "평일",
+      "currentDb": "#평일",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-163",
+      "name": "경서중학교수영장(경서스포츠센터, Kyeongseo Sports Center)",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-164",
+      "name": "미진스포츠타운",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-165",
+      "name": "대신스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-166",
+      "name": "목동문화체육센터",
+      "field": "평일",
+      "currentDb": "성인 3,500 / 청소년 2,200 / 어린이 1,800",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-167",
+      "name": "양천구민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-168",
+      "name": "양천 YMCA",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-169",
+      "name": "시립목동청소년센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-170",
+      "name": "신월문화체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-172",
+      "name": "그린힐스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-173",
+      "name": "삼정스포츠 수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-174",
+      "name": "은평구민체육센터",
+      "field": "평일",
+      "currentDb": "성인 4,000 / 청소년 3,000 / 어린이 2,300",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-176",
+      "name": "서부재활체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-177",
+      "name": "영스포츠타운수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-178",
+      "name": "불광스포렉스",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-179",
+      "name": "DMC 센트럴아이파크 수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-180",
+      "name": "덕원수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-181",
+      "name": "헬스보이짐 수영장",
+      "field": "평일",
+      "currentDb": "06:00~22:40",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-182",
+      "name": "서대문문화체육회관",
+      "field": "평일",
+      "currentDb": "성인 3,500 / 청소년 2,500 / 초등이하 1,700",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-183",
+      "name": "은평통일로스포츠센터",
+      "field": "평일",
+      "currentDb": "성인 4,000 / 청소년 3,000 / 어린이 2,300",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-184",
+      "name": "용산초등학교",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-186",
+      "name": "갈월종합사회복지관",
+      "field": "평일",
+      "currentDb": "1부) 08:00~08:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-188",
+      "name": "용산청소년수련관수영장",
+      "field": "평일",
+      "currentDb": "성인 4,000 / 청소년 3,000 / 어린이 2,000",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-189",
+      "name": "아현스포렉스",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-190",
+      "name": "메트로스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-192",
+      "name": "청운스포렉스",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-193",
+      "name": "마포아트센터수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-195",
+      "name": "마포푸르메스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-196",
+      "name": "거제도해수보양온천",
+      "field": "평일",
+      "currentDb": "05:00~21:30",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-197",
+      "name": "용산구문화체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-199",
+      "name": "올림픽기념국민생활관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-200",
+      "name": "서울스포츠클럽",
+      "field": "평일",
+      "currentDb": "06:00~22:30",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-201",
+      "name": "조원초등학교 수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-203",
+      "name": "마곡슈퍼스타시그니쳐",
+      "field": "평일",
+      "currentDb": "06:00~21:30",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-204",
+      "name": "KBS스포츠월드",
+      "field": "평일",
+      "currentDb": "성인 9,000 / 학생 8,000 / 유아 7,000",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-205",
+      "name": "서울YWCA스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-207",
+      "name": "신기스포렉스",
+      "field": "평일",
+      "currentDb": "07:00~07:50 / 08:00~08:50 (회원 전용)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-208",
+      "name": "중구회현체육센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 12:00~13:50 / 21:00~21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-209",
+      "name": "IYC스포츠센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-210",
+      "name": "종로문화체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-213",
+      "name": "성동청소년수련관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-214",
+      "name": "마장국민체육센터",
+      "field": "평일",
+      "currentDb": "4,000",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-216",
+      "name": "서울숲복합문화체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-217",
+      "name": "현대프라임스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-218",
+      "name": "정립회관수영장",
+      "field": "평일",
+      "currentDb": "1) 06:00~07:50 (장애인만 가능)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-219",
+      "name": "중곡문화체육센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 13:00~13:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-221",
+      "name": "광진문화예술회관",
+      "field": "평일",
+      "currentDb": "성인, 청소년 3,500 / 어린이, 유아 2,500",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-222",
+      "name": "증산스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-223",
+      "name": "동대문구민체육센터",
+      "field": "평일",
+      "currentDb": "성인 3,700 / 청소년 2,700 / 어린이 2,100",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-224",
+      "name": "동대문종합사회복지관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-225",
+      "name": "시립동대문청소년센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-226",
+      "name": "JG전곡스포츠센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 12:00~12:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-228",
+      "name": "삼성골드스포츠클럽",
+      "field": "평일",
+      "currentDb": "06:00~08:50 / 14:00~15:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-229",
+      "name": "면일체육문화센터",
+      "field": "평일",
+      "currentDb": "06:00~11:50 / 14:00~15:50 / 18:00~22:30",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-230",
+      "name": "월드컵스파랜드24수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-231",
+      "name": "서울시립망우청소년센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-232",
+      "name": "성동교육문화관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-233",
+      "name": "물빛수영장",
+      "field": "평일",
+      "currentDb": "성인 5,000 / 중고생 4,000 / 어린이 3,500",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-234",
+      "name": "노블레스수영장",
+      "field": "평일",
+      "currentDb": "09:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-235",
+      "name": "개운산스포츠센터",
+      "field": "평일",
+      "currentDb": "성인 3,300 / 중고생 2,600 / 초등이하 2,100",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-237",
+      "name": "연스포츠",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-239",
+      "name": "성북종합레포츠타운",
+      "field": "평일",
+      "currentDb": "성인 4,500 / 중고생 3,500 / 초등학생 3,000",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-240",
+      "name": "혜화여고수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-242",
+      "name": "화계초등학교",
+      "field": "평일",
+      "currentDb": "08:00~09:00 / 13:00~14:00 / 18:00~19:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-243",
+      "name": "시립강북청소년센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-244",
+      "name": "청구문화스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00~08:50 / 13:00~21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-246",
+      "name": "연촌스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00~08:00 / 20:00~21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-247",
+      "name": "중곡스포렉스",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-249",
+      "name": "돈암문화스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-250",
+      "name": "창동문화체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-251",
+      "name": "도봉실내수영장",
+      "field": "평일",
+      "currentDb": "성인 4,000 / 청소년 2,800 / 어린이 2,500",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-252",
+      "name": "마린스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-254",
+      "name": "강화군노인문화센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-255",
+      "name": "드림파크스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00~06:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-256",
+      "name": "하늘문화센터",
+      "field": "평일",
+      "currentDb": "06:00~08:50 / 09:00~11:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-257",
+      "name": "청라복합문화센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 15:00~15:50 / 18:00~18:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-258",
+      "name": "인천중구국민체육센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 12:00~14:50 / 18:00~18:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-259",
+      "name": "서구청소년센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-260",
+      "name": "청라스포츠수영장",
+      "field": "평일",
+      "currentDb": "06:00~11:50 / 13:00~15:50 / 18:00~21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-261",
+      "name": "청라스카이스위밍",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 12:00~12:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-263",
+      "name": "인천도원수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-264",
+      "name": "강화군국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-266",
+      "name": "문학박태환수영장",
+      "field": "평일",
+      "currentDb": "1부) 06:00~08:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-267",
+      "name": "미추홀구국민체육센터",
+      "field": "평일",
+      "currentDb": "6:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-268",
+      "name": "동구문화체육센터",
+      "field": "평일",
+      "currentDb": "1부) 07:00~08:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-269",
+      "name": "송림체육관수영장",
+      "field": "평일",
+      "currentDb": "1부) 06:00~08:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-270",
+      "name": "부평남부체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-271",
+      "name": "인천청소년수련관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-272",
+      "name": "대우스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-273",
+      "name": "송도체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-274",
+      "name": "웨스턴파크 스파앤풀",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-275",
+      "name": "부평국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-276",
+      "name": "인천삼산월드체육관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-277",
+      "name": "초당스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-278",
+      "name": "계산국민체육센터",
+      "field": "평일",
+      "currentDb": "1) 08:00~08:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-279",
+      "name": "인천북부교육문화센터",
+      "field": "평일",
+      "currentDb": "1부) 06:00~08:50 (어린이 입장불가)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-280",
+      "name": "여성문화회관(여성전용)",
+      "field": "평일",
+      "currentDb": "1) 06:00~06:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-281",
+      "name": "신영지웰스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00~23:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-282",
+      "name": "남동수영장",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 12:00~13:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-199",
+      "name": "올림픽기념국민생활관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-284",
+      "name": "일신스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00~10:00 / 13:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-286",
+      "name": "에이스스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-288",
+      "name": "진명스포아트",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-289",
+      "name": "인천환경공단 송도스포츠파크",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-290",
+      "name": "김포한강스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-291",
+      "name": "시흥능곡어울림센터",
+      "field": "평일",
+      "currentDb": "06:00~11:00 / 16:00~21:30",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-292",
+      "name": "소사국민체육센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 12:00~13:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-293",
+      "name": "오정레포츠센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 12:00~13:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-294",
+      "name": "광명사회체육센터",
+      "field": "평일",
+      "currentDb": "06:00~08:50 / 13:00~14:50 / 19:00~21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-296",
+      "name": "예체능수영장",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 14:00~14:50 / 20:00~21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-297",
+      "name": "광명시여성비전센터",
+      "field": "평일",
+      "currentDb": "18:00~19:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-298",
+      "name": "헬로우짐 수영장",
+      "field": "평일",
+      "currentDb": "06:00~22:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-299",
+      "name": "시흥국민체육센터",
+      "field": "평일",
+      "currentDb": "1) 06:00~08:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-300",
+      "name": "시흥어울림국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-301",
+      "name": "정왕평생학습관",
+      "field": "평일",
+      "currentDb": "09:00~11:00 / 13:00~15:00 / 16:00~18:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-302",
+      "name": "트윈스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-303",
+      "name": "파라디수영장",
+      "field": "평일",
+      "currentDb": "07:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-304",
+      "name": "복사골스포츠센터",
+      "field": "평일",
+      "currentDb": "1) 08:00~08:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-305",
+      "name": "고강BK스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-306",
+      "name": "IGC(인천글로벌캠퍼스) SWIMMING CLUB",
+      "field": "평일",
+      "currentDb": "1) 06:00~09:00 (성인 남여)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-307",
+      "name": "부천YMCA수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-308",
+      "name": "부천국민체육센터수영장",
+      "field": "평일",
+      "currentDb": "1) 08:00~08:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-309",
+      "name": "김포스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00~08:50 / 13:00~14:50 / 19:00~21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-310",
+      "name": "W휘트니스",
+      "field": "평일",
+      "currentDb": "1) 06:00~09:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-311",
+      "name": "신안웰리스스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00~08:50 / 14:00~15:50 / 19:00~21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-312",
+      "name": "박달수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-313",
+      "name": "밸런스수영장",
+      "field": "평일",
+      "currentDb": "05:40~22:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-314",
+      "name": "포일스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-315",
+      "name": "부곡스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-316",
+      "name": "평생학습관수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-317",
+      "name": "의왕국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-318",
+      "name": "늘봄수영장",
+      "field": "평일",
+      "currentDb": "06:00~07:50 / 09:00~11:50 / 14:00~15:50 / 19:00~21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-319",
+      "name": "한양스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-320",
+      "name": "호계복합청사수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-321",
+      "name": "안양종합운동장실내수영장",
+      "field": "평일",
+      "currentDb": "1) 08:00~08:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-322",
+      "name": "과천시청소년수련관",
+      "field": "평일",
+      "currentDb": "성인 3,500 / 청소년 2,100 / 유아 2,000",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-323",
+      "name": "과천시민회관",
+      "field": "평일",
+      "currentDb": "성인 3,500 / 청소년 2,500 / 어린이 2,100",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-324",
+      "name": "하이츠스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-325",
+      "name": "월드스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00~21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-325",
+      "name": "월드스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00~21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-328",
+      "name": "신일스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-329",
+      "name": "한샘레포츠타운",
+      "field": "평일",
+      "currentDb": "06:00~22:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-330",
+      "name": "대부동복지체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-331",
+      "name": "선부다목적체육관",
+      "field": "평일",
+      "currentDb": "07:00~08:50 / 10:00~11:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-332",
+      "name": "호수공원실내수영장",
+      "field": "평일",
+      "currentDb": "07:00~08:50 / 10:00~11:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-333",
+      "name": "신길수영장",
+      "field": "평일",
+      "currentDb": "07:00~08:50 / 10:00~11:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-334",
+      "name": "안산올림픽기념관",
+      "field": "평일",
+      "currentDb": "08:00~11:50 / 14:00~20:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-335",
+      "name": "한숲스포츠센타",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-336",
+      "name": "부곡체육시설",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 14:00~14:50 / 18:00~18:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-337",
+      "name": "군포국민체육센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 13:00~13:50 / 18:00~18:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-338",
+      "name": "군포시청소년수련관",
+      "field": "평일",
+      "currentDb": "19:00~19:50 / 20:00~20:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-339",
+      "name": "광주시워터파크",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-340",
+      "name": "태전국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-341",
+      "name": "중원청소년수련관",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 12:00~12:50 / 20:00~20:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-342",
+      "name": "광주시스포츠헬스센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-343",
+      "name": "하남국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-344",
+      "name": "성남종합운동장",
+      "field": "평일",
+      "currentDb": "06:00~07:50 / 09:00~10:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-345",
+      "name": "성남시평생학습관스포츠센터",
+      "field": "평일",
+      "currentDb": "16:00~17:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-346",
+      "name": "황새울국민체육센터",
+      "field": "평일",
+      "currentDb": "일반 3,000 / 청소년 2,500 / 어린이 2,000 (1회/1시간)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-347",
+      "name": "판교스포츠센터",
+      "field": "평일",
+      "currentDb": "일반 3,000 / 청소년 2,500 / 어린이 2,000",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-350",
+      "name": "분당올림픽스포츠센터",
+      "field": "평일",
+      "currentDb": "13:00~14:50 / 18:00~18:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-351",
+      "name": "탄천종합운동장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-352",
+      "name": "수정스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-353",
+      "name": "수원체육문화체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-354",
+      "name": "광교복합체육센터",
+      "field": "평일",
+      "currentDb": "06:00~21:30",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-355",
+      "name": "영통종합사회복지관",
+      "field": "평일",
+      "currentDb": "06:00~08:50 / 08:00~08:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-356",
+      "name": "망포복합체육센터",
+      "field": "평일",
+      "currentDb": "06:00~22:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-357",
+      "name": "버드내스포츠센터",
+      "field": "평일",
+      "currentDb": "13:00~13:50 / 17:00~17:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-358",
+      "name": "라이프스포츠",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-359",
+      "name": "스위머스탄",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-360",
+      "name": "새천년수영장",
+      "field": "평일",
+      "currentDb": "1) 06:30~08:30",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-361",
+      "name": "삼성노블카운티스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-362",
+      "name": "아르피아스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-363",
+      "name": "발렌스스포츠센터",
+      "field": "평일",
+      "currentDb": "12:00~14:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-364",
+      "name": "남사스포츠센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 12:00~12:50 / 18:00~18:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-365",
+      "name": "용인YMCA스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-366",
+      "name": "을지스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-367",
+      "name": "석천스포츠수영장",
+      "field": "평일",
+      "currentDb": "13:00~13:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-368",
+      "name": "화성시근로자종합복지관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "hwaseong-bongdam-sports-center-25m",
+      "name": "화성국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-370",
+      "name": "반월체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-371",
+      "name": "안성수영국민체육센터(안성시국민체육센터)",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-373",
+      "name": "서안성체육센터",
+      "field": "평일",
+      "currentDb": "06:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-374",
+      "name": "안성국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-375",
+      "name": "뉴스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00~23:00 (비회원 입장불가)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-376",
+      "name": "스포피아실내수영장",
+      "field": "평일",
+      "currentDb": "05:00~21:30",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-377",
+      "name": "서평택국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-378",
+      "name": "이충문화체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-379",
+      "name": "소사벌레포츠타운",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-380",
+      "name": "원동초스포츠센터",
+      "field": "평일",
+      "currentDb": "성인, 청소년 3,500 / 어린이, 유아 2,500",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-381",
+      "name": "오산스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-382",
+      "name": "세교복지타운",
+      "field": "평일",
+      "currentDb": "성인 3,500 / 청소년 3,000 / 경로 2,500",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-383",
+      "name": "동탄어울림체육센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 13:00~13:50 / 18:00~18:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-384",
+      "name": "유앤아이센터",
+      "field": "평일",
+      "currentDb": "06:00~20:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-385",
+      "name": "동탄복합문화센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-386",
+      "name": "양서에코힐링센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-387",
+      "name": "양평군실내수영장",
+      "field": "평일",
+      "currentDb": "성인 3,000 / 청소년 2,500 / 어린이 2,000",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-388",
+      "name": "용문국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-389",
+      "name": "가남체육센터수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-390",
+      "name": "해랑수영장(구.마리나수영장)",
+      "field": "평일",
+      "currentDb": "06:00 ~ 06:50 (월수금/화목토 가능)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-391",
+      "name": "이천스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00~21:30",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-393",
+      "name": "서울YMCA고양국제청소년문화센터",
+      "field": "평일",
+      "currentDb": "성인 6,000 / 청소년 4,000 / 어린이 3,000",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-394",
+      "name": "올림픽스포츠센터수영장",
+      "field": "평일",
+      "currentDb": "일반 6,000 (비회원기준)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-395",
+      "name": "강남스포렉스",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-396",
+      "name": "고양어울림누리수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-397",
+      "name": "백석체육센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 18:00~18:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-398",
+      "name": "고양체육관수영장",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 12:00~12:50 / 18:00~18:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-399",
+      "name": "오션수영장",
+      "field": "평일",
+      "currentDb": "06:00~12:00 / 18:00~22:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-400",
+      "name": "시티수영장",
+      "field": "평일",
+      "currentDb": "06:00~22:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-402",
+      "name": "서부권스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-403",
+      "name": "양주시에코스포츠센터",
+      "field": "평일",
+      "currentDb": "1) 08:00~08:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-404",
+      "name": "양주체육복지센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-405",
+      "name": "양주국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-406",
+      "name": "옥정호수스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-407",
+      "name": "의정부시청소년수련관수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-408",
+      "name": "도두봉실내수영장",
+      "field": "평일",
+      "currentDb": "08:00~10:00 / 12:00~14:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-409",
+      "name": "물사랑수영장",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 13:00~14:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-410",
+      "name": "메인스포츠클럽수영장",
+      "field": "평일",
+      "currentDb": "08:00~09:00 / 12:00~14:00 / 18:00~20:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-411",
+      "name": "금촌다목적실내체육관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-413",
+      "name": "코오롱스포렉스동패점",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-414",
+      "name": "코오롱스포렉스교하점",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-415",
+      "name": "코오롱스포렉스주내점",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-416",
+      "name": "코오롱스포렉스운정점",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-417",
+      "name": "코오롱스포렉스파주낙하점",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-419",
+      "name": "조종국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00~13:00 / 14:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-420",
+      "name": "청평호반문화체육센터",
+      "field": "평일",
+      "currentDb": "06:00~13:00 / 14:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-421",
+      "name": "진접체육문화센터",
+      "field": "평일",
+      "currentDb": "성인, 청소년 3,500 / 어린이, 유아 2,500",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-422",
+      "name": "화도문화체육센터",
+      "field": "평일",
+      "currentDb": "성인 3,600 / 청소년 3,000 / 어린이 2,400",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-423",
+      "name": "오남체육문화센터",
+      "field": "평일",
+      "currentDb": "성인 3,600 / 청소년 3,000 / 어린이 2,400",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-424",
+      "name": "남양주체육문화센터",
+      "field": "평일",
+      "currentDb": "성인 3,600 / 청소년 3,000 / 어린이 2,400",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-425",
+      "name": "에덴수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-426",
+      "name": "별내커뮤니티센터",
+      "field": "평일",
+      "currentDb": "성인 3,600 / 청소년 3,000 / 어린이 2,400",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-427",
+      "name": "와부체육문화센터",
+      "field": "평일",
+      "currentDb": "성인 3,600 / 청소년 3,000 / 어린이 2,400",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-428",
+      "name": "도농애시앙스포츠센터",
+      "field": "평일",
+      "currentDb": "18:00~18:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-429",
+      "name": "호평체육문화센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-430",
+      "name": "구리멀티스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-431",
+      "name": "구리시민스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-432",
+      "name": "GNU스포츠콤플렉스",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-433",
+      "name": "마홀수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-434",
+      "name": "연천군청소년수련관",
+      "field": "평일",
+      "currentDb": "06:00~06:50 / 09:00~09:50 / 11:00~11:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-435",
+      "name": "울산대공원아쿠아시스",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-436",
+      "name": "대덕국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-437",
+      "name": "대전광역시립체육재활원",
+      "field": "평일",
+      "currentDb": "08:00~09:30 / 13:00~16:30",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-438",
+      "name": "대덕구청소년어울림센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 18:00~18:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-440",
+      "name": "유성구장애인종합복지관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-441",
+      "name": "사이언스도룡스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-442",
+      "name": "사이언스전민스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-443",
+      "name": "유성구종합사회복지관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-444",
+      "name": "진잠다목적체육관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-445",
+      "name": "구즉국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-446",
+      "name": "대전월드컵스포츠센터수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-447",
+      "name": "추목수영장",
+      "field": "평일",
+      "currentDb": "5:40~8:00 / 9:00~12:00 / 13:00~20:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-448",
+      "name": "에프스포렉스",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-449",
+      "name": "용운국제수영장",
+      "field": "평일",
+      "currentDb": "06:00~12:00 / 12:30~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-452",
+      "name": "대전산성종합복지관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-453",
+      "name": "한밭수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-454",
+      "name": "남선공원종합체육관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-455",
+      "name": "대전광역시서구건강체련관(27년 재개관예정)",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-456",
+      "name": "대전올림픽기념국민생활관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-457",
+      "name": "평송청소년문화센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-458",
+      "name": "서구국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-459",
+      "name": "도마실국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-460",
+      "name": "정부세종청사체육관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-461",
+      "name": "한솔수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-462",
+      "name": "장애인형국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-463",
+      "name": "아름스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-464",
+      "name": "세종시시민스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-465",
+      "name": "보람수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-466",
+      "name": "코오롱스포렉스세종한솔점",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-467",
+      "name": "세종국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-468",
+      "name": "조치원복합커뮤니티센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 12:00~12:50 / 18:10~19:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-469",
+      "name": "부여학생수영장",
+      "field": "평일",
+      "currentDb": "오전) 06:30~07:20 / 09:00~09:50 / 10:00~10:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-470",
+      "name": "금산학생수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-472",
+      "name": "논산국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-473",
+      "name": "강경실내수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-474",
+      "name": "금산스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-475",
+      "name": "청양국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-478",
+      "name": "서산국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-479",
+      "name": "서산학생수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-480",
+      "name": "태안국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-481",
+      "name": "당진교육문화스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-482",
+      "name": "송악문화스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-483",
+      "name": "반다비합덕수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-484",
+      "name": "천안국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00~10:50 / 13:00~20:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-485",
+      "name": "북부스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-488",
+      "name": "천안시설관리공단(한들문화센터)",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-489",
+      "name": "구덕레포츠수영장",
+      "field": "평일",
+      "currentDb": "12:00~18:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-490",
+      "name": "배방스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-492",
+      "name": "아산배미수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-493",
+      "name": "홍성반다비수영장",
+      "field": "평일",
+      "currentDb": "09:00~22:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-494",
+      "name": "충북대체육진흥원수영장",
+      "field": "평일",
+      "currentDb": "09:00~14:00 / 16:00~17:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-496",
+      "name": "내수국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00~09:00 / 12:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-497",
+      "name": "충북체육회관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-498",
+      "name": "충청북도곰두리체육관",
+      "field": "평일",
+      "currentDb": "06:00~12:00 / 13:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-499",
+      "name": "충청북도학생수영장",
+      "field": "평일",
+      "currentDb": "09:00~20:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-500",
+      "name": "힐링센터수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-501",
+      "name": "푸르미스포츠센터",
+      "field": "평일",
+      "currentDb": "05:30~11:30 / 13:00~17:00 / 18:00~20:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-502",
+      "name": "청주실내수영장",
+      "field": "평일",
+      "currentDb": "05:30~11:50 / 13:20~17:20 / 18:20~20:20",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-503",
+      "name": "보은국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-504",
+      "name": "옥천국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-506",
+      "name": "맹동혁신국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-507",
+      "name": "생거진천국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-509",
+      "name": "괴산반다비국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-510",
+      "name": "충주시설관리공단국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00~12:00 / 13:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-511",
+      "name": "클린에너지파크환경체육센터",
+      "field": "평일",
+      "currentDb": "06:00~12:00 / 13:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-512",
+      "name": "충주장애인형국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00~21:00 (12~13시 제외)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-513",
+      "name": "제천올림픽스포츠센터",
+      "field": "평일",
+      "currentDb": "08:00~09:00 / 13:30~15:30 / 18:00~19:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-514",
+      "name": "단양군청소년수련관",
+      "field": "평일",
+      "currentDb": "05:50~20:20",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-515",
+      "name": "이서문화체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-516",
+      "name": "고흥브이실내수영장",
+      "field": "평일",
+      "currentDb": "06:00~20:30",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-517",
+      "name": "만성시티피트니스센터",
+      "field": "평일",
+      "currentDb": "06:00~12:00  / 13:00~22:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-518",
+      "name": "전주교육문화회관",
+      "field": "평일",
+      "currentDb": "06:00~08:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-519",
+      "name": "전라북도국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00~12:00 / 13:00~20:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-520",
+      "name": "전주완산수영장",
+      "field": "평일",
+      "currentDb": "06:00~12:00 / 13:00~20:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-521",
+      "name": "함열올림픽스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00~21:30 (*3~10월 22:00까지)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-522",
+      "name": "익산교육문화회관",
+      "field": "평일",
+      "currentDb": "07:00~09:00 / 18:00~20:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-523",
+      "name": "익산올림픽기념국민생활관",
+      "field": "평일",
+      "currentDb": "06:00~21:30 (13~14시 방역소독)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-524",
+      "name": "군산시국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00~20:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-525",
+      "name": "군산월명체육관",
+      "field": "평일",
+      "currentDb": "06:00~20:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-526",
+      "name": "마린클럽구포현대수영장(23년 운영종료)",
+      "field": "평일",
+      "currentDb": "08:00~09:00 / 13:00~16:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-527",
+      "name": "완주국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-528",
+      "name": "수달수영장",
+      "field": "평일",
+      "currentDb": "06:00~08:00 / 09:00~12:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-529",
+      "name": "진안국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00~12:00 / 13:00~17:00 / 18:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-530",
+      "name": "김제실내수영장",
+      "field": "평일",
+      "currentDb": "06:00~20:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-532",
+      "name": "한누리전당수영장",
+      "field": "평일",
+      "currentDb": "06:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-533",
+      "name": "임실국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-535",
+      "name": "고창군실내수영장",
+      "field": "평일",
+      "currentDb": "06:00~08:00 / 09:00~12:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-536",
+      "name": "순창국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00~22:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-539",
+      "name": "광주학생교육문화회관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-540",
+      "name": "광주북구건강복지타운",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-541",
+      "name": "광주북구반다비체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-542",
+      "name": "금호수영장",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 13:30~16:00 (23년 3월 기준)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-543",
+      "name": "기아수영장",
+      "field": "평일",
+      "currentDb": "06:00~12:00 / 17:00~21:30",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-544",
+      "name": "남부대학교시립국제수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-545",
+      "name": "염주실내수영장",
+      "field": "평일",
+      "currentDb": "13:00~20:30",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-547",
+      "name": "담빛수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-548",
+      "name": "장성실내수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-549",
+      "name": "한빛스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-550",
+      "name": "영광스포티움",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-551",
+      "name": "구례군국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00~08:00 / 09:00~11:30",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-552",
+      "name": "곡성교육문화회관",
+      "field": "평일",
+      "currentDb": "09:00~19:30",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-553",
+      "name": "함평실내수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-556",
+      "name": "여수우리스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00~20:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-557",
+      "name": "진남수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-558",
+      "name": "망마수영장",
+      "field": "평일",
+      "currentDb": "07:00~08:50 / 13:00~14:50 / 17:00~18:30",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-559",
+      "name": "성황스포츠센터",
+      "field": "평일",
+      "currentDb": "06:10~08:00 / 09:00~12:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-560",
+      "name": "신대유청소년수영장",
+      "field": "평일",
+      "currentDb": "05:30~11:50 / 13:00~15:50 / 19:00~19:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-561",
+      "name": "문화건강센터",
+      "field": "평일",
+      "currentDb": "05:30~08:50 / 14:20~16:50 / 18:00~19:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-562",
+      "name": "팔마실내수영장(올림픽기념국민생활관)",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-563",
+      "name": "화순군민종합문화센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-564",
+      "name": "나주시국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00~12:00 / 14:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-565",
+      "name": "무안스포츠파크수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-566",
+      "name": "부주산국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-567",
+      "name": "목포실내체육관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-568",
+      "name": "고흥종합문화회관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-569",
+      "name": "보성국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-570",
+      "name": "장흥군국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-571",
+      "name": "강진군실내수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-572",
+      "name": "완도수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-573",
+      "name": "영암국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-574",
+      "name": "조오련수영장(우슬국민체육센터)",
+      "field": "평일",
+      "currentDb": "06:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-575",
+      "name": "진도국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-577",
+      "name": "달성군여성문화복지센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 16:00~18:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-578",
+      "name": "대구농업마이스터고수영장",
+      "field": "평일",
+      "currentDb": "14:30~16:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-579",
+      "name": "하이리페움",
+      "field": "평일",
+      "currentDb": "06:00~22:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-580",
+      "name": "부산시민스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-581",
+      "name": "서재문화체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-582",
+      "name": "라움ENC수영장",
+      "field": "평일",
+      "currentDb": "06:00~22:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-583",
+      "name": "유니버시아드레포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-584",
+      "name": "더제이풀",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-586",
+      "name": "두류수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-588",
+      "name": "새본리수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-590",
+      "name": "석적국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-592",
+      "name": "봉화국민체육센터",
+      "field": "평일",
+      "currentDb": "07:30~10:00 / 11:00~12:00 / 13:00~16:00 / 18:00~19:00 / 20:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-593",
+      "name": "청송군종합문화복지타운",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-594",
+      "name": "군위국민체육센터",
+      "field": "평일",
+      "currentDb": "08:00~09:00 / 12:00~13:00 / 13:00~14:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-597",
+      "name": "영주실내수영장",
+      "field": "평일",
+      "currentDb": "08:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-598",
+      "name": "예천청소년수련관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-600",
+      "name": "상주국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-601",
+      "name": "월성스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00~20:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-603",
+      "name": "푸르뫼스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00~13:00 / 14:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-604",
+      "name": "경주국민체육센터",
+      "field": "평일",
+      "currentDb": "06:10~12:00 / 13:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-605",
+      "name": "장량국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00~08:00 / 09:00~12:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-606",
+      "name": "포항여성문화회관",
+      "field": "평일",
+      "currentDb": "06:00~08:00 / 09:00~12:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-607",
+      "name": "동아스포츠센터수영장",
+      "field": "평일",
+      "currentDb": "13:00~17:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-608",
+      "name": "포항수영장",
+      "field": "평일",
+      "currentDb": "05:50~11:50 / 13:00~20:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-609",
+      "name": "영덕문화체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-610",
+      "name": "남울진국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00~12:00 / 14:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-611",
+      "name": "울진국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00~20:30 (12:30~14:00 청소)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-612",
+      "name": "한울스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-614",
+      "name": "김천시시설관리공단",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-615",
+      "name": "근로자종합복지회관",
+      "field": "평일",
+      "currentDb": "06:00~22:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-616",
+      "name": "구미올림픽기념관수영장",
+      "field": "평일",
+      "currentDb": "06:00~13:00 / 14:00~21:30",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-617",
+      "name": "칠곡북삼국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-618",
+      "name": "경산국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00~20:40",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-619",
+      "name": "경북체육고등학교수영장",
+      "field": "평일",
+      "currentDb": "06:00~11:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-620",
+      "name": "성주국민체육센터",
+      "field": "평일",
+      "currentDb": "07:30~09:20 / 10:20~11:10 / 14:30~18:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-621",
+      "name": "고령군국민체육센터",
+      "field": "평일",
+      "currentDb": "07:00~18:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-622",
+      "name": "청도군수영장",
+      "field": "평일",
+      "currentDb": "06:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-623",
+      "name": "영천시종합스포츠센터",
+      "field": "평일",
+      "currentDb": "11:30~18:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-624",
+      "name": "경산수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-626",
+      "name": "서귀포혁신도시국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-627",
+      "name": "서귀포국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-628",
+      "name": "인풀 수영장",
+      "field": "평일",
+      "currentDb": "8:00~9:00 / 12:00~14:00 (성인, 청소년)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-630",
+      "name": "제주종합경기장수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-631",
+      "name": "애월국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-632",
+      "name": "제주국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-634",
+      "name": "원주시근로자종합복지관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-635",
+      "name": "원주국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-636",
+      "name": "원주드림체육관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-637",
+      "name": "원주시농민문화체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-638",
+      "name": "신우수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-639",
+      "name": "춘천국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-640",
+      "name": "춘천올림픽기념국민생활관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-641",
+      "name": "백령스포츠센터수영장(강원대춘천캠퍼스)",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-642",
+      "name": "한림레크리에이션센터",
+      "field": "평일",
+      "currentDb": "06:10~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-643",
+      "name": "근로자종합복지관실내수영장",
+      "field": "평일",
+      "currentDb": "05:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-644",
+      "name": "철원국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-645",
+      "name": "토마토수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-646",
+      "name": "화천국민문화체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-647",
+      "name": "양구청소년수련관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-648",
+      "name": "인제하늘내린센터",
+      "field": "평일",
+      "currentDb": "07:00~07:50 / 09:00~09:50 / 11:00~11:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-649",
+      "name": "기린국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-650",
+      "name": "원통체육문화센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-651",
+      "name": "홍천군국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-652",
+      "name": "횡성실내수영장",
+      "field": "평일",
+      "currentDb": "06:00~20:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-653",
+      "name": "정선국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-654",
+      "name": "태백국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-655",
+      "name": "영월군국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-656",
+      "name": "북부수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-658",
+      "name": "광산근로자복지센터수영장",
+      "field": "평일",
+      "currentDb": "06:00~20:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-659",
+      "name": "삼척종합사회복지관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-660",
+      "name": "동해시근로자종합복지회관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-661",
+      "name": "동해보양호텔수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-662",
+      "name": "해오름스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-657",
+      "name": "강릉국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-664",
+      "name": "양양문화복지회관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-665",
+      "name": "속초국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-668",
+      "name": "함안군국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-669",
+      "name": "의령국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00~22:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-666",
+      "name": "고성국민체육센터",
+      "field": "평일",
+      "currentDb": "미운영",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-671",
+      "name": "거창국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-672",
+      "name": "함양국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-673",
+      "name": "남부문화체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-674",
+      "name": "산청군실내수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-675",
+      "name": "하동국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-676",
+      "name": "진주학생수영장",
+      "field": "평일",
+      "currentDb": "06:00~08:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-677",
+      "name": "신세계실내수영장",
+      "field": "평일",
+      "currentDb": "06:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-678",
+      "name": "신동교육문화회관",
+      "field": "평일",
+      "currentDb": "08:00~08:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-679",
+      "name": "삼전수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-680",
+      "name": "진주스포츠클럽",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-681",
+      "name": "사천시실내수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-682",
+      "name": "남해군국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-683",
+      "name": "창녕군립수영장",
+      "field": "평일",
+      "currentDb": "08:10~08:50 (40분)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-684",
+      "name": "김해서부문화센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 12:00~15:50 / 18:00~18:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-686",
+      "name": "삼성문화관수영장",
+      "field": "평일",
+      "currentDb": "05:30~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-687",
+      "name": "진영스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-688",
+      "name": "중원대실내수영장(Jungwon Univ. Swimming Pool)",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-689",
+      "name": "오션사이드수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-690",
+      "name": "산양스포츠파크",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-691",
+      "name": "통영수영장",
+      "field": "평일",
+      "currentDb": "06:00~11:40 / 13:00~15:50 / 17:00~20:30",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-692",
+      "name": "웅상문화체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-693",
+      "name": "장유스포츠센타",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-694",
+      "name": "동부스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-695",
+      "name": "해동이국민체육센터",
+      "field": "평일",
+      "currentDb": "① 08:00~09:20 (성인/청소년)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-696",
+      "name": "밀양스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-697",
+      "name": "진해용원국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-698",
+      "name": "진해국민체육센터",
+      "field": "평일",
+      "currentDb": "12:00~17:00 / 18:00~20:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-699",
+      "name": "창원실내수영장",
+      "field": "평일",
+      "currentDb": "06:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-700",
+      "name": "시민생활체육관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-701",
+      "name": "늘푸른전당",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-702",
+      "name": "우리누리청소년문화센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-703",
+      "name": "의창스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-704",
+      "name": "창원올림픽기념관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-706",
+      "name": "진동종합복지타운수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-707",
+      "name": "창원곰두리국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-708",
+      "name": "성산스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-709",
+      "name": "감계복지센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-710",
+      "name": "내서스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-711",
+      "name": "마산합포스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-713",
+      "name": "울주군국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-714",
+      "name": "울산북구국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-715",
+      "name": "쇠부리체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-716",
+      "name": "오토밸리복지센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-717",
+      "name": "호계문화체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-718",
+      "name": "유니스트스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00~14:00 / 17:00~22:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-719",
+      "name": "울산중구수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-721",
+      "name": "울산동구국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-722",
+      "name": "울주서부청소년수련관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-723",
+      "name": "송도아쿠아틱센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-725",
+      "name": "문수실내수영장",
+      "field": "평일",
+      "currentDb": "13:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-726",
+      "name": "대방디엠시티수영장",
+      "field": "평일",
+      "currentDb": "12:00~14:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-727",
+      "name": "동서대학교글로벌스포츠센터",
+      "field": "평일",
+      "currentDb": "13:00~14:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-730",
+      "name": "동남스포피아수영장",
+      "field": "평일",
+      "currentDb": "09:00~12:00 / 12:00~15:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-960",
+      "name": "동구국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-734",
+      "name": "노블스포렉스뉴코아아울렛일산점",
+      "field": "평일",
+      "currentDb": "06:00~10:00 / 14:00~21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-739",
+      "name": "북구국민체육센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 13:00~13:50 / 18:00~18:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-740",
+      "name": "포항오천실내수영장",
+      "field": "평일",
+      "currentDb": "08:00~09:00 / 12:00~18:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-741",
+      "name": "스포원파크",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-742",
+      "name": "금정산온천레포츠",
+      "field": "평일",
+      "currentDb": "06:00~22:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-744",
+      "name": "해운대구건강증진센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-745",
+      "name": "아르피나 수영장",
+      "field": "평일",
+      "currentDb": "12:00~14:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-746",
+      "name": "부산한마음스포츠센터(장애인전용)",
+      "field": "평일",
+      "currentDb": "성인, 청소년 3,500 / 어린이, 유아 2,500",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-749",
+      "name": "헤네스청담(구.언북스포츠센터)",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-750",
+      "name": "해운대생활체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-752",
+      "name": "창천교육문화관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-754",
+      "name": "센츄리스포렉스수영장",
+      "field": "평일",
+      "currentDb": "08:00~09:00 / 12:00~19:00 / 20:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-755",
+      "name": "금정국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-757",
+      "name": "연제구국민체육센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 12:00~12:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-759",
+      "name": "대영스포렉스",
+      "field": "평일",
+      "currentDb": "08:00~09:00 / 12:30~14:00 / 15:00~18:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-760",
+      "name": "소의체육문화센터",
+      "field": "평일",
+      "currentDb": "06:00~21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-761",
+      "name": "부산사직종합운동장실내수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-762",
+      "name": "봉래체육문화센터",
+      "field": "평일",
+      "currentDb": "06:00~21:50 (변동가능)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-763",
+      "name": "함안체육관실내수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-764",
+      "name": "능평스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-763",
+      "name": "함안체육관실내수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-766",
+      "name": "원당문화체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-767",
+      "name": "금나래문화체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-768",
+      "name": "통진문화회관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-769",
+      "name": "시그마스포츠클럽",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-770",
+      "name": "에코랜드수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-772",
+      "name": "안동시청소년수련관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-773",
+      "name": "양산주민편익시설",
+      "field": "평일",
+      "currentDb": "08:00~09:00 / 12:00~16:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-774",
+      "name": "코오롱스포렉스제주서부점",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-775",
+      "name": "코오롱스포렉스제주동부점",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-776",
+      "name": "고촌도담수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-777",
+      "name": "숭인스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-778",
+      "name": "로얄스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-779",
+      "name": "풍산멀티스포츠센터",
+      "field": "평일",
+      "currentDb": "19:00~19:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-780",
+      "name": "제주장애인스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-781",
+      "name": "현대제철문화센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-782",
+      "name": "한석봉체육관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-783",
+      "name": "서울스포렉스수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-784",
+      "name": "백운커뮤니티센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-354",
+      "name": "광교복합체육센터",
+      "field": "평일",
+      "currentDb": "06:00~21:30",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-786",
+      "name": "광교웰빙국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-787",
+      "name": "이보수영장",
+      "field": "평일",
+      "currentDb": "06:00~21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-788",
+      "name": "원주남부복합체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-789",
+      "name": "원주동부복합체육센터",
+      "field": "평일",
+      "currentDb": "성인, 청소년 3,500 / 어린이, 유아 2,500",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-790",
+      "name": "달성테크노스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-792",
+      "name": "일가정양립지원본부 실내수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-794",
+      "name": "상무국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-795",
+      "name": "덕진수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 20:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-796",
+      "name": "도내기샘국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-797",
+      "name": "라온체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-799",
+      "name": "휘트니스센타PG NC동수원점",
+      "field": "평일",
+      "currentDb": "06:00~23:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-800",
+      "name": "파주시청소년수련관",
+      "field": "평일",
+      "currentDb": "12:00~12:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-801",
+      "name": "북경주체육문화센터",
+      "field": "평일",
+      "currentDb": "06:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-802",
+      "name": "금호스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00~08:50 / 12:30~15:50 / 19:00~22:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-803",
+      "name": "더케이호텔경주",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-804",
+      "name": "자연드림스포츠힐링센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-805",
+      "name": "코오롱스포렉스방배점",
+      "field": "평일",
+      "currentDb": "3,300 / [주말] 5,500",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-806",
+      "name": "부산북항마리나 다이빙풀&수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-807",
+      "name": "콩코드 수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-809",
+      "name": "국제스포츠클럽",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-810",
+      "name": "조이스포츠센터수영장",
+      "field": "평일",
+      "currentDb": "06:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-811",
+      "name": "시립광주평동체육관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-812",
+      "name": "기성종합복지관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-813",
+      "name": "들성생활체육센터",
+      "field": "평일",
+      "currentDb": "06:00~13:00 / 15:00~21:30",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-814",
+      "name": "구미국민체육센터(강동국민체육센터)",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-815",
+      "name": "상계구민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-816",
+      "name": "ATB압구정점",
+      "field": "평일",
+      "currentDb": "06:00~06:50 / 12:00~13:50 /21:00~22:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-817",
+      "name": "선스포츠프라자",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-819",
+      "name": "정관아쿠아드림파크",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-820",
+      "name": "김해스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-821",
+      "name": "김해문화의전당시민스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-822",
+      "name": "구미시근로자문화센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-823",
+      "name": "복대국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-824",
+      "name": "광진구민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-825",
+      "name": "고리스포츠문화센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-826",
+      "name": "마이테르유스호스텔수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-827",
+      "name": "울주 남부청소년수련관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-828",
+      "name": "남지국민체육센터",
+      "field": "평일",
+      "currentDb": "08:10~09:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-829",
+      "name": "남구반다비체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-830",
+      "name": "서창어울마당",
+      "field": "평일",
+      "currentDb": "4,000 (성인기준)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-831",
+      "name": "배방공수스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-832",
+      "name": "오송국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00~13:00 / 14:00~18:00 / 19:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-833",
+      "name": "강북웰빙스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-834",
+      "name": "흥해복합커뮤니티센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-835",
+      "name": "모건우방스포츠센터",
+      "field": "평일",
+      "currentDb": "11:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-837",
+      "name": "클래스윔서면초량점",
+      "field": "평일",
+      "currentDb": "11:00~16:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-838",
+      "name": "우주항공국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-839",
+      "name": "인천서구국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-840",
+      "name": "영운국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-841",
+      "name": "제천국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-842",
+      "name": "춘천반다비국민체육센터",
+      "field": "평일",
+      "currentDb": "05:00~13:00 / 14:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-844",
+      "name": "파라스파라서울 (인도어풀)",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-845",
+      "name": "충주수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-846",
+      "name": "쌍문종합체육센터",
+      "field": "평일",
+      "currentDb": "성인 4,000 / 청소년 2,800 / 어린이 2,500 / 경로 2,800",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-847",
+      "name": "은평청여울수영장",
+      "field": "평일",
+      "currentDb": "성인 4,000 / 청소년 3,000 / 어린이 2,300",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-848",
+      "name": "하남스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-849",
+      "name": "강북종합체육센터",
+      "field": "평일",
+      "currentDb": "성인 4,000 / 청소년 3,000 / 어린이 2,000",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-851",
+      "name": "정읍체육트레이닝센터",
+      "field": "평일",
+      "currentDb": "06:00~22:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-852",
+      "name": "시민행복채움센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-853",
+      "name": "고성군복합국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-854",
+      "name": "스윔핏옥동",
+      "field": "평일",
+      "currentDb": "10:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-855",
+      "name": "더스포츠센터",
+      "field": "평일",
+      "currentDb": "07:00~08:50 / 13:00~14:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-856",
+      "name": "공항동문화체육센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 15:00~15:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-858",
+      "name": "가경국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-859",
+      "name": "남원읍문화체육복합센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-860",
+      "name": "표선면문화체육복합센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-861",
+      "name": "관저다목적체육관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-862",
+      "name": "계룡스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-863",
+      "name": "제주부영호텔&리조트 수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-866",
+      "name": "클래스윔광안점",
+      "field": "평일",
+      "currentDb": "12:00~15:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-867",
+      "name": "의정부시스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-868",
+      "name": "서귀포시민문화체육복합센터",
+      "field": "평일",
+      "currentDb": "06:00~12:00 / 14:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-869",
+      "name": "통영체육청소년센터",
+      "field": "평일",
+      "currentDb": "06:00~12:00 / 13:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-870",
+      "name": "둔포국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-871",
+      "name": "화성그린환경센터주민편익시설",
+      "field": "평일",
+      "currentDb": "1부) 6:00~11:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-872",
+      "name": "장안구민회관수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-873",
+      "name": "수원시녹색교통회관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-874",
+      "name": "중랑문화체육관",
+      "field": "평일",
+      "currentDb": "성인 4,100 / 중고생 3,000 / 어린이 2,500",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-875",
+      "name": "시립광주무등체육관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-876",
+      "name": "예산1100년기념관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-877",
+      "name": "빛고을국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-878",
+      "name": "동두천어울림센터",
+      "field": "평일",
+      "currentDb": "6:00~11:30 / 13:30~20:30",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-879",
+      "name": "은계1어울림센터",
+      "field": "평일",
+      "currentDb": "06:00~11:00 / 13:00~21:30",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-880",
+      "name": "쌍벽루국민체육센터",
+      "field": "평일",
+      "currentDb": "6:00~7:50 / 9:00~11:30 / 19:00~21:30",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-881",
+      "name": "유성반다비체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-882",
+      "name": "월계구민체육센터",
+      "field": "평일",
+      "currentDb": "성인 3,900 / 청소년 2,700 / 초등생 1,900",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-883",
+      "name": "태안군가족공감센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-884",
+      "name": "울주종합체육센터",
+      "field": "평일",
+      "currentDb": "06:00~12:30 / 13:30~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-885",
+      "name": "화성남부국민체육센터",
+      "field": "평일",
+      "currentDb": "6:00~11:00  / 13:00~14:00 / 15:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-886",
+      "name": "천호어울림수영장",
+      "field": "평일",
+      "currentDb": "12:00~12:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-887",
+      "name": "계양구효성수영장",
+      "field": "평일",
+      "currentDb": "하단표 참고",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-888",
+      "name": "스퍼트스위밍랩",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-890",
+      "name": "서군산체육센터",
+      "field": "평일",
+      "currentDb": "06:00~20:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-891",
+      "name": "검배체육문화센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-892",
+      "name": "향남복합문화센터",
+      "field": "평일",
+      "currentDb": "16:00~17:00 / 17:00~18:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-893",
+      "name": "대구혁신도시복합문화센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-894",
+      "name": "금곡공원국민체육센터",
+      "field": "평일",
+      "currentDb": "성인 3,000 / 청소년 2,500 / 어린이 2,000 (1회 1시간 기준)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-896",
+      "name": "송도국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00~11:50 / 15:00~17:50 / 19:00~20:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-897",
+      "name": "월피체육문화센터",
+      "field": "평일",
+      "currentDb": "6:00~20:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-898",
+      "name": "서일체육문화센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-899",
+      "name": "부산강서체육공원 실내수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-900",
+      "name": "용인시시민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-901",
+      "name": "용인청소년수련관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-902",
+      "name": "금곡청소년수련관",
+      "field": "평일",
+      "currentDb": "12:00~14:00 (일일 이용권 가능)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-903",
+      "name": "여주국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-904",
+      "name": "여주시노인복지관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-905",
+      "name": "명지레포츠센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 14:00~18:00 (평일: 어린이 입장 불가)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-906",
+      "name": "강서구국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-908",
+      "name": "해돋이힐링센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-909",
+      "name": "지리산권실내수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-910",
+      "name": "광명건강체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-911",
+      "name": "민락국민체육센터",
+      "field": "평일",
+      "currentDb": "8:20~9:10 /12:20~13:10",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-912",
+      "name": "홈스파월드",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-913",
+      "name": "온산문화체육센터",
+      "field": "평일",
+      "currentDb": "성인 3,000 / 어린이,청소년,노인 2,000",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-914",
+      "name": "포스플렉스",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-915",
+      "name": "홍제스포렉스",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-916",
+      "name": "진주시장애인문화체육센",
+      "field": "평일",
+      "currentDb": "08:00~09:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-917",
+      "name": "수도산스포츠센터",
+      "field": "평일",
+      "currentDb": "6:00~13:00 / 14:00~22:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-918",
+      "name": "PAB수영장/수도여고수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-919",
+      "name": "대곶문화복지센터(코오롱스포렉스김포대곶점)",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-920",
+      "name": "김포반다비체육센터(코오롱스포렉스 김포운양점)",
+      "field": "평일",
+      "currentDb": "13:00~14:50 / 18:00~18:50 / 21:00~21:40",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-921",
+      "name": "옹암체육센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 13:00~15:50 / 18:00~18:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-922",
+      "name": "공주국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:30 (12:00~13:00 입장 가능)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-923",
+      "name": "열우물경기장",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 12:00~13:50 / 18:00~18:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-924",
+      "name": "아트리파라다이스",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-925",
+      "name": "나주종합스포츠파크",
+      "field": "평일",
+      "currentDb": "06:00~12:00 / 14:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-926",
+      "name": "덕풍스포츠문화센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 21:00~21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-927",
+      "name": "하남다누리체육센터",
+      "field": "평일",
+      "currentDb": "06:00~22:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-928",
+      "name": "하이원리조트 그랜드호텔 수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-929",
+      "name": "서천군생활체육관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-933",
+      "name": "신길책마루문화센터",
+      "field": "평일",
+      "currentDb": "성인 4,000 / 청소년 3,000 / 어린이 2,500",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-934",
+      "name": "한밭복합문화체육센터",
+      "field": "평일",
+      "currentDb": "08:00~09:00 / 15:00~19:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-936",
+      "name": "서충주국민체육센터",
+      "field": "평일",
+      "currentDb": "6:00~12:00 / 13:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-937",
+      "name": "유한실내수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-938",
+      "name": "AJ스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-939",
+      "name": "공릉구민체육센터",
+      "field": "평일",
+      "currentDb": "성인 4,800 / 청소년 3,300 / 초등생 2,400",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-940",
+      "name": "송내국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-941",
+      "name": "영종국민체육센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-942",
+      "name": "판교유스센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 14:00~14:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-943",
+      "name": "서부여성회관",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 15:00~15:50 / 18:00~18:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-944",
+      "name": "남원실내수영장(남원종합스포츠타운)",
+      "field": "평일",
+      "currentDb": "05:50~11:50 / 13:00~20:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-537",
+      "name": "남원교육문화회관",
+      "field": "평일",
+      "currentDb": "06:00~17:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-946",
+      "name": "난향초등학교수영장",
+      "field": "평일",
+      "currentDb": "07:00~07:50 / 08:00~08:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-947",
+      "name": "대전 중구국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-949",
+      "name": "완주군근로자종합복지관",
+      "field": "평일",
+      "currentDb": "06:00~21:00 (12:00~13:00 브레이크 타임)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-950",
+      "name": "완주군청소년수련관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-951",
+      "name": "영천국민체육센터",
+      "field": "평일",
+      "currentDb": "05:40~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-952",
+      "name": "울산동부체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-953",
+      "name": "영동국민건강체육센터",
+      "field": "평일",
+      "currentDb": "06:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-955",
+      "name": "야탑유스센터",
+      "field": "평일",
+      "currentDb": "08:00~08:50 / 12:00~12:50 / 20:00~20:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-199",
+      "name": "올림픽기념국민생활관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-957",
+      "name": "진해종합사회복지관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-958",
+      "name": "다원복합센터",
+      "field": "평일",
+      "currentDb": "5:50~11:50 / 13:00~20:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-959",
+      "name": "갈매멀티스포츠센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-960",
+      "name": "동구국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-961",
+      "name": "동구문화센터",
+      "field": "평일",
+      "currentDb": "6:00~21:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-962",
+      "name": "부산학생안전체험관수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-963",
+      "name": "휘경이문누리종합사회복지관",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-964",
+      "name": "부산시민스포츠센터 초읍지점",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-965",
+      "name": "디팰리스 스포츠클럽",
+      "field": "평일",
+      "currentDb": "06:00~23:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-966",
+      "name": "기아스포츠센터화성점",
+      "field": "평일",
+      "currentDb": "06:00~20:30",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-967",
+      "name": "모두누림센터",
+      "field": "평일",
+      "currentDb": "6:00~20:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-968",
+      "name": "삼양반다비체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-969",
+      "name": "광혜원개방형다목적체육관 (스포츠아일랜드진천)",
+      "field": "평일",
+      "currentDb": "8:00~9:50 / 14:00~15:50 / 18:00~18:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-970",
+      "name": "음성군산업단지복합문화센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-971",
+      "name": "비타스위밍",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-972",
+      "name": "HD아트센터 수영장",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-973",
+      "name": "아쿠와조이",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-974",
+      "name": "양평군체육센터",
+      "field": "평일",
+      "currentDb": "6:00~22:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-975",
+      "name": "충남대스포렉스",
+      "field": "평일",
+      "currentDb": "6:00~13:00 / 15:00~17:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-977",
+      "name": "진해여좌국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-978",
+      "name": "서울시어울림플라자",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-979",
+      "name": "대구 수성아쿠아",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-980",
+      "name": "클래스윔 동래점",
+      "field": "평일",
+      "currentDb": "12:00~18:00 (&#x60;26.6 기준)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-981",
+      "name": "웅천국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-982",
+      "name": "애월복합문화체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-983",
+      "name": "동백미르휴먼센터",
+      "field": "평일",
+      "currentDb": "12:00~12:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-984",
+      "name": "나주빛가람복합문화체육센터",
+      "field": "평일",
+      "currentDb": "6:00~20:30",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-985",
+      "name": "하이풀스포츠(롯데몰은평점)",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-986",
+      "name": "마이스위밍",
+      "field": "평일",
+      "currentDb": "12:00~14:00",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-987",
+      "name": "안덕면문화체육복합센터(스포츠아일랜드)",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-988",
+      "name": "디아넥스호텔",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-989",
+      "name": "오레브핫스프링앤스파",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-990",
+      "name": "영등포제3스포츠센터",
+      "field": "평일",
+      "currentDb": "10:00~11:50 / 13:00~16:50 (시범운영: &#x60;26.5~6)",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-992",
+      "name": "야현체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-993",
+      "name": "광주G스타디움",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-994",
+      "name": "위례복합체육센터",
+      "field": "평일",
+      "currentDb": "8:00~8:50 / 19:00~19:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-995",
+      "name": "영도국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-996",
+      "name": "지평선국민체육센터",
+      "field": "평일",
+      "currentDb": "06:00 ~ 21:50",
+      "crawler": "1"
+    },
+    {
+      "poolId": "pool-997",
+      "name": "거제반다비체육센터",
+      "field": "평일",
+      "currentDb": "6:00~12:00 / 13:00~21:00",
+      "crawler": "1"
+    }
+  ],
+  "laneLengthDifferences": [
+    {
+      "poolId": "pool-145",
+      "name": "스포츠아일랜드",
+      "currentDbLane": 25,
+      "crawlerLane": 50
+    },
+    {
+      "poolId": "pool-300",
+      "name": "시흥어울림국민체육센터",
+      "currentDbLane": 25,
+      "crawlerLane": 50
+    },
+    {
+      "poolId": "pool-396",
+      "name": "고양어울림누리수영장",
+      "currentDbLane": 50,
+      "crawlerLane": 25
+    },
+    {
+      "poolId": "pool-354",
+      "name": "광교복합체육센터",
+      "currentDbLane": 50,
+      "crawlerLane": 25
+    },
+    {
+      "poolId": "pool-845",
+      "name": "충주수영장",
+      "currentDbLane": 50,
+      "crawlerLane": 25
+    }
+  ],
+  "phoneDifferences": []
+}

@@ -18517,7 +18517,7 @@
     "phone": "031-259-2137",
     "lat": 37.290774,
     "lng": 127.0356958,
-    "laneLength": 25,
+    "laneLength": 50,
     "laneCount": 20,
     "depth": "1.15~1.35m",
     "weeklySchedule": {
@@ -18869,7 +18869,8 @@
         "url": "https://cafe.naver.com/everyswim/266"
       }
     ],
-    "over18m": false
+    "over18m": false,
+    "updatedAt": "2026-11-17T19:48:00.000Z"
   },
   {
     "id": "pool-146",
@@ -69889,7 +69890,7 @@
     "phone": "031-310-7875",
     "lat": 37.3482392,
     "lng": 126.7412545,
-    "laneLength": 25,
+    "laneLength": 50,
     "laneCount": 8,
     "depth": "1.8m",
     "weeklySchedule": {
@@ -70204,7 +70205,8 @@
         "url": "https://cafe.naver.com/everyswim/217"
       }
     ],
-    "over18m": true
+    "over18m": true,
+    "updatedAt": "2026-11-17T19:48:00.000Z"
   },
   {
     "id": "pool-301",
@@ -303452,5 +303454,1374 @@
       }
     ],
     "over18m": false
+  },
+  {
+    "id": "pool-gangneung-arena-50m",
+    "name": "강릉아이스아레나 수영장",
+    "shortName": "강릉아이스아레나",
+    "address": "강원특별자치도 강릉시 수리골길 102",
+    "addressDetail": "강릉아이스아레나",
+    "city": "강릉시",
+    "district": null,
+    "phone": "033-651-4551",
+    "homepage": "https://arena.gtdc.or.kr",
+    "lat": 37.7764157,
+    "lng": 128.8971728,
+    "laneLength": 50,
+    "laneCount": 8,
+    "depth": "1.5m",
+    "breakRule": "50_10",
+    "weeklySchedule": {
+      "0": {
+        "isOpen": true,
+        "sessions": [
+          {
+            "partName": "자유수영",
+            "start": "06:00",
+            "end": "18:00"
+          }
+        ],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "1": {
+        "isOpen": false,
+        "sessions": [],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "2": {
+        "isOpen": true,
+        "sessions": [
+          {
+            "partName": "자유수영",
+            "start": "06:00",
+            "end": "22:00"
+          }
+        ],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false
+        ]
+      },
+      "3": {
+        "isOpen": true,
+        "sessions": [
+          {
+            "partName": "자유수영",
+            "start": "06:00",
+            "end": "22:00"
+          }
+        ],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false
+        ]
+      },
+      "4": {
+        "isOpen": true,
+        "sessions": [
+          {
+            "partName": "자유수영",
+            "start": "06:00",
+            "end": "22:00"
+          }
+        ],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false
+        ]
+      },
+      "5": {
+        "isOpen": true,
+        "sessions": [
+          {
+            "partName": "자유수영",
+            "start": "06:00",
+            "end": "22:00"
+          }
+        ],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false
+        ]
+      },
+      "6": {
+        "isOpen": true,
+        "sessions": [
+          {
+            "partName": "자유수영",
+            "start": "06:00",
+            "end": "22:00"
+          }
+        ],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false
+        ]
+      }
+    },
+    "holidaySchedule": {
+      "isOpen": true,
+      "sessions": [
+        {
+          "partName": "자유수영",
+          "start": "09:00",
+          "end": "18:00"
+        }
+      ],
+      "hourlySlots": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "closedDaysDescription": "매주 월요일 휴관",
+    "closedRules": [
+      {
+        "type": "weekly",
+        "daysOfWeek": [
+          1
+        ]
+      }
+    ],
+    "scheduleText": {
+      "weekday": "화~금 06:00~22:00",
+      "saturday": "06:00~22:00",
+      "sunday": "06:00~18:00",
+      "holiday": "09:00~18:00",
+      "closedDays": "매주 월요일 휴관"
+    },
+    "fee": {
+      "standard": {
+        "adult": 4000
+      }
+    },
+    "amenities": {
+      "dehydrator": false,
+      "dryer": false,
+      "soap": false,
+      "walkingLane": false,
+      "kickboard": false,
+      "flippers": false,
+      "parking": true,
+      "swimShop": false,
+      "cafe": false,
+      "warmRoom": false,
+      "over18m": false
+    },
+    "parkingInfo": "지상/지하 주차장 이용 가능",
+    "etcInfo": "유아풀 / 오버풀시스템 / 50m 8레인 정규 규격",
+    "updatedAt": "2026-11-17T19:48:00.000Z"
+  },
+  {
+    "id": "pool-namwon-sports-25m",
+    "name": "남원국민체육센터",
+    "shortName": "남원국민체육센터",
+    "address": "전북특별자치도 남원시 용성로 49",
+    "addressDetail": null,
+    "city": "남원시",
+    "district": null,
+    "phone": "063-636-7070",
+    "homepage": "http://hopesports.or.kr",
+    "lat": 35.4098839,
+    "lng": 127.3819704,
+    "laneLength": 25,
+    "laneCount": 5,
+    "depth": "1.1~1.35m",
+    "breakRule": "50_10",
+    "weeklySchedule": {
+      "0": {
+        "isOpen": false,
+        "sessions": [],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "1": {
+        "isOpen": true,
+        "sessions": [
+          {
+            "partName": "오전",
+            "start": "06:00",
+            "end": "12:00"
+          },
+          {
+            "partName": "오후",
+            "start": "13:00",
+            "end": "20:00"
+          }
+        ],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "2": {
+        "isOpen": true,
+        "sessions": [
+          {
+            "partName": "오전",
+            "start": "06:00",
+            "end": "12:00"
+          },
+          {
+            "partName": "오후",
+            "start": "13:00",
+            "end": "20:00"
+          }
+        ],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "3": {
+        "isOpen": true,
+        "sessions": [
+          {
+            "partName": "오전",
+            "start": "06:00",
+            "end": "12:00"
+          },
+          {
+            "partName": "오후",
+            "start": "13:00",
+            "end": "20:00"
+          }
+        ],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "4": {
+        "isOpen": true,
+        "sessions": [
+          {
+            "partName": "오전",
+            "start": "06:00",
+            "end": "12:00"
+          },
+          {
+            "partName": "오후",
+            "start": "13:00",
+            "end": "20:00"
+          }
+        ],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "5": {
+        "isOpen": true,
+        "sessions": [
+          {
+            "partName": "오전",
+            "start": "06:00",
+            "end": "12:00"
+          },
+          {
+            "partName": "오후",
+            "start": "13:00",
+            "end": "20:00"
+          }
+        ],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "6": {
+        "isOpen": true,
+        "sessions": [
+          {
+            "partName": "오전",
+            "start": "06:00",
+            "end": "12:00"
+          },
+          {
+            "partName": "오후",
+            "start": "13:00",
+            "end": "17:00"
+          }
+        ],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    "holidaySchedule": {
+      "isOpen": false,
+      "sessions": [],
+      "hourlySlots": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "closedDaysDescription": "매주 일요일 및 공휴일 휴관",
+    "closedRules": [
+      {
+        "type": "weekly",
+        "daysOfWeek": [
+          0
+        ]
+      },
+      {
+        "type": "holidays"
+      }
+    ],
+    "scheduleText": {
+      "weekday": "06:00~12:00 / 13:00~20:00",
+      "saturday": "06:00~12:00 / 13:00~17:00",
+      "sunday": "휴관",
+      "holiday": "휴관",
+      "closedDays": "매주 일요일 및 법정공휴일 휴관",
+      "breakTime": "12:00~13:00"
+    },
+    "fee": {
+      "standard": {
+        "adult": 3000,
+        "teen": 2000,
+        "child": 1000
+      }
+    },
+    "amenities": {
+      "dehydrator": false,
+      "dryer": false,
+      "soap": false,
+      "walkingLane": false,
+      "kickboard": false,
+      "flippers": false,
+      "parking": true,
+      "swimShop": false,
+      "cafe": false,
+      "warmRoom": false,
+      "over18m": false
+    },
+    "parkingInfo": "체육센터 전용 주차장 무료 이용",
+    "etcInfo": "장애청소년 스포츠선수단육성 / 노인재활서비스 / 수중운동재활",
+    "updatedAt": "2026-11-17T19:48:00.000Z"
+  },
+  {
+    "id": "pool-hongcheon-sports-25m",
+    "name": "홍천국민체육센터",
+    "shortName": "홍천국민체육센터",
+    "address": "강원특별자치도 홍천군 홍천읍 태학여내길 31",
+    "addressDetail": null,
+    "city": "홍천군",
+    "district": null,
+    "phone": "033-436-7330",
+    "homepage": "https://sports.gangwon.kr",
+    "lat": 37.709103,
+    "lng": 127.9061764,
+    "laneLength": 25,
+    "laneCount": 6,
+    "depth": "1.5m",
+    "breakRule": "50_10",
+    "weeklySchedule": {
+      "0": {
+        "isOpen": true,
+        "sessions": [
+          {
+            "partName": "자유수영",
+            "start": "06:00",
+            "end": "21:00"
+          }
+        ],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false
+        ]
+      },
+      "1": {
+        "isOpen": false,
+        "sessions": [],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "2": {
+        "isOpen": true,
+        "sessions": [
+          {
+            "partName": "자유수영",
+            "start": "06:00",
+            "end": "21:00"
+          }
+        ],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false
+        ]
+      },
+      "3": {
+        "isOpen": true,
+        "sessions": [
+          {
+            "partName": "자유수영",
+            "start": "06:00",
+            "end": "21:00"
+          }
+        ],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false
+        ]
+      },
+      "4": {
+        "isOpen": true,
+        "sessions": [
+          {
+            "partName": "자유수영",
+            "start": "06:00",
+            "end": "21:00"
+          }
+        ],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false
+        ]
+      },
+      "5": {
+        "isOpen": true,
+        "sessions": [
+          {
+            "partName": "자유수영",
+            "start": "06:00",
+            "end": "21:00"
+          }
+        ],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false
+        ]
+      },
+      "6": {
+        "isOpen": true,
+        "sessions": [
+          {
+            "partName": "자유수영",
+            "start": "06:00",
+            "end": "21:00"
+          }
+        ],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    "holidaySchedule": {
+      "isOpen": true,
+      "sessions": [
+        {
+          "partName": "자유수영",
+          "start": "09:00",
+          "end": "18:00"
+        }
+      ],
+      "hourlySlots": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "closedDaysDescription": "매주 월요일 휴관",
+    "closedRules": [
+      {
+        "type": "weekly",
+        "daysOfWeek": [
+          1
+        ]
+      }
+    ],
+    "scheduleText": {
+      "weekday": "06:00~21:00 (월요일 휴관)",
+      "saturday": "06:00~21:00",
+      "sunday": "06:00~21:00",
+      "closedDays": "매주 월요일 휴관"
+    },
+    "fee": {
+      "standard": {
+        "adult": 3000
+      }
+    },
+    "amenities": {
+      "dehydrator": false,
+      "dryer": false,
+      "soap": false,
+      "walkingLane": true,
+      "kickboard": false,
+      "flippers": false,
+      "parking": true,
+      "swimShop": false,
+      "cafe": false,
+      "warmRoom": false,
+      "over18m": false
+    },
+    "parkingInfo": "체육센터 주차장 무료",
+    "etcInfo": "경로우대 걷기레인 有 / 보조풀 (수심 75cm) / 유아풀 (수심 40cm)",
+    "updatedAt": "2026-11-17T19:48:00.000Z"
+  },
+  {
+    "id": "pool-masan-gym-25m",
+    "name": "마산실내체육관",
+    "shortName": "마산실내체육관",
+    "address": "경남 창원시 마산회원구 삼호로 63",
+    "addressDetail": "마산종합운동장",
+    "city": "창원시",
+    "district": "마산회원구",
+    "phone": "055-712-0533",
+    "homepage": "https://www.cwsisul.or.kr",
+    "lat": 35.2221549,
+    "lng": 128.5810692,
+    "laneLength": 25,
+    "laneCount": 5,
+    "depth": "1.2m",
+    "breakRule": "50_10",
+    "weeklySchedule": {
+      "0": {
+        "isOpen": false,
+        "sessions": [],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "1": {
+        "isOpen": true,
+        "sessions": [
+          {
+            "partName": "자유수영",
+            "start": "06:00",
+            "end": "20:00"
+          }
+        ],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "2": {
+        "isOpen": true,
+        "sessions": [
+          {
+            "partName": "자유수영",
+            "start": "06:00",
+            "end": "20:00"
+          }
+        ],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "3": {
+        "isOpen": true,
+        "sessions": [
+          {
+            "partName": "자유수영",
+            "start": "06:00",
+            "end": "20:00"
+          }
+        ],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "4": {
+        "isOpen": true,
+        "sessions": [
+          {
+            "partName": "자유수영",
+            "start": "06:00",
+            "end": "20:00"
+          }
+        ],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "5": {
+        "isOpen": true,
+        "sessions": [
+          {
+            "partName": "자유수영",
+            "start": "06:00",
+            "end": "20:00"
+          }
+        ],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "6": {
+        "isOpen": false,
+        "sessions": [],
+        "hourlySlots": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    "holidaySchedule": {
+      "isOpen": false,
+      "sessions": [],
+      "hourlySlots": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "closedDaysDescription": "토·일·공휴일 대관 위주 (주말 자유수영 미운영)",
+    "closedRules": [
+      {
+        "type": "weekly",
+        "daysOfWeek": [
+          0,
+          6
+        ]
+      }
+    ],
+    "scheduleText": {
+      "weekday": "06:00~20:00",
+      "saturday": "미운영 (대관전용)",
+      "sunday": "미운영 (대관전용)",
+      "closedDays": "주말 및 공휴일 자유수영 미운영"
+    },
+    "fee": {
+      "standard": {
+        "adult": 3500
+      }
+    },
+    "amenities": {
+      "dehydrator": false,
+      "dryer": false,
+      "soap": false,
+      "walkingLane": false,
+      "kickboard": false,
+      "flippers": false,
+      "parking": true,
+      "swimShop": false,
+      "cafe": false,
+      "warmRoom": false,
+      "over18m": false
+    },
+    "parkingInfo": "마산종합운동장 주차장 이용 가능",
+    "etcInfo": "유아풀 12mX8m (수심 0.8m) / 대관 가능",
+    "updatedAt": "2026-11-17T19:48:00.000Z"
   }
 ]
