@@ -68,7 +68,7 @@ export const FilterModal: React.FC<FilterModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="w-full sm:max-w-md bg-slate-900 border border-slate-700/80 rounded-t-3xl sm:rounded-3xl shadow-2xl p-5 flex flex-col gap-5 max-h-[85vh] overflow-y-auto no-scrollbar">
+      <div className="w-full sm:max-w-md bg-slate-900 border border-slate-700/80 rounded-t-3xl sm:rounded-3xl shadow-2xl p-5 flex flex-col gap-5 max-h-[85dvh] overflow-y-auto no-scrollbar">
         {/* 헤더 */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-800">
           <div className="flex items-center gap-2">

@@ -79,7 +79,7 @@ export const PoolListModal: React.FC<PoolListModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-40 flex flex-col justify-end sm:justify-center items-center p-0 sm:p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="w-full sm:max-w-xl bg-slate-900 border border-slate-700/80 rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col h-[85vh] sm:h-[80vh] overflow-hidden">
+      <div className="w-full sm:max-w-xl bg-slate-900 border border-slate-700/80 rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col h-[85dvh] sm:h-[80dvh] overflow-hidden">
         {/* 헤더 및 컨트롤 바 */}
         <div className="p-4 border-b border-slate-800 bg-slate-900/90 flex flex-col gap-3 shrink-0">
           <div className="flex items-center justify-between">

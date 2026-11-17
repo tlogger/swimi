@@ -63,19 +63,6 @@ export interface PoolAmenities {
   over18m?: boolean;   // 수심 >1.8m
 }
 
-export interface FacilityFeatures {
-  hasKidPool?: boolean;
-  hasWarmRoom?: boolean;
-  hasWalkingLane?: boolean;
-  kickboardAllowed?: boolean;
-  flippersAllowed?: boolean;
-  parking?: {
-    available: boolean;
-    info: string;
-  };
-  notes?: string;
-}
-
 export interface SwimmingPool {
   id: string;
   name: string;
@@ -116,7 +103,6 @@ export interface SwimmingPool {
 
   // 편의시설 (탈수기, 드라이어, 비누, 걷기레인, 킥판, 오리발, 주차장, 용품점, 카페, 체온조절실)
   amenities: PoolAmenities;
-  features?: FacilityFeatures;
 
   // 주차 상세 정보
   parkingInfo?: string;

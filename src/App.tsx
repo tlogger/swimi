@@ -94,11 +94,33 @@ export const App: React.FC = () => {
     };
   }, [currentUser]);
 
-  // 4. 전면 DB화된 수영장 데이터 로드 (Supabase 단일 DB)
+  // 4. 전면 DB화된 수영장 데이터 로드 (Supabase 단일 DB) 및 최신 수정일 추출
   const refreshPools = useCallback(async () => {
     try {
       const data = await loadAllPoolsWithDbSync();
       setPools(data);
+
+      // DB 행 중 가장 최근 수정 일자 산출 (불필요한 metadata.json 별도 fetch 제거)
+      let latestDate = '2026-10-31';
+      data.forEach((p) => {
+        if (p.updatedAt && p.updatedAt > latestDate) {
+          latestDate = p.updatedAt.slice(0, 10);
+        }
+      });
+      setLastUpdateDate(latestDate);
+
+      // URL 파라미터 딥링크 처리 (?pool=ID)
+      if (typeof window !== 'undefined') {
+        const params = new URLSearchParams(window.location.search);
+        const poolIdFromUrl = params.get('pool');
+        if (poolIdFromUrl) {
+          const target = data.find((p) => p.id === poolIdFromUrl);
+          if (target) {
+            setSelectedPool(target);
+            setMapCenter({ lat: target.lat, lng: target.lng });
+          }
+        }
+      }
     } catch (err) {
       console.error('클라우드 DB 수영장 데이터 로드 실패:', err);
     }
@@ -106,15 +128,6 @@ export const App: React.FC = () => {
 
   useEffect(() => {
     refreshPools();
-    // 일괄 업데이트 메타데이터 로드
-    fetch(`${import.meta.env.BASE_URL}data/metadata.json`)
-      .then((res) => res.json())
-      .then((meta) => {
-        if (meta.lastUpdate) {
-          setLastUpdateDate(meta.lastUpdate);
-        }
-      })
-      .catch(() => {});
   }, [refreshPools]);
 
   // 5. 현재 위치 조회
@@ -153,6 +166,12 @@ export const App: React.FC = () => {
     setSelectedLanes((prev) =>
       prev.includes(lane) ? prev.filter((l) => l !== lane) : [...prev, lane]
     );
+  };
+
+  // 퀵필터 50m 전용 토글
+  const is50mOnly = selectedLanes.length === 1 && selectedLanes[0] === 50;
+  const handleToggle50mOnly = () => {
+    setSelectedLanes((prev) => (prev.length === 1 && prev[0] === 50 ? [25, 50] : [50]));
   };
 
   // 7. 즐겨찾기 토글 핸들러
@@ -359,7 +378,7 @@ export const App: React.FC = () => {
 
   return (
     <div className="relative w-full h-full overflow-hidden bg-slate-950">
-      {/* 1. 상단 플로팅 검색 & 필터/목록 헤더 */}
+      {/* 1. 상단 플로팅 검색 & 필터/목록 헤더 & 원터치 퀵필터 칩 */}
       <HeaderSearch
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
@@ -367,10 +386,20 @@ export const App: React.FC = () => {
         onToggleList={() => setIsListOpen(true)}
         hasActiveFilters={hasActiveFilters}
         isListOpen={isListOpen}
+        onlyOpenNow={onlyOpenNow}
+        onToggleOnlyOpenNow={() => setOnlyOpenNow((prev) => !prev)}
+        is50mOnly={is50mOnly}
+        onToggle50mOnly={handleToggle50mOnly}
+        onlyOver18m={onlyOver18m}
+        onToggleOnlyOver18m={() => setOnlyOver18m((prev) => !prev)}
+        onlyVisited={onlyVisited}
+        onToggleOnlyVisited={() => setOnlyVisited((prev) => !prev)}
+        onlyFavorite={onlyFavorite}
+        onToggleOnlyFavorite={() => setOnlyFavorite((prev) => !prev)}
       />
 
       {/* 2. 지도 위 플로팅 컨트롤 (로그인/프로필 버튼 & 내 위치 버튼 항상 노출) */}
-      <div className="absolute top-16 right-3 z-30 flex flex-col items-end gap-2 pointer-events-auto">
+      <div className="absolute top-28 right-3 z-30 flex flex-col items-end gap-2 pointer-events-auto">
         {/* 로그인 / 프로필 카드 버튼 */}
         <button
           onClick={() => setIsAuthOpen(true)}

@@ -448,6 +448,15 @@ export function calculateDistanceKm(
   lat2: number,
   lon2: number
 ): number {
+  if (
+    typeof lat1 !== 'number' || typeof lon1 !== 'number' ||
+    typeof lat2 !== 'number' || typeof lon2 !== 'number' ||
+    isNaN(lat1) || isNaN(lon1) || isNaN(lat2) || isNaN(lon2) ||
+    lat1 === 0 || lon1 === 0 || lat2 === 0 || lon2 === 0
+  ) {
+    return 99999;
+  }
+
   const R = 6371; // 지구 반지름 (km)
   const dLat = ((lat2 - lat1) * Math.PI) / 180;
   const dLon = ((lon2 - lon1) * Math.PI) / 180;

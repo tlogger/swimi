@@ -63,7 +63,7 @@ const PoolEditModalContent: React.FC<PoolEditContentProps> = ({
     parking: Boolean(pool.amenities?.parking || pool.parkingInfo),
     swimShop: Boolean(pool.amenities?.swimShop),
     cafe: Boolean(pool.amenities?.cafe),
-    warmRoom: Boolean(pool.amenities?.warmRoom || pool.features?.hasWarmRoom),
+    warmRoom: Boolean(pool.amenities?.warmRoom),
     over18m: isPoolOver18m(pool),
   });
 
@@ -247,7 +247,7 @@ const PoolEditModalContent: React.FC<PoolEditContentProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/75 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="relative w-full max-w-xl bg-slate-900 border border-slate-700/80 rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+      <div className="relative w-full max-w-xl bg-slate-900 border border-slate-700/80 rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90dvh]">
         {/* 상단 헤더 */}
         <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-800 shrink-0">
           <div className="flex items-center gap-2">

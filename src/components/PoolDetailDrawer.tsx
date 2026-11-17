@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
   Navigation,
   Phone,
@@ -18,6 +18,8 @@ import {
   ShoppingBag,
   Coffee,
   Flame,
+  Share2,
+  Check,
 } from 'lucide-react';
 import { SwimmingPool, PoolCurrentStatus } from '../types/pool';
 import { UserInteractionState } from '../types/auth';
@@ -145,20 +147,43 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
       { name: '주차장', available: Boolean(am.parking || pool.parkingInfo) },
       { name: '용품점', available: Boolean(am.swimShop) },
       { name: '카페', available: Boolean(am.cafe) },
-      {
-        name: '체온조절실',
-        available: Boolean(
-          pool.amenities?.warmRoom !== undefined
-            ? pool.amenities.warmRoom
-            : pool.features?.hasWarmRoom
-        ),
-      },
+      { name: '체온조절실', available: Boolean(am.warmRoom) },
     ];
   }, [pool]);
 
+  const [copied, setCopied] = useState<boolean>(false);
+
+  const handleSharePool = async () => {
+    if (!pool) return;
+    const shareUrl = `${window.location.origin}${window.location.pathname}?pool=${encodeURIComponent(pool.id)}`;
+    const shareTitle = `[Swimi] ${pool.name} 자유수영 정보`;
+    const shareText = `${pool.name} (${pool.laneLength}m) 자유수영 시간표, 요금, 편의시설 정보입니다.`;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: shareTitle,
+          text: shareText,
+          url: shareUrl,
+        });
+        return;
+      } catch (err) {
+        // 취소 시 무시
+      }
+    }
+
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (e) {
+      alert(`공유 링크: ${shareUrl}`);
+    }
+  };
+
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 flex justify-center pointer-events-auto">
-      <div className="w-full max-w-2xl bg-slate-900/98 backdrop-blur-xl border-t sm:border-x border-slate-700/80 rounded-t-3xl shadow-2xl flex flex-col max-h-[84vh] overflow-hidden animate-in slide-in-from-bottom-6 duration-300">
+      <div className="w-full max-w-2xl bg-slate-900/98 backdrop-blur-xl border-t sm:border-x border-slate-700/80 rounded-t-3xl shadow-2xl flex flex-col max-h-[84dvh] overflow-hidden animate-in slide-in-from-bottom-6 duration-300">
         {/* 상단 드래그 핸들 & 닫기 바 */}
         <div className="relative pt-2.5 pb-2 px-5 border-b border-slate-800 flex items-center justify-between shrink-0">
           <div className="absolute left-1/2 -translate-x-1/2 top-2 w-10 h-1 bg-slate-700 rounded-full" />
@@ -201,13 +226,23 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
               </span>
             )}
           </div>
-          <button
-            onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-slate-200 hover:bg-slate-800 rounded-full mt-1"
-            aria-label="닫기"
-          >
-            <ChevronDown className="w-5 h-5" />
-          </button>
+          <div className="flex items-center gap-1 mt-1">
+            <button
+              onClick={handleSharePool}
+              className="p-1.5 text-slate-400 hover:text-cyan-300 hover:bg-slate-800 rounded-full transition-colors"
+              title="수영장 링크 복사 및 공유"
+              aria-label="공유하기"
+            >
+              {copied ? <Check className="w-5 h-5 text-emerald-400" /> : <Share2 className="w-5 h-5" />}
+            </button>
+            <button
+              onClick={onClose}
+              className="p-1.5 text-slate-400 hover:text-slate-200 hover:bg-slate-800 rounded-full"
+              aria-label="닫기"
+            >
+              <ChevronDown className="w-5 h-5" />
+            </button>
+          </div>
         </div>
 
         {/* 스크롤 가능한 본문 영역 */}
