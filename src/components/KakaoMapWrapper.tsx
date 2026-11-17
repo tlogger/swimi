@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Map, CustomOverlayMap, useKakaoLoader } from 'react-kakao-maps-sdk';
 import { SwimmingPool, PoolCurrentStatus } from '../types/pool';
 import { UserInteractionsMap } from '../types/auth';
@@ -28,14 +28,13 @@ export const KakaoMapWrapper: React.FC<KakaoMapWrapperProps> = ({
 }) => {
   const [loading, error] = useKakaoLoader({
     appkey: KAKAO_KEY,
-    libraries: ['services'],
+    libraries: ['services', 'clusterer'],
   });
 
   const mapRef = useRef<kakao.maps.Map | null>(null);
   const [mapCenter, setMapCenter] = useState(center);
   const [mapLevel, setMapLevel] = useState(level);
   const [currentZoomLevel, setCurrentZoomLevel] = useState<number>(level);
-  const [mapBounds, setMapBounds] = useState<kakao.maps.LatLngBounds | null>(null);
 
   // 외부 center prop 변경 시 지도 부드럽게 이동
   useEffect(() => {
@@ -45,23 +44,6 @@ export const KakaoMapWrapper: React.FC<KakaoMapWrapperProps> = ({
       mapRef.current.panTo(moveLatLng);
     }
   }, [center]);
-
-  // 지도 뷰포트(Bounds) 가상화: 현재 화면에 들어오는 수영장만 렌더링하여 모바일 60fps 보장
-  const visiblePools = useMemo(() => {
-    if (!mapBounds || !(window as any).kakao?.maps?.LatLng) {
-      return pools;
-    }
-    const kakaoLatLng = (window as any).kakao.maps.LatLng;
-    return pools.filter((pool) => {
-      if (selectedPool && pool.id === selectedPool.id) return true;
-      try {
-        const point = new kakaoLatLng(pool.lat, pool.lng);
-        return mapBounds.contain(point);
-      } catch {
-        return true;
-      }
-    });
-  }, [pools, mapBounds, selectedPool]);
 
   if (error) {
     const currentOrigin = typeof window !== 'undefined' ? window.location.origin : '';
@@ -108,13 +90,8 @@ export const KakaoMapWrapper: React.FC<KakaoMapWrapperProps> = ({
         onCreate={(map) => {
           mapRef.current = map;
           setCurrentZoomLevel(map.getLevel());
-          setMapBounds(map.getBounds());
         }}
         onZoomChanged={(map) => {
-          setCurrentZoomLevel(map.getLevel());
-        }}
-        onIdle={(map) => {
-          setMapBounds(map.getBounds());
           setCurrentZoomLevel(map.getLevel());
         }}
         className="w-full h-full"
@@ -134,8 +111,8 @@ export const KakaoMapWrapper: React.FC<KakaoMapWrapperProps> = ({
           </CustomOverlayMap>
         )}
 
-        {/* 수영장 원형 숫자 마커 오버레이 (뷰포트 내 가시 영역만 렌더링) */}
-        {visiblePools.map((pool) => {
+        {/* 수영장 원형 숫자 마커 오버레이 */}
+        {pools.map((pool) => {
           const status = poolStatuses[pool.id];
           const isSelected = selectedPool?.id === pool.id;
           const is50m = pool.laneLength === 50;
