@@ -49,7 +49,7 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
   status,
   targetDate,
   onClose,
-  lastUpdate = '2026-11-02',
+  lastUpdate,
   interaction,
   onToggleFavorite,
   onToggleCheckIn,
@@ -58,6 +58,7 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
   onRequireLogin,
   isLoggedIn = false,
 }) => {
+  const displayLastUpdate = lastUpdate || (pool?.updatedAt ? pool.updatedAt.substring(0, 10) : '2026-10-31');
   if (!pool) return null;
 
   const dayOfWeek = targetDate.getDay();
@@ -144,7 +145,14 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
       { name: '주차장', available: Boolean(am.parking || pool.parkingInfo) },
       { name: '용품점', available: Boolean(am.swimShop) },
       { name: '카페', available: Boolean(am.cafe) },
-      { name: '체온조절실', available: Boolean(am.warmRoom || pool.features?.hasWarmRoom) },
+      {
+        name: '체온조절실',
+        available: Boolean(
+          pool.amenities?.warmRoom !== undefined
+            ? pool.amenities.warmRoom
+            : pool.features?.hasWarmRoom
+        ),
+      },
     ];
   }, [pool]);
 
@@ -573,7 +581,7 @@ export const PoolDetailDrawer: React.FC<PoolDetailDrawerProps> = ({
           {/* 데이터 동기화 일자 & 출처 표기 */}
           <div className="pt-2 pb-1 text-center flex flex-col items-center gap-0.5">
             <span className="text-[10px] font-mono text-slate-500">
-              {pool.updatedAt ? `수정 일시: ${pool.updatedAt.slice(0, 10)} · ` : ''}Last Update: {lastUpdate}
+              {pool.updatedAt ? `수정 일시: ${pool.updatedAt.slice(0, 10)} · ` : ''}Last Update: {displayLastUpdate}
             </span>
             <div className="text-[10px] text-slate-500 flex items-center gap-1">
               <span>Source:</span>

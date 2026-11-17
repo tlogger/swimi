@@ -77,12 +77,25 @@ export function logout(): void {
   setCurrentUser(null);
 }
 
+function generateSecureNonce(): string {
+  if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
+    const array = new Uint8Array(16);
+    crypto.getRandomValues(array);
+    return Array.from(array, (byte) => byte.toString(16).padStart(2, '0')).join('');
+  }
+  return Math.random().toString(36).substring(2) + Date.now().toString(36);
+}
+
 /** 소셜 OAuth 로그인 URL 생성 */
 export function buildOAuthAuthorizeUrl(provider: AuthProvider): { url: string; error?: string } {
   const config = getOAuthClientConfig();
-  const state = encodeURIComponent(JSON.stringify({ provider, t: Date.now() }));
+  const nonce = generateSecureNonce();
+  const state = encodeURIComponent(JSON.stringify({ provider, nonce, t: Date.now() }));
 
   try {
+    if (typeof sessionStorage !== 'undefined') {
+      sessionStorage.setItem(OAUTH_STATE_KEY, state);
+    }
     if (typeof localStorage !== 'undefined') {
       localStorage.setItem(OAUTH_STATE_KEY, state);
     }
@@ -134,14 +147,14 @@ export async function syncUserAccountToDb(account: {
   const client = getSupabase();
   const now = new Date().toISOString();
 
-  const record = {
+  // upsert 시 기존 행의 created_at이 덮어쓰여지지 않도록 dbRecord에서는 제외
+  const dbRecord = {
     provider: account.provider,
     provider_user_id: account.provider_user_id,
     email: account.email || null,
     name: account.name || '수영인',
     profile_image: account.profile_image || null,
     access_token: account.access_token || null,
-    created_at: now,
     last_login_at: now,
   };
 
@@ -158,13 +171,14 @@ export async function syncUserAccountToDb(account: {
 
   let savedAccount: UserAccount = {
     id: generateUuid(),
-    ...record,
+    ...dbRecord,
+    created_at: now,
   };
 
   try {
     const { data, error } = await client
       .from('user_accounts')
-      .upsert(record, { onConflict: 'provider,provider_user_id' })
+      .upsert(dbRecord, { onConflict: 'provider,provider_user_id' })
       .select()
       .single();
 
@@ -197,6 +211,21 @@ export async function loginAsGuest(nickname?: string): Promise<UserAccount> {
 
 /** OAuth 리다이렉트 콜백 파싱 처리 (해시 또는 쿼리 스트링) */
 export async function handleOAuthCallback(): Promise<UserAccount | null> {
+  // CSRF state 저장값 복원 및 양쪽 스토리지 모두 제거
+  let storedState: string | null = null;
+  try {
+    if (typeof sessionStorage !== 'undefined') {
+      storedState = sessionStorage.getItem(OAUTH_STATE_KEY);
+      sessionStorage.removeItem(OAUTH_STATE_KEY);
+    }
+    if (typeof localStorage !== 'undefined') {
+      if (!storedState) {
+        storedState = localStorage.getItem(OAUTH_STATE_KEY);
+      }
+      localStorage.removeItem(OAUTH_STATE_KEY);
+    }
+  } catch {}
+
   // 1. 해시 파라미터 파싱 (Naver / Google implicit grant: #access_token=...&state=...)
   const hash = window.location.hash.substring(1);
   if (hash) {
@@ -205,6 +234,13 @@ export async function handleOAuthCallback(): Promise<UserAccount | null> {
     const state = params.get('state');
 
     if (accessToken) {
+      // CSRF 방어: state 누락 또는 불일치 시 엄격 거부 (fail closed)
+      if (!state || !storedState || decodeURIComponent(state) !== decodeURIComponent(storedState)) {
+        console.warn('OAuth State 불일치 또는 누락: 로그인을 거부합니다. (CSRF 차단)');
+        window.history.replaceState(null, '', window.location.pathname);
+        return null;
+      }
+
       let provider: AuthProvider = 'naver';
       if (state) {
         try {
@@ -213,12 +249,12 @@ export async function handleOAuthCallback(): Promise<UserAccount | null> {
         } catch {}
       }
 
-      // 네이버 프로필 조회 시도
       let name = '수영인';
       let email: string | null = null;
       let profile_image: string | null = null;
-      let provider_user_id = `user_${Date.now()}`;
+      let provider_user_id = '';
 
+      // 네이버 프로필 조회 시도
       if (provider === 'naver') {
         try {
           const res = await fetch('https://openapi.naver.com/v1/nid/me', {
@@ -227,7 +263,7 @@ export async function handleOAuthCallback(): Promise<UserAccount | null> {
           if (res.ok) {
             const data = await res.json();
             if (data.response) {
-              provider_user_id = data.response.id || provider_user_id;
+              provider_user_id = data.response.id || '';
               name = data.response.nickname || data.response.name || '네이버 수영인';
               email = data.response.email || null;
               profile_image = data.response.profile_image || null;
@@ -236,6 +272,44 @@ export async function handleOAuthCallback(): Promise<UserAccount | null> {
         } catch (e) {
           console.warn('네이버 프로필 조회 오류:', e);
         }
+
+        if (!provider_user_id) {
+          console.error('네이버 고유 사용자 ID 조회 실패: 로그인을 중단합니다.');
+          window.history.replaceState(null, '', window.location.pathname);
+          return null;
+        }
+      }
+
+      // 구글 프로필 조회 시도 (userinfo API에서 고유 sub ID 조회하여 영구 식별)
+      if (provider === 'google') {
+        try {
+          const res = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+            headers: { Authorization: `Bearer ${accessToken}` },
+          });
+          if (res.ok) {
+            const data = await res.json();
+            if (data.sub) {
+              provider_user_id = data.sub;
+              name = data.name || data.given_name || '구글 수영인';
+              email = data.email || null;
+              profile_image = data.picture || null;
+            }
+          }
+        } catch (e) {
+          console.warn('구글 프로필 조회 오류:', e);
+        }
+
+        if (!provider_user_id) {
+          console.error('구글 고유 사용자 ID(sub) 조회 실패: 로그인을 중단합니다.');
+          window.history.replaceState(null, '', window.location.pathname);
+          return null;
+        }
+      }
+
+      // 기본 fallback ID (예기치 못한 공급자 처리)
+      if (!provider_user_id) {
+        window.history.replaceState(null, '', window.location.pathname);
+        return null;
       }
 
       // 클린 URL로 복귀
@@ -255,7 +329,13 @@ export async function handleOAuthCallback(): Promise<UserAccount | null> {
   // 2. 쿼리 파라미터 파싱 (Kakao authorization code: ?code=...)
   const searchParams = new URLSearchParams(window.location.search);
   const code = searchParams.get('code');
+  const codeState = searchParams.get('state');
   if (code) {
+    if (!codeState || !storedState || decodeURIComponent(codeState) !== decodeURIComponent(storedState)) {
+      console.warn('OAuth Code State 불일치: 로그인을 거부합니다. (CSRF 차단)');
+      window.history.replaceState(null, '', window.location.pathname);
+      return null;
+    }
     window.history.replaceState(null, '', window.location.pathname);
     return await syncUserAccountToDb({
       provider: 'kakao',

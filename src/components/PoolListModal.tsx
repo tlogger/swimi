@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { X, ArrowDownAZ, Navigation, Clock, CheckCircle2, Waves, Trophy, Star } from 'lucide-react';
 import { SwimmingPool, PoolCurrentStatus } from '../types/pool';
 import { UserInteractionsMap } from '../types/auth';
@@ -37,36 +37,45 @@ export const PoolListModal: React.FC<PoolListModalProps> = ({
 }) => {
   const [activeTab, setActiveTab] = useState<ListFilterTab>('all');
 
-  if (!isOpen) return null;
+  // 1. 탭/운영중 필터링 및 정렬 (메모이제이션 적용으로 불필요한 재연산 및 원본 배열 변이 방지)
+  const displayedPools = useMemo(() => {
+    if (!isOpen) return [];
 
-  // 1. 도장깨기 & 즐겨찾기 탭 필터링
-  let filtered = pools.filter((pool) => {
-    const inter = interactions[pool.id];
-    if (activeTab === 'visited') return Boolean(inter?.isVisited);
-    if (activeTab === 'favorite') return Boolean(inter?.isFavorite);
-    return true;
-  });
+    let filtered = pools.filter((pool) => {
+      const inter = interactions[pool.id];
+      if (activeTab === 'visited') return Boolean(inter?.isVisited);
+      if (activeTab === 'favorite') return Boolean(inter?.isFavorite);
+      return true;
+    });
 
-  // 2. 운영중 필터링
-  let displayedPools = filtered.filter((pool) => {
-    if (!onlyOpenNow) return true;
-    const st = poolStatuses[pool.id];
-    return st && (st.status === 'OPEN' || st.status === 'BREAK');
-  });
-
-  // 3. 정렬 (가나다순 vs 가까운순)
-  displayedPools.sort((a, b) => {
-    if (sortMode === 'name') {
-      return a.name.localeCompare(b.name, 'ko');
-    } else {
-      const distA = poolDistances[a.id] ?? 999999;
-      const distB = poolDistances[b.id] ?? 999999;
-      return distA - distB;
+    if (onlyOpenNow) {
+      filtered = filtered.filter((pool) => {
+        const st = poolStatuses[pool.id];
+        return st && (st.status === 'OPEN' || st.status === 'BREAK');
+      });
     }
-  });
 
-  const visitedCount = Object.values(interactions).filter((i) => i.isVisited).length;
-  const favoriteCount = Object.values(interactions).filter((i) => i.isFavorite).length;
+    return [...filtered].sort((a, b) => {
+      if (sortMode === 'name') {
+        return a.name.localeCompare(b.name, 'ko');
+      } else {
+        const distA = poolDistances[a.id] ?? 999999;
+        const distB = poolDistances[b.id] ?? 999999;
+        return distA - distB;
+      }
+    });
+  }, [isOpen, pools, interactions, activeTab, onlyOpenNow, poolStatuses, sortMode, poolDistances]);
+
+  const visitedCount = useMemo(
+    () => Object.values(interactions).filter((i) => i.isVisited).length,
+    [interactions]
+  );
+  const favoriteCount = useMemo(
+    () => Object.values(interactions).filter((i) => i.isFavorite).length,
+    [interactions]
+  );
+
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-40 flex flex-col justify-end sm:justify-center items-center p-0 sm:p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">

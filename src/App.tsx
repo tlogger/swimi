@@ -71,13 +71,27 @@ export const App: React.FC = () => {
 
   // 3. 유저 변경 시 도장깨기 & 즐겨찾기 상호작용 로드
   useEffect(() => {
+    let isCurrent = true;
     if (currentUser?.id) {
-      loadUserInteractions(currentUser.id).then((data) => {
-        setInteractions(data);
-      });
+      loadUserInteractions(currentUser.id)
+        .then((data) => {
+          if (isCurrent) {
+            setInteractions(data);
+          }
+        })
+        .catch((err) => {
+          console.warn('사용자 상호작용 로드 실패:', err);
+          if (isCurrent) {
+            setInteractions({});
+          }
+        });
     } else {
       setInteractions({});
     }
+
+    return () => {
+      isCurrent = false;
+    };
   }, [currentUser]);
 
   // 4. 전면 DB화된 수영장 데이터 로드 (Supabase 단일 DB)
@@ -165,9 +179,7 @@ export const App: React.FC = () => {
   const handleSavePool = async (updatedPool: SwimmingPool) => {
     const saved = await savePoolToDb(updatedPool, currentUser?.id);
     setPools((prev) => prev.map((p) => (p.id === saved.id ? saved : p)));
-    if (selectedPool?.id === saved.id) {
-      setSelectedPool(saved);
-    }
+    setSelectedPool((prev) => (prev?.id === saved.id ? saved : prev));
   };
 
   // 9-1. 잘못된 수영장 클라우드 DB 삭제 핸들러 (is_deleted: true)
@@ -175,9 +187,7 @@ export const App: React.FC = () => {
     try {
       await deletePoolFromDb(poolId, currentUser?.id);
       setPools((prev) => prev.filter((p) => p.id !== poolId));
-      if (selectedPool?.id === poolId) {
-        setSelectedPool(null);
-      }
+      setSelectedPool((prev) => (prev?.id === poolId ? null : prev));
       setEditingPool(null);
       alert('수영장이 클라우드 DB에서 정상적으로 삭제되었습니다.');
     } catch (err) {
@@ -234,19 +244,20 @@ export const App: React.FC = () => {
 
   // 검색 및 필터링 적용된 수영장 목록
   const filteredPools = useMemo(() => {
+    const trimmedQuery = searchQuery.trim().toLowerCase();
+
     return pools.filter((pool) => {
       const inter = interactions[pool.id];
       if (onlyVisited && !inter?.isVisited) return false;
       if (onlyFavorite && !inter?.isFavorite) return false;
       if (onlyOver18m && !isPoolOver18m(pool)) return false;
 
-      if (searchQuery.trim()) {
-        const query = searchQuery.trim().toLowerCase();
-        const matchesName = pool.name.toLowerCase().includes(query);
-        const matchesShortName = pool.shortName?.toLowerCase().includes(query);
-        const matchesAddress = pool.address.toLowerCase().includes(query);
-        const matchesDistrict = pool.district ? pool.district.toLowerCase().includes(query) : false;
-        const matchesCity = pool.city.toLowerCase().includes(query);
+      if (trimmedQuery) {
+        const matchesName = pool.name.toLowerCase().includes(trimmedQuery);
+        const matchesShortName = pool.shortName ? pool.shortName.toLowerCase().includes(trimmedQuery) : false;
+        const matchesAddress = pool.address.toLowerCase().includes(trimmedQuery);
+        const matchesDistrict = pool.district ? pool.district.toLowerCase().includes(trimmedQuery) : false;
+        const matchesCity = pool.city ? pool.city.toLowerCase().includes(trimmedQuery) : false;
 
         if (
           !matchesName &&

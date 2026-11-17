@@ -102,13 +102,13 @@ export function parseClosedDaysDescription(text?: string): ClosedRule[] {
     if (seg.includes('셋') || seg.includes('셋째') || seg.includes('세번째')) if (!weeks.includes(3)) weeks.push(3);
     if (seg.includes('넷') || seg.includes('넷째') || seg.includes('네번째')) if (!weeks.includes(4)) weeks.push(4);
     if (seg.includes('다섯') || seg.includes('다섯째')) if (!weeks.includes(5)) weeks.push(5);
-    return weeks.sort();
+    return weeks.sort((a, b) => a - b);
   };
 
   // N주차 요일 정규식 (예: "1,3주차 일요일", "2, 4주 토요일", "둘째 넷째 일요일")
   const nthRegex = /([0-9,\s·/첫둘셋넷다섯번째주차]+)\s*(?:주|주차|번째주|째주)?\s*([일월화수목금토](?:요일)?)/g;
   let match;
-  let matchedNth = false;
+  let textWithoutNth = clean;
 
   while ((match = nthRegex.exec(clean)) !== null) {
     const weekStr = match[1];
@@ -122,32 +122,44 @@ export function parseClosedDaysDescription(text?: string): ClosedRule[] {
         weekday,
         weeks
       });
-      matchedNth = true;
+      // 이미 N주차 요일로 매칭된 부분은 매주 요일 파싱에서 제외
+      textWithoutNth = textWithoutNth.replace(match[0], ' ');
     }
   }
 
-  // 매주 요일 패턴 (예: "매주 월요일", "매주 월, 수요일", "월요일 휴관")
-  if (!matchedNth) {
-    const hasWeekKeywords = /[1-5]주|주차|첫째|둘째|셋째|넷째/.test(clean);
-    if (!hasWeekKeywords) {
-      const weeklyRegex = /(?:매주|매월)?\s*([일월화수목금토](?:요일)?)/g;
-      let wMatch;
-      const weeklyDays: number[] = [];
+  // 매주 요일 패턴 (예: "매주 월요일", "매주 월, 수요일", "월요일 휴관", "매주 화")
+  // "공휴일", "휴관일 없음" 등의 단독 '일'이 일요일로 오인되지 않도록 요일 명시 또는 '매주/매월' 접두사 요구
+  const weeklyDays: number[] = [];
+  const weeklyFullRegex = /(?:매주|매월)\s*([일월화수목금토](?:\s*,\s*[일월화수목금토])*)(?:요일)?|([일월화수목금토])요일/g;
+  let wMatch;
 
-      while ((wMatch = weeklyRegex.exec(clean)) !== null) {
-        const dChar = wMatch[1].charAt(0);
-        const dNum = KOR_DAY_MAP[dChar];
-        if (dNum !== undefined && !weeklyDays.includes(dNum)) {
-          weeklyDays.push(dNum);
-        }
-      }
-      if (weeklyDays.length > 0) {
-        rules.push({
-          type: 'weekly',
-          daysOfWeek: weeklyDays
+  while ((wMatch = weeklyFullRegex.exec(textWithoutNth)) !== null) {
+    const multiDays = wMatch[1];
+    const singleDay = wMatch[2];
+
+    if (multiDays) {
+      const days = multiDays.match(/[일월화수목금토]/g);
+      if (days) {
+        days.forEach((d) => {
+          const dNum = KOR_DAY_MAP[d];
+          if (dNum !== undefined && !weeklyDays.includes(dNum)) {
+            weeklyDays.push(dNum);
+          }
         });
       }
+    } else if (singleDay) {
+      const dNum = KOR_DAY_MAP[singleDay];
+      if (dNum !== undefined && !weeklyDays.includes(dNum)) {
+        weeklyDays.push(dNum);
+      }
     }
+  }
+
+  if (weeklyDays.length > 0) {
+    rules.push({
+      type: 'weekly',
+      daysOfWeek: weeklyDays
+    });
   }
 
   return rules;
@@ -197,10 +209,11 @@ export function rebuildDaySchedule(timeText?: string): DaySchedule {
     };
   }
 
+  // 파싱 가능한 시간 세션이 없을 경우 가짜 시간을 임의로 생성하지 않고 미운영/미제공 처리
   return {
-    isOpen: true,
-    sessions: [{ partName: '자유수영', start: '06:00', end: '21:50' }],
-    hourlySlots: new Array(24).fill(false).map((_, i) => i >= 6 && i <= 21)
+    isOpen: false,
+    sessions: [],
+    hourlySlots: new Array(24).fill(false)
   };
 }
 

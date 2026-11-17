@@ -14,3 +14,5 @@
 3. **배포 정책 (Push 선행 및 사용자 요청 시 실행)**:
    - 단순 로컬 `git commit`만으로는 배포를 실행하지 않습니다.
    - 사용자가 "deploy" 또는 "배포"를 요청할 때에만, 반드시 **`git push origin main`이 성공적으로 완료된 후 `npx vercel --prod --yes`를 순차 실행**하여 배포합니다 (`npm run deploy`).
+4. **로컬 OpenJev & Qwen 우선 위임**:
+   - 글로벌 작업 규칙에 따라 명령어 안전성 검증(`evaluate_boolean`), 경로 분기 결정(`evaluate_choice`), 긴 로그 압축 및 커밋 메시지 작성 시 로컬 OpenJev MCP 서버를 적극 호출하여 클라우드 토큰 소모를 최소화합니다.

@@ -91,9 +91,11 @@ function mapPoolToDbRow(pool: SwimmingPool, userId?: string): Record<string, any
     amenities: {
       ...(pool.amenities || {}),
       over18m: Boolean(
-        pool.over18m ||
-        pool.amenities?.over18m ||
-        (pool.depth && isDepthOver18m(pool.depth))
+        pool.over18m !== undefined
+          ? pool.over18m
+          : (pool.amenities?.over18m !== undefined
+              ? pool.amenities.over18m
+              : (pool.depth && isDepthOver18m(pool.depth)))
       ),
     },
     parking_info: pool.parkingInfo || null,
@@ -196,7 +198,7 @@ export async function loadUserInteractions(userId: string): Promise<UserInteract
 
   if (error) {
     console.error('Supabase swimi_user_interactions 로드 실패:', error.message);
-    return {};
+    throw error;
   }
 
   const interactionsMap: UserInteractionsMap = {};

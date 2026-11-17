@@ -11,15 +11,19 @@ interface PoolEditModalProps {
   onDelete?: (poolId: string) => Promise<void>;
 }
 
-export const PoolEditModal: React.FC<PoolEditModalProps> = ({
-  isOpen,
-  onClose,
+interface PoolEditContentProps {
+  pool: SwimmingPool;
+  onClose: () => void;
+  onSave: (updated: SwimmingPool) => Promise<void>;
+  onDelete?: (poolId: string) => Promise<void>;
+}
+
+const PoolEditModalContent: React.FC<PoolEditContentProps> = ({
   pool,
+  onClose,
   onSave,
   onDelete,
 }) => {
-  if (!isOpen || !pool) return null;
-
   // 폼 상태
   const [name, setName] = useState<string>(pool.name || '');
   const [shortName, setShortName] = useState<string>(pool.shortName || '');
@@ -143,27 +147,51 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
             isClosed: false,
           };
 
-      // 1. 휴관 규칙 자동 파싱
-      const parsedClosedRules = parseClosedDaysDescription(closedDays.trim());
+      // 1. 휴관 규칙 파싱 (텍스트 변경 시 또는 기존 규칙이 없을 때 재파싱)
+      const trimmedClosedDays = closedDays.trim();
+      const origClosedDays = (pool.scheduleText?.closedDays || pool.closedDaysDescription || '').trim();
+      const isClosedDaysChanged = trimmedClosedDays !== origClosedDays;
+      const parsedClosedRules = (isClosedDaysChanged || !pool.closedRules || pool.closedRules.length === 0)
+        ? parseClosedDaysDescription(trimmedClosedDays)
+        : pool.closedRules;
 
       // 2. 운영시간 텍스트 기반 24시간 슬롯 및 세션 재구축
-      const weekdayScheduleObj = rebuildDaySchedule(weekdaySchedule.trim());
-      const satScheduleObj = rebuildDaySchedule(saturdaySchedule.trim());
-      const sunScheduleObj = rebuildDaySchedule(sundaySchedule.trim());
-      const holidayScheduleObj = rebuildDaySchedule(holidaySchedule.trim());
+      // (텍스트가 수정되지 않은 경우 기존 세부 요일별 스케줄을 보존)
+      const trimmedWeekday = weekdaySchedule.trim();
+      const trimmedSat = saturdaySchedule.trim();
+      const trimmedSun = sundaySchedule.trim();
+      const trimmedHoliday = holidaySchedule.trim();
 
-      const updatedWeeklySchedule: Record<number, DaySchedule> = {
-        0: sunScheduleObj,
-        1: weekdayScheduleObj,
-        2: weekdayScheduleObj,
-        3: weekdayScheduleObj,
-        4: weekdayScheduleObj,
-        5: weekdayScheduleObj,
-        6: satScheduleObj,
-      };
+      const isWeekdayChanged = trimmedWeekday !== (pool.scheduleText?.weekday || '').trim();
+      const isSatChanged = trimmedSat !== (pool.scheduleText?.saturday || '').trim();
+      const isSunChanged = trimmedSun !== (pool.scheduleText?.sunday || '').trim();
+      const isHolidayChanged = trimmedHoliday !== (pool.scheduleText?.holiday || '').trim();
+
+      let updatedWeeklySchedule: Record<number, DaySchedule> = pool.weeklySchedule || {};
+      if (isWeekdayChanged || isSatChanged || isSunChanged || !pool.weeklySchedule || Object.keys(pool.weeklySchedule).length === 0) {
+        const weekdayScheduleObj = rebuildDaySchedule(trimmedWeekday);
+        const satScheduleObj = rebuildDaySchedule(trimmedSat);
+        const sunScheduleObj = rebuildDaySchedule(trimmedSun);
+
+        updatedWeeklySchedule = {
+          0: isSunChanged || !pool.weeklySchedule?.[0] ? sunScheduleObj : pool.weeklySchedule[0],
+          1: isWeekdayChanged || !pool.weeklySchedule?.[1] ? weekdayScheduleObj : pool.weeklySchedule[1],
+          2: isWeekdayChanged || !pool.weeklySchedule?.[2] ? weekdayScheduleObj : pool.weeklySchedule[2],
+          3: isWeekdayChanged || !pool.weeklySchedule?.[3] ? weekdayScheduleObj : pool.weeklySchedule[3],
+          4: isWeekdayChanged || !pool.weeklySchedule?.[4] ? weekdayScheduleObj : pool.weeklySchedule[4],
+          5: isWeekdayChanged || !pool.weeklySchedule?.[5] ? weekdayScheduleObj : pool.weeklySchedule[5],
+          6: isSatChanged || !pool.weeklySchedule?.[6] ? satScheduleObj : pool.weeklySchedule[6],
+        };
+      }
+
+      const holidayScheduleObj = (isHolidayChanged || !pool.holidaySchedule)
+        ? rebuildDaySchedule(trimmedHoliday)
+        : pool.holidaySchedule;
 
       const trimmedDepth = depth.trim();
       const isOver18 = Boolean(amenities.over18m);
+
+      const parsedAdultFee = adultFee.trim() ? parseInt(adultFee.trim(), 10) : pool.fee?.standard?.adult;
 
       const updatedPool: SwimmingPool = {
         ...pool,
@@ -185,24 +213,24 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
         },
         parkingInfo: parkingInfo.trim() || undefined,
         etcInfo: etcInfo.trim() || undefined,
-        closedDaysDescription: closedDays.trim() || undefined,
+        closedDaysDescription: trimmedClosedDays || undefined,
         closedRules: parsedClosedRules,
         weeklySchedule: updatedWeeklySchedule,
         holidaySchedule: holidayScheduleObj,
         temporaryClosure,
         scheduleText: {
-          weekday: weekdaySchedule.trim() || undefined,
-          saturday: saturdaySchedule.trim() || undefined,
-          sunday: sundaySchedule.trim() || undefined,
-          holiday: holidaySchedule.trim() || undefined,
-          closedDays: closedDays.trim() || undefined,
+          weekday: trimmedWeekday || undefined,
+          saturday: trimmedSat || undefined,
+          sunday: trimmedSun || undefined,
+          holiday: trimmedHoliday || undefined,
+          closedDays: trimmedClosedDays || undefined,
           breakTime: breakTime.trim() || undefined,
         },
         fee: {
           ...pool.fee,
           standard: {
             ...pool.fee?.standard,
-            adult: adultFee.trim() ? parseInt(adultFee.trim(), 10) : (pool.fee?.standard?.adult || 0),
+            adult: parsedAdultFee !== undefined && !isNaN(parsedAdultFee) ? parsedAdultFee : (pool.fee?.standard?.adult ?? 0),
           },
         },
       };
@@ -687,5 +715,24 @@ export const PoolEditModal: React.FC<PoolEditModalProps> = ({
         </form>
       </div>
     </div>
+  );
+};
+
+export const PoolEditModal: React.FC<PoolEditModalProps> = ({
+  isOpen,
+  onClose,
+  pool,
+  onSave,
+  onDelete,
+}) => {
+  if (!isOpen || !pool) return null;
+
+  return (
+    <PoolEditModalContent
+      pool={pool}
+      onClose={onClose}
+      onSave={onSave}
+      onDelete={onDelete}
+    />
   );
 };
